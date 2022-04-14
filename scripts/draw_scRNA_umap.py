@@ -29,7 +29,7 @@ fc = scRNA_functions()
 # adata.write(fout)
 
 print("\n * Reading in data...")
-fpath="/oak/stanford/groups/smontgom/amarder/t21/out/10X_Healthy_Liver.umap.h5ad"
+fpath="/oak/stanford/groups/smontgom/amarder/t21/out/data/10X_Healthy_Liver.umap.h5ad"
 adata=sc.read_h5ad(fpath)
 
 myColors = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe',
