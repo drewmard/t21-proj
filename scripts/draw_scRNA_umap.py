@@ -6,7 +6,7 @@ import os
 import matplotlib.backends.backend_pdf as mpdf
 
 
-sys.path.append("/oak/stanford/groups/smontgom/amarder/t21/Functions/")
+sys.path.append("/oak/stanford/groups/smontgom/amarder/t21_download/Functions/")
 # Get the global settings
 #from global_settings import global_settings
 #global_settings()
@@ -48,7 +48,7 @@ myColors = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#
 # sns.set(font_scale=1.5)
 # sns.set_style("white")
 
-os.chdir("/oak/stanford/groups/smontgom/amarder/t21/out/")
+os.chdir("/oak/stanford/groups/smontgom/amarder/t21/out/figures")
 pdf = mpdf.PdfPages("10X_Healthy_Liver.umap.pdf")
 print("\n * Writing UMAP...")
 # sc.pl.umap(adata,color="leiden",palette=myColors,save="10X_Healthy_Liver.umap.png")
