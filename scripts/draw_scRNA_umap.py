@@ -19,13 +19,12 @@ fc = scRNA_functions()
 
 
 print("\n * Reading in data...")
-for 10X_DownSyndrome_Femur.h5ad 10X_DownSyndrome_Liver.h5ad  10X_Healthy_Femur.h5ad  10X_Healthy_Liver.h5ad
 for disease_status in ["DownSyndrome","Healthy"]:
       for sampletype in ["Femur","Liver"]:
             f="10X_" + disease_status "_" + sampletype + ".h5ad"
             fpath=direc + "/" + f
 
-            print("\n * Reading in data...")
+            print("\n * Reading in data..." + fpath)
             adata=sc.read_h5ad(fpath)
             print("\n * Computing UMAP (2 components)...")
             sc.tl.umap(adata, random_state=10, n_components=2, init_pos='random')
