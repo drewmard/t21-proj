@@ -29,7 +29,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
             print("\n * Computing UMAP (2 components)...")
             sc.tl.umap(adata, random_state=10, n_components=2, init_pos='random')
 
-            fout="10X_" + disease_status "_" + sampletype + ".umap.h5ad"
+            fout="10X_" + disease_status + "_" + sampletype + ".umap.h5ad"
             foutpath=direc + "/" + f
             print("\n * Saving data to file..." + foutpath)
             adata.write(foutpath)
