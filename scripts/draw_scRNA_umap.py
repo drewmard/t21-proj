@@ -53,6 +53,8 @@ pdf = mpdf.PdfPages("10X_Healthy_Liver.umap.pdf")
 print("\n * Writing UMAP...")
 # sc.pl.umap(adata,color="leiden",palette=myColors,save="10X_Healthy_Liver.umap.png")
 fc.plotUMAP(adata, variable="leiden", palette=myColors, pdf=pdf)
+print("\n * Script complete...")
+pdf.close()
 
 # plt.tight_layout()
 # pdf.savefig()
