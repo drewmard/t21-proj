@@ -21,7 +21,7 @@ fc = scRNA_functions()
 print("\n * Reading in data...")
 for disease_status in ["DownSyndrome","Healthy"]:
       for sampletype in ["Femur","Liver"]:
-            f="10X_" + disease_status "_" + sampletype + ".h5ad"
+            f="10X_" + disease_status + "_" + sampletype + ".h5ad"
             fpath=direc + "/" + f
 
             print("\n * Reading in data..." + fpath)
