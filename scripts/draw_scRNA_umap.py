@@ -52,7 +52,7 @@ os.chdir("/oak/stanford/groups/smontgom/amarder/t21/out/figures")
 pdf = mpdf.PdfPages("10X_Healthy_Liver.umap.pdf")
 print("\n * Writing UMAP...")
 # sc.pl.umap(adata,color="leiden",palette=myColors,save="10X_Healthy_Liver.umap.png")
-fc.plotUMAP(adata, variable="leiden", palette=myColors, pdf=pdf)
+fc.plotUMAP(adata, variable="leiden", palette=myColors, pdf=pdf,width=30,height=16)
 print("\n * Script complete...")
 pdf.close()
 
