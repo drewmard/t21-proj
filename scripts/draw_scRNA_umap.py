@@ -33,9 +33,9 @@ for disease_status in ["DownSyndrome","Healthy"]:
             # print("\n * Saving data to file..." + foutpath)
             # adata.write(foutpath)
 
-            print("\n * Reading in data...")
             fout="10X_" + disease_status + "_" + sampletype + ".umap.h5ad"
             foutpath=headdir + "/out/data/" + fout
+            print("\n * Reading in data..." + foutpath)
             adata=sc.read_h5ad(foutpath)
 
             myColors = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe',
@@ -55,8 +55,9 @@ for disease_status in ["DownSyndrome","Healthy"]:
             # sns.set_style("white")
 
             os.chdir(headdir + "/out/figures")
-            pdf = mpdf.PdfPages("10X_"+disease_status+"_"+sampletype+".umap.pdf")
-            print("\n * Plotting UMAP...")
+            fplotout="10X_"+disease_status+"_"+sampletype+".umap.pdf"
+            pdf = mpdf.PdfPages(fplotout)
+            print("\n * Plotting UMAP..." + headdir + "/out/figures"+ fplotout)
             # sc.pl.umap(adata,color="leiden",palette=myColors,save="10X_Healthy_Liver.umap.png")
             # fc.plotUMAP(adata, variable="leiden", palette=myColors, pdf=pdf,width=26,height=16)
             f, axs = plt.subplots(1,1,figsize=(26,16))
