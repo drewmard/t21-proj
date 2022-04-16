@@ -8,7 +8,7 @@ import matplotlib.backends.backend_pdf as mpdf
 
 sys.path.append("/oak/stanford/groups/smontgom/amarder/t21_download/Functions/")
 direc="/oak/stanford/groups/smontgom/amarder/data/t21/ScanpyObjects"
-headdir="/oak/stanford/groups/smontgom/amarder/t21"
+headdir="/oak/stanford/groups/smontgom/amarder/t21-proj"
 # Get the global settings
 #from global_settings import global_settings
 #global_settings()
@@ -18,25 +18,25 @@ from scRNA_functions import scRNA_functions
 fc = scRNA_functions()
 
 
-print("\n * Reading in data...")
 for disease_status in ["DownSyndrome","Healthy"]:
       for sampletype in ["Femur","Liver"]:
-            f="10X_" + disease_status + "_" + sampletype + ".h5ad"
-            fpath=direc + "/" + f
 
-            print("\n * Reading in data..." + fpath)
-            adata=sc.read_h5ad(fpath)
-            print("\n * Computing UMAP (2 components)...")
-            sc.tl.umap(adata, random_state=10, n_components=2, init_pos='random')
-
-            fout="10X_" + disease_status + "_" + sampletype + ".umap.h5ad"
-            foutpath=direc + "/" + f
-            print("\n * Saving data to file..." + foutpath)
-            adata.write(foutpath)
-
-            # print("\n * Reading in data...")
-            # fpath="/oak/stanford/groups/smontgom/amarder/t21/out/data/10X_Healthy_Liver.umap.h5ad"
+            # print("\n * Reading in data..." + fpath)
+            # f="10X_" + disease_status + "_" + sampletype + ".h5ad"
+            # fpath=direc + "/" + f
             # adata=sc.read_h5ad(fpath)
+            # print("\n * Computing UMAP (2 components)...")
+            # sc.tl.umap(adata, random_state=10, n_components=2, init_pos='random')
+            # # Saving data to file:
+            # fout="10X_" + disease_status + "_" + sampletype + ".umap.h5ad"
+            # foutpath=headdir + "/out/data/" + fout
+            # print("\n * Saving data to file..." + foutpath)
+            # adata.write(foutpath)
+
+            print("\n * Reading in data...")
+            fout="10X_" + disease_status + "_" + sampletype + ".umap.h5ad"
+            foutpath=headdir + "/out/data/" + fout
+            adata=sc.read_h5ad(foutpath)
 
             myColors = ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe',
                         '#008080', '#e6beff', '#9a6324', '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000075', '#808080',
@@ -56,9 +56,17 @@ for disease_status in ["DownSyndrome","Healthy"]:
 
             os.chdir(headdir + "/out/figures")
             pdf = mpdf.PdfPages("10X_"+disease_status+"_"+sampletype+".umap.pdf")
-            print("\n * Writing UMAP...")
+            print("\n * Plotting UMAP...")
             # sc.pl.umap(adata,color="leiden",palette=myColors,save="10X_Healthy_Liver.umap.png")
-            fc.plotUMAP(adata, variable="leiden", palette=myColors, pdf=pdf,width=30,height=16)
+            # fc.plotUMAP(adata, variable="leiden", palette=myColors, pdf=pdf,width=26,height=16)
+            f, axs = plt.subplots(1,1,figsize=(26,16))
+            sns.set(font_scale=1.5)
+            sns.set_style("white")
+            sc.pl.umap(adata, color="leiden", size=150, palette=myColors, components='1,2', ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
+            plt.tight_layout()
+            pdf.savefig()
+            plt.close()
+
             print("\n * Script complete...")
             pdf.close()
 
