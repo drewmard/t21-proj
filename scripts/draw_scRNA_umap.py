@@ -14,7 +14,7 @@ headdir="/oak/stanford/groups/smontgom/amarder/t21-proj"
 #global_settings()
 
 # Get the bespoke analysis functions
-from scRNA_functions import scRNA_functions
+from scrna_functions import scRNA_functions
 fc = scRNA_functions()
 
 
