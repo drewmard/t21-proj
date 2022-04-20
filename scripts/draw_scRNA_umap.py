@@ -14,10 +14,11 @@ headdir="/oak/stanford/groups/smontgom/amarder/t21-proj"
 #global_settings()
 
 # Get the bespoke analysis functions
-from scrna_functions import scRNA_functions
+from scRNA_functions import scRNA_functions
 fc = scRNA_functions()
 
-
+disease_status="DownSyndrome"
+sampletype="Liver"
 for disease_status in ["DownSyndrome","Healthy"]:
       for sampletype in ["Femur","Liver"]:
 
@@ -57,7 +58,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
             os.chdir(headdir + "/out/figures")
             fplotout="10X_"+disease_status+"_"+sampletype+".umap.pdf"
             pdf = mpdf.PdfPages(fplotout)
-            print("\n * Plotting UMAP..." + headdir + "/out/figures"+ fplotout)
+            print("\n * Plotting UMAP..." + headdir + "/out/figures/"+ fplotout)
             # sc.pl.umap(adata,color="leiden",palette=myColors,save="10X_Healthy_Liver.umap.png")
             # fc.plotUMAP(adata, variable="leiden", palette=myColors, pdf=pdf,width=26,height=16)
             f, axs = plt.subplots(1,1,figsize=(26,16))
