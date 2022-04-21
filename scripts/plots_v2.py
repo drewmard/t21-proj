@@ -20,12 +20,12 @@ headdir="/oak/stanford/groups/smontgom/amarder/t21-proj"
 disease_status="Healthy"
 sampletype="Liver"
 suffix="" # ".subset"
-suffix=".subset"
+# suffix=".subset"
 
-for disease_status in ["Healthy"]:
-    for sampletype in ["Liver"]:
-# for disease_status in ["DownSyndrome","Healthy"]:
-#     for sampletype in ["Femur","Liver"]:
+# for disease_status in ["Healthy"]:
+    # for sampletype in ["Liver"]:
+for disease_status in ["DownSyndrome","Healthy"]:
+    for sampletype in ["Femur","Liver"]:
 
         if disease_status=="DownSyndrome" and sampletype=="Femur":
             continue
@@ -189,12 +189,12 @@ for disease_status in ["Healthy"]:
 
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap.no_legend.pdf"
         print("\n * Plotting & saving UMAP..." + headdir + "/out/figures/"+ fplotout)
-        pdf = mpdf.PdfPages(fplotout)
+        # pdf = mpdf.PdfPages(fplotout)
         f, axs = plt.subplots(1,1,figsize=(26,26))
         sns.set(font_scale=2)
         sns.set_style("white")
         new_plot=sc.pl.umap(adata, color="cell_type_groups", size=150, palette=myColors, components='1,2', ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="None")
-        pdf.savefig()
+        plt.savefig(fplotout)
         plt.show()
         plt.close()
         print("\n * Plot saved.")
@@ -214,7 +214,7 @@ for disease_status in ["Healthy"]:
 
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.pdf"
         print("\n * Plotting & saving UMAP..." + headdir + "/out/figures/"+ fplotout)
-        pdf = mpdf.PdfPages(fplotout)
+        # pdf = mpdf.PdfPages(fplotout)
         f, axs = plt.subplots(1,1,figsize=(14,10))
         # sns.set(font_scale=2)
         # sns.set_style("white")
@@ -232,7 +232,7 @@ for disease_status in ["Healthy"]:
                        show=False,
                        ax=axs,
                        linewidths=2,swap_axes=True)
-        pdf.savefig()
+        plt.savefig(fplotout)
         # plt.show()
         plt.close()
         print("\n * Plot saved.")
