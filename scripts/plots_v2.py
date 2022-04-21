@@ -27,8 +27,8 @@ for disease_status in ["DownSyndrome","Healthy"]:
         # In[43]:
 
 
-        suffix=""
-        fout="10X_" + disease_status + "_" + sampletype + ".umap."+suffix+".h5ad"
+        suffix="" # ".subset"
+        fout="10X_" + disease_status + "_" + sampletype + ".umap"+suffix+".h5ad"
         # fout="10X_" + disease_status + "_" + sampletype + ".umap.h5ad"
         foutpath=headdir + "/out/data/" + fout
         print("\n * Reading in data..." + foutpath)
@@ -81,7 +81,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
 
         print("\n * Indexing the scanpy object...")
         adata=adata[~adata.obs[colName].isin(cell_types_to_remove)]
-        fout="10X_" + disease_status + "_" + sampletype + ".umap."+suffix+".cells_removed.h5ad"
+        fout="10X_" + disease_status + "_" + sampletype + ".umap"+suffix+".cells_removed.h5ad"
         foutpath=headdir + "/out/data/" + fout
         print("\n * Saving data to file..." + foutpath)
         adata.write(foutpath)
