@@ -1,0 +1,90 @@
+,leiden,leiden_v7,cell_type_groups
+CGGACACGTGGCCTCA-1-5-0,0,Hepatocytes,Stroma
+AAACCCAGTTTCGATG-1-0-0,1,HSCs/MPPs,HSC/Progenitors
+AGCGCCAGTTTACACG-1-5-0,2,Hepatocytes,Stroma
+AAACGAAGTCATTGCA-1-0-0,3,Early erythroid cells,Erythroid
+AAACGAAGTAGCGTTT-1-0-0,4,Early erythroid cells,Erythroid
+AAACGCTAGACTGGGT-1-0-0,5,Late erythroid cells,Erythroid
+AAAGAACTCCAAACCA-1-0-0,6,Late erythroid cells,Erythroid
+AAAGGTACACAGAGAC-1-0-0,7,Early erythroid cells,Erythroid
+AAACGCTCATTCATCT-1-0-0,8,MEMPs,HSC/Progenitors
+AAACCCAAGCTAGCCC-1-0-0,9,Early erythroid cells,Erythroid
+AGGCCACTCACTTGGA-1-7-0,10,Vascular endothelial cells,Stroma
+CTGTAGACATTCAGGT-1-2-0,10,LSECs,Stroma
+ATTCTACGTATTTCTC-1-10-0,11,Hepatocytes,Stroma
+AAACGCTTCTGGCCTT-1-0-0,12,Early erythroid cells,Erythroid
+AACCAACTCGGCGATC-1-0-0,13,NK cells,NK cells
+AGACTCACACCAGTTA-1-0-0,14,Kupffer cells,Myeloid
+TACAGGTAGCGGGTAT-1-8-0,14,Monocyte progenitors,Myeloid
+TGTTGAGTCGCTGTCT-1-7-0,14,Inflammatory macrophages,Myeloid
+AACAGGGAGGTCCCTG-1-0-0,14,cDC2,Myeloid
+AAACGAATCGCAAGAG-1-0-0,15,Early erythroid cells,Erythroid
+AAACCCATCTCCTGAC-1-0-0,16,Megakaryocytes,Megakaryocytes
+AAACGAAGTACAAGTA-1-0-0,17,Late erythroid cells,Erythroid
+TACCTGCCACATTGTG-1-0-0,18,Early erythroid cells,Erythroid
+AAGACAATCCCAACTC-1-0-0,18,Cycling megakaryocytes,Megakaryocytes
+AAACCCATCCGGGACT-1-0-0,18,MEMPs,HSC/Progenitors
+AAACCCAAGAGTCTGG-1-0-0,19,Cycling HSCs/MPPs,HSC/Progenitors
+ATCTCTAAGCCGAACA-1-0-0,19,X,Stroma
+CGTAGTAGTGACTCGC-1-1-0,20,Megakaryocytes,Megakaryocytes
+ACGTCCTCAGCTACTA-1-1-0,20,Early erythroid cells,Erythroid
+AAAGGGCGTAGCCAGA-1-0-0,20,cDC2,Myeloid
+CACCAAACAATAGAGT-1-0-0,20,Kupffer cells,Myeloid
+AGAACAAAGCATTGTC-1-0-0,20,Late erythroid cells,Erythroid
+GAGAGGTGTGCTTATG-1-0-0,21,pDCs,B cells
+AACCATGAGTCAACAA-1-0-0,21,Cycling pDCs,B cells
+CCTATCGTCTATACGG-1-0-0,21,Early erythroid cells,Erythroid
+CCACCATGTCGGAACA-1-0-0,21,cDC2,Myeloid
+AACCATGAGACCAGCA-1-0-0,21,B cells,B cells
+AGGAATACACAGCTGC-1-0-0,21,Cycling B cells,Myeloid
+ACGGAAGTCTAGCCAA-1-0-0,21,Cycling pDCs,Myeloid
+AACAAAGGTACGATGG-1-0-0,21,pDCs,Myeloid
+ACGTACAGTCCTCCAT-1-0-0,21,Cycling B cells,B cells
+ATGGGTTTCACTGATG-1-9-0,22,Activated stellate cells,Stroma
+CACTGGGCAATTGCTG-1-5-0,22,Hepatic stellate cells,Stroma
+CAGGGCTGTTTCGTTT-1-0-0,23,NK cells,NK cells
+AACGGGATCTATGCCC-1-0-0,24,NK progenitors,NK cells
+AACCATGGTCTGATCA-1-0-0,24,Early erythroid cells,Erythroid
+AATGAAGTCCCGAATA-1-0-0,25,Early erythroid cells,Erythroid
+AATGAAGTCCTCACGT-1-0-0,26,Cycling megakaryocytes,Megakaryocytes
+AAGAACAAGGTAAGAG-1-0-0,26,Early erythroid cells,Erythroid
+AGCTACACAAGTGGGT-1-0-0,26,MEMPs,HSC/Progenitors
+ACGTACACAATCGCGC-1-0-0,27,Inflammatory macrophages,Myeloid
+TTCCGGTAGAGTAACT-1-0-0,27,cDC2,Myeloid
+GCATCGGTCATCTATC-1-5-0,27,Kupffer cells,Myeloid
+AACCAACGTTAGCTAC-1-0-0,27,Monocyte progenitors,Myeloid
+AACCACAAGAGCAAGA-1-5-0,28,Late erythroid cells,Erythroid
+AAAGGTACAGGTTACT-1-5-0,28,Early erythroid cells,Erythroid
+AAACGAAAGCAGCGAT-1-0-0,29,Mast cells,Mast cells
+ACATTTCAGGTAGTCG-1-13-0,30,Hepatocytes,Stroma
+AACGGGATCTTCCTAA-1-0-0,31,Neutrophil progenitors,HSC/Progenitors
+ATGGGAGGTTATGACC-1-1-0,31,X,Stroma
+GTCACGGAGAAGCCAC-1-7-0,32,cDC2,Myeloid
+CAAGAGGCACTCTCGT-1-0-0,32,Kupffer cells,Myeloid
+CACCGTTTCCGCTGTT-1-60-2,32,Monocyte progenitors,Myeloid
+AATCACGAGATCCGAG-1-5-0,32,Inflammatory macrophages,Myeloid
+CGGAACCAGTGGTTGG-1-0-0,33,Early erythroid cells,Erythroid
+AAGTGAATCTACTATC-1-0-0,33,Cycling megakaryocytes,Megakaryocytes
+ATAGAGAAGGGAACAA-1-0-0,33,MEMPs,HSC/Progenitors
+ACCTGAACAACTTGGT-1-0-0,34,Early erythroid cells,Erythroid
+CCACCATTCACCTGTC-1-20-0,35,Vascular endothelial cells,Stroma
+ACATCCCGTCACTCGG-1-5-0,35,LSECs,Stroma
+AAATGGAAGACGGATC-1-13-0,36,Hepatocytes,Stroma
+AAGACTCAGGGAGATA-1-0-0,37,Megakaryocytes,Megakaryocytes
+AAGCGTTCATGCGTGC-1-0-0,38,NK cells,NK cells
+CTGCAGGCACCGCTGA-1-5-0,39,Monocyte progenitors,Myeloid
+ACTTCCGGTCCGATCG-1-0-0,39,cDC2,Myeloid
+CACTAAGAGAAGTCCG-1-5-0,40,Early erythroid cells,Erythroid
+AACGGGACAAGCCCAC-1-0-0,41,Late erythroid cells,Erythroid
+AAGCATCAGAAACCCG-1-13-0,42,Hepatocytes,Stroma
+GATGTTGAGTCGAAGC-1-5-0,43,Early erythroid cells,Erythroid
+TGGAGGATCATTCGGA-1-13-0,44,LSECs,Stroma
+CATCCCAGTTCTAAGC-1-5-0,44,Vascular endothelial cells,Stroma
+ACATCCCCATGCCATA-1-0-0,45,Monocyte progenitors,Myeloid
+TTGCCTGGTTCTCGCT-1-10-0,45,NK cells,NK cells
+TCATTTGCAACGTTAC-1-0-0,46,Early erythroid cells,Erythroid
+CCTGCATAGAGTGTGC-1-13-0,47,Hepatocytes,Stroma
+AATCGACAGTGGCGAT-1-13-0,48,Hepatocytes,Stroma
+CTCTCAGTCACATCAG-1-5-0,49,Early erythroid cells,Erythroid
+AACAAGACAGCGCTTG-1-23-1,50,Hepatocytes,Stroma
+AGCCAGCAGGGCAAGG-1-18-0,51,Hepatocytes,Stroma

@@ -1,0 +1,400 @@
+Start
+Beginning script plots_v2.py
+Beginning script...
+Module loading completed.
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_DownSyndrome_Liver.umap.h5ad
+Data read completed.
+
+ * Indexing the scanpy object...
+
+ * Saving data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_DownSyndrome_Liver.umap.cells_removed.h5ad
+
+ * Completed.
+
+ * Grouping clusters within broad cell types...
+
+ * Creating dictionary...
+{'Erythroid': ['Early erythroid cells', 'Late erythroid cells'], 'Myeloid': ['Inflammatory macrophages', 'Cycling pDCs', 'pDCs', 'cDC2', 'Kupffer cells', 'Monocyte progenitors'], 'HSC/Progenitors': ['Cycling HSCs/MPPs', 'HSCs/MPPs', 'Cycling HSCs/MPPs', 'HSCs/MPPs', 'MEMPs', 'Granulocyte progenitors'], 'B cells': ['Pre pro B cells', 'Pro B cells'], 'Mast cells': ['Mast cells'], 'Megakaryocytes': ['Cycling megakaryocytes', 'Megakaryocytes'], 'NK cells': ['NK cells', 'NK progenitors'], 'Stroma': ['Hepatic stellate cells', 'LSECs', 'X', 'Vascular endothelial cells', 'Hepatocytes', 'Activated stellate cells']}
+
+ * Saving new cell type labels to 'cell_type_groups' column in the metadata...
+Trying to set attribute `.obs` of view, copying.
+
+ * About to run create_cell_type_groups...
+
+ * create_cell_type_groups running complete.
+
+ * New labels created.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures//oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Liver.umap.pdf
+... storing 'cell_type_groups' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures//oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Liver.umap.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures//oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Liver.dotplot.pdf
+WARNING: dendrogram data not found (using key=dendrogram_cell_type_groups). Running `sc.tl.dendrogram` with default parameters. For fine tuning it is recommended to run `sc.tl.dendrogram` independently.
+
+ * Plot saved.
+
+ * Saving cluster_to_label_mapping: /oak/stanford/groups/smontgom/amarder/t21-proj/out/data_small/10X_DownSyndrome_Liver.cluster_to_label_mapping.csv
+leiden                   leiden_v7 cell_type_groups
+     0                 Hepatocytes           Stroma
+     1                   HSCs/MPPs  HSC/Progenitors
+     2                 Hepatocytes           Stroma
+     3       Early erythroid cells        Erythroid
+     4       Early erythroid cells        Erythroid
+     5        Late erythroid cells        Erythroid
+     6        Late erythroid cells        Erythroid
+     7       Early erythroid cells        Erythroid
+     8                       MEMPs  HSC/Progenitors
+     9       Early erythroid cells        Erythroid
+    10  Vascular endothelial cells           Stroma
+    10                       LSECs           Stroma
+    11                 Hepatocytes           Stroma
+    12       Early erythroid cells        Erythroid
+    13                    NK cells         NK cells
+    14               Kupffer cells          Myeloid
+    14        Monocyte progenitors          Myeloid
+    14    Inflammatory macrophages          Myeloid
+    14                        cDC2          Myeloid
+    15       Early erythroid cells        Erythroid
+    16              Megakaryocytes   Megakaryocytes
+    17        Late erythroid cells        Erythroid
+    18       Early erythroid cells        Erythroid
+    18      Cycling megakaryocytes   Megakaryocytes
+    18                       MEMPs  HSC/Progenitors
+    19           Cycling HSCs/MPPs  HSC/Progenitors
+    19                           X           Stroma
+    20              Megakaryocytes   Megakaryocytes
+    20       Early erythroid cells        Erythroid
+    20                        cDC2          Myeloid
+    20               Kupffer cells          Myeloid
+    20        Late erythroid cells        Erythroid
+    21                        pDCs          B cells
+    21                Cycling pDCs          B cells
+    21       Early erythroid cells        Erythroid
+    21                        cDC2          Myeloid
+    21                     B cells          B cells
+    21             Cycling B cells          Myeloid
+    21                Cycling pDCs          Myeloid
+    21                        pDCs          Myeloid
+    21             Cycling B cells          B cells
+    22    Activated stellate cells           Stroma
+    22      Hepatic stellate cells           Stroma
+    23                    NK cells         NK cells
+    24              NK progenitors         NK cells
+    24       Early erythroid cells        Erythroid
+    25       Early erythroid cells        Erythroid
+    26      Cycling megakaryocytes   Megakaryocytes
+    26       Early erythroid cells        Erythroid
+    26                       MEMPs  HSC/Progenitors
+    27    Inflammatory macrophages          Myeloid
+    27                        cDC2          Myeloid
+    27               Kupffer cells          Myeloid
+    27        Monocyte progenitors          Myeloid
+    28        Late erythroid cells        Erythroid
+    28       Early erythroid cells        Erythroid
+    29                  Mast cells       Mast cells
+    30                 Hepatocytes           Stroma
+    31      Neutrophil progenitors  HSC/Progenitors
+    31                           X           Stroma
+    32                        cDC2          Myeloid
+    32               Kupffer cells          Myeloid
+    32        Monocyte progenitors          Myeloid
+    32    Inflammatory macrophages          Myeloid
+    33       Early erythroid cells        Erythroid
+    33      Cycling megakaryocytes   Megakaryocytes
+    33                       MEMPs  HSC/Progenitors
+    34       Early erythroid cells        Erythroid
+    35  Vascular endothelial cells           Stroma
+    35                       LSECs           Stroma
+    36                 Hepatocytes           Stroma
+    37              Megakaryocytes   Megakaryocytes
+    38                    NK cells         NK cells
+    39        Monocyte progenitors          Myeloid
+    39                        cDC2          Myeloid
+    40       Early erythroid cells        Erythroid
+    41        Late erythroid cells        Erythroid
+    42                 Hepatocytes           Stroma
+    43       Early erythroid cells        Erythroid
+    44                       LSECs           Stroma
+    44  Vascular endothelial cells           Stroma
+    45        Monocyte progenitors          Myeloid
+    45                    NK cells         NK cells
+    46       Early erythroid cells        Erythroid
+    47                 Hepatocytes           Stroma
+    48                 Hepatocytes           Stroma
+    49       Early erythroid cells        Erythroid
+    50                 Hepatocytes           Stroma
+    51                 Hepatocytes           Stroma
+Done
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_Healthy_Femur.umap.h5ad
+Data read completed.
+
+ * Indexing the scanpy object...
+
+ * Saving data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_Healthy_Femur.umap.cells_removed.h5ad
+
+ * Completed.
+
+ * Grouping clusters within broad cell types...
+
+ * Creating dictionary...
+{'Erythroid': ['Early erythroid cells', 'Late erythroid cells'], 'Myeloid': ['Cycling neutrophils', 'Neutrophils', 'Inflammatory macrophages', 'Tolerogenic macrophages', 'pDCs', 'Cycling cDC2', 'cDC2', 'Osteoclasts'], 'HSC/Progenitors': ['HSCs/MPPs', 'HSCs/MPPs', 'MEMPs', 'Granulocyte progenitors'], 'B cells': ['B cells', 'Cycling pro B cells', 'Pre pro B cells', 'Pro B cells'], 'Mast cells': ['Mast cells'], 'Megakaryocytes': ['Megakaryocytes', 'Megakaryocytes,3 (to remove)'], 'NK cells': ['NK cells', 'Unknown 1', 'Unknown 2', 'Unknown endothelial cells'], 'Stroma': ['LEPR+ CAR cells', 'Mesenchymal cells 2', 'Osteoblasts', 'Sinusoidal endothelial cells', 'Fibroblasts', 'Cycling muscle cells', 'Collagen+ myeloid cells', 'Transitioning endothelial cells', 'Smooth muscle cells', 'Osteoblasts,4 (to remove)', 'Mesenchymal cells 1', 'Vascular endothelial cells', 'Osteoprogenitors', 'Schwann cells', 'CAR cells']}
+
+ * Saving new cell type labels to 'cell_type_groups' column in the metadata...
+Trying to set attribute `.obs` of view, copying.
+
+ * About to run create_cell_type_groups...
+
+ * create_cell_type_groups running complete.
+
+ * New labels created.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures//oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Femur.umap.pdf
+... storing 'cell_type_groups' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures//oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Femur.umap.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures//oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Femur.dotplot.pdf
+WARNING: dendrogram data not found (using key=dendrogram_cell_type_groups). Running `sc.tl.dendrogram` with default parameters. For fine tuning it is recommended to run `sc.tl.dendrogram` independently.
+
+ * Plot saved.
+
+ * Saving cluster_to_label_mapping: /oak/stanford/groups/smontgom/amarder/t21-proj/out/data_small/10X_Healthy_Femur.cluster_to_label_mapping.csv
+leiden                        leiden_v7 cell_type_groups
+     1                        CAR cells           Stroma
+     2                        CAR cells           Stroma
+     2                      Fibroblasts           Stroma
+     2                 Osteoprogenitors           Stroma
+     3              Mesenchymal cells 2           Stroma
+     4        Osteoblasts,4 (to remove)           Stroma
+     4                      Osteoblasts           Stroma
+     5       Vascular endothelial cells           Stroma
+     5        Unknown endothelial cells         NK cells
+     5  Transitioning endothelial cells           Stroma
+     5     Sinusoidal endothelial cells           Stroma
+     6     Sinusoidal endothelial cells           Stroma
+     6       Vascular endothelial cells           Stroma
+     6  Transitioning endothelial cells           Stroma
+     7              Smooth muscle cells           Stroma
+     7                  LEPR+ CAR cells           Stroma
+     8          Collagen+ myeloid cells           Stroma
+     8          Tolerogenic macrophages          Myeloid
+     8              Cycling neutrophils          Myeloid
+     8         Inflammatory macrophages          Myeloid
+     8                     Cycling cDC2          Myeloid
+     9                      Fibroblasts           Stroma
+     9                        CAR cells           Stroma
+     9                 Osteoprogenitors           Stroma
+    10         Inflammatory macrophages          Myeloid
+    10          Collagen+ myeloid cells           Stroma
+    11                      Osteoblasts           Stroma
+    11                      Fibroblasts           Stroma
+    11                        CAR cells           Stroma
+    11                 Osteoprogenitors           Stroma
+    11              Smooth muscle cells           Stroma
+    11              Mesenchymal cells 1           Stroma
+    12              Cycling neutrophils          Myeloid
+    12         Inflammatory macrophages          Myeloid
+    12          Collagen+ myeloid cells           Stroma
+    13         Inflammatory macrophages          Myeloid
+    13                             cDC2          Myeloid
+    13                     Cycling cDC2          Myeloid
+    13              Cycling neutrophils          Myeloid
+    13          Collagen+ myeloid cells           Stroma
+    14                        CAR cells           Stroma
+    14                      Fibroblasts           Stroma
+    14                 Osteoprogenitors           Stroma
+    14              Smooth muscle cells           Stroma
+    14              Mesenchymal cells 1           Stroma
+    15          Collagen+ myeloid cells           Stroma
+    15         Inflammatory macrophages          Myeloid
+    15                             cDC2          Myeloid
+    15              Cycling neutrophils          Myeloid
+    15                     Cycling cDC2          Myeloid
+    16                  LEPR+ CAR cells           Stroma
+    16              Smooth muscle cells           Stroma
+    17                             cDC2          Myeloid
+    17          Collagen+ myeloid cells           Stroma
+    17              Cycling neutrophils          Myeloid
+    17          Tolerogenic macrophages          Myeloid
+    17         Inflammatory macrophages          Myeloid
+    17                     Cycling cDC2          Myeloid
+    17                      Osteoclasts          Myeloid
+    18                        CAR cells           Stroma
+    19                         NK cells         NK cells
+    20  Transitioning endothelial cells           Stroma
+    20     Sinusoidal endothelial cells           Stroma
+    20        Unknown endothelial cells         NK cells
+    21                   Megakaryocytes   Megakaryocytes
+    21     Sinusoidal endothelial cells           Stroma
+    21                            MEMPs  HSC/Progenitors
+    21             Late erythroid cells        Erythroid
+    21            Early erythroid cells        Erythroid
+    21     Megakaryocytes,3 (to remove)   Megakaryocytes
+    22                        Unknown 1         NK cells
+    23     Sinusoidal endothelial cells           Stroma
+    23        Unknown endothelial cells         NK cells
+    23  Transitioning endothelial cells           Stroma
+    23       Vascular endothelial cells           Stroma
+    24     Sinusoidal endothelial cells           Stroma
+    24  Transitioning endothelial cells           Stroma
+    24       Vascular endothelial cells           Stroma
+    25          Granulocyte progenitors  HSC/Progenitors
+    25                      Neutrophils          Myeloid
+    25                        HSCs/MPPs  HSC/Progenitors
+    25                       Mast cells       Mast cells
+    26                      Pro B cells          B cells
+    26                  Pre pro B cells          B cells
+    26              Cycling pro B cells          B cells
+    26                          B cells          B cells
+    27          Collagen+ myeloid cells           Stroma
+    27         Inflammatory macrophages          Myeloid
+    27              Cycling neutrophils          Myeloid
+    27                     Cycling cDC2          Myeloid
+    28              Mesenchymal cells 1           Stroma
+    28                 Osteoprogenitors           Stroma
+    28                      Fibroblasts           Stroma
+    28              Smooth muscle cells           Stroma
+    28                        CAR cells           Stroma
+    29              Cycling pro B cells          B cells
+    29                      Pro B cells          B cells
+    30                 Osteoprogenitors           Stroma
+    30                        CAR cells           Stroma
+    30                      Fibroblasts           Stroma
+    30              Smooth muscle cells           Stroma
+    30              Mesenchymal cells 1           Stroma
+    31                     Cycling cDC2          Myeloid
+    31              Cycling neutrophils          Myeloid
+    31                             cDC2          Myeloid
+    32                      Fibroblasts           Stroma
+    32                        CAR cells           Stroma
+    32              Mesenchymal cells 1           Stroma
+    32                 Osteoprogenitors           Stroma
+    33                        Unknown 2         NK cells
+    34                      Neutrophils          Myeloid
+    35              Smooth muscle cells           Stroma
+    35                      Osteoblasts           Stroma
+    35                      Fibroblasts           Stroma
+    35                 Osteoprogenitors           Stroma
+    36     Sinusoidal endothelial cells           Stroma
+    36  Transitioning endothelial cells           Stroma
+    37             Cycling muscle cells           Stroma
+    38              Mesenchymal cells 2           Stroma
+    39                    Schwann cells           Stroma
+    40                             pDCs          Myeloid
+    41              Cycling neutrophils          Myeloid
+    41          Tolerogenic macrophages          Myeloid
+    41         Inflammatory macrophages          Myeloid
+    42              Mesenchymal cells 1           Stroma
+    42                        CAR cells           Stroma
+Done
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_Healthy_Liver.umap.h5ad
+Data read completed.
+
+ * Indexing the scanpy object...
+
+ * Saving data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_Healthy_Liver.umap.cells_removed.h5ad
+
+ * Completed.
+
+ * Grouping clusters within broad cell types...
+
+ * Creating dictionary...
+{'Erythroid': ['Cycling erythroid cells', 'Early erythroid cells', 'Late erythroid cells'], 'Myeloid': ['Neutrophils', 'Inflammatory macrophages', 'pDCs', 'cDC2', 'Kupffer cells', 'Monocyte progenitors'], 'HSC/Progenitors': ['HSCs/MPPs', 'HSCs/MPPs', 'Cycling MEMPs', 'MEMPs', 'Granulocyte progenitors'], 'B cells': ['B cells', 'Pre pro B cells', 'Pro B cells'], 'Mast cells': ['Mast cells'], 'Megakaryocytes': ['Megakaryocytes'], 'NK cells': ['NK cells', 'NK progenitors'], 'Stroma': ['Hepatic stellate cells', 'LSECs', 'Activated stellate cells', 'Vascular endothelial cells', 'Hepatocytes', 'Cholangiocytes']}
+
+ * Saving new cell type labels to 'cell_type_groups' column in the metadata...
+Trying to set attribute `.obs` of view, copying.
+
+ * About to run create_cell_type_groups...
+
+ * create_cell_type_groups running complete.
+
+ * New labels created.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures//oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Liver.umap.pdf
+... storing 'cell_type_groups' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures//oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Liver.umap.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures//oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Liver.dotplot.pdf
+WARNING: dendrogram data not found (using key=dendrogram_cell_type_groups). Running `sc.tl.dendrogram` with default parameters. For fine tuning it is recommended to run `sc.tl.dendrogram` independently.
+
+ * Plot saved.
+
+ * Saving cluster_to_label_mapping: /oak/stanford/groups/smontgom/amarder/t21-proj/out/data_small/10X_Healthy_Liver.cluster_to_label_mapping.csv
+leiden                   leiden_v7 cell_type_groups
+     0                 Hepatocytes           Stroma
+     1                 Hepatocytes           Stroma
+     2                 Hepatocytes           Stroma
+     3                 Hepatocytes           Stroma
+     4                 Pro B cells          B cells
+     4                     B cells          B cells
+     5                       LSECs           Stroma
+     6                    NK cells         NK cells
+     7                        cDC2          Myeloid
+     8                 Hepatocytes           Stroma
+     9               Kupffer cells          Myeloid
+    10     Cycling erythroid cells        Erythroid
+    11       Early erythroid cells        Erythroid
+    11                       MEMPs  HSC/Progenitors
+    11               Cycling MEMPs  HSC/Progenitors
+    11             Pre pro B cells          B cells
+    11                  Mast cells       Mast cells
+    12        Monocyte progenitors          Myeloid
+    12    Inflammatory macrophages          Myeloid
+    12                 Neutrophils          Myeloid
+    13                       LSECs           Stroma
+    14              Megakaryocytes   Megakaryocytes
+    15               Cycling MEMPs  HSC/Progenitors
+    15             Pre pro B cells          B cells
+    15                       MEMPs  HSC/Progenitors
+    15       Early erythroid cells        Erythroid
+    16       Early erythroid cells        Erythroid
+    16        Late erythroid cells        Erythroid
+    17       Early erythroid cells        Erythroid
+    18    Activated stellate cells           Stroma
+    18      Hepatic stellate cells           Stroma
+    19                 Hepatocytes           Stroma
+    20    Activated stellate cells           Stroma
+    20      Hepatic stellate cells           Stroma
+    21     Granulocyte progenitors  HSC/Progenitors
+    21                   HSCs/MPPs  HSC/Progenitors
+    21             Pre pro B cells          B cells
+    22  Vascular endothelial cells           Stroma
+    23              NK progenitors         NK cells
+    24                        cDC2          Myeloid
+    25                     B cells          B cells
+    25                 Pro B cells          B cells
+    26                 Hepatocytes           Stroma
+    27    Inflammatory macrophages          Myeloid
+    28      Hepatic stellate cells           Stroma
+    28    Activated stellate cells           Stroma
+    29                 Hepatocytes           Stroma
+    30                        pDCs          Myeloid
+    31                    NK cells         NK cells
+    32                       LSECs           Stroma
+    33                 Hepatocytes           Stroma
+    35        Late erythroid cells        Erythroid
+    35       Early erythroid cells        Erythroid
+    37        Late erythroid cells        Erythroid
+    37       Early erythroid cells        Erythroid
+    39              Cholangiocytes           Stroma
+    40                       LSECs           Stroma
+    41       Early erythroid cells        Erythroid
+Done
