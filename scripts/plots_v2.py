@@ -21,6 +21,7 @@ disease_status="Healthy"
 sampletype="Liver"
 suffix="" # ".subset"
 suffix=".subset"
+
 for disease_status in ["Healthy"]:
     for sampletype in ["Liver"]:
 # for disease_status in ["DownSyndrome","Healthy"]:
@@ -174,7 +175,6 @@ for disease_status in ["Healthy"]:
 
         direc=headdir + "/out/figures/"
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap.pdf"
-        os.remove(fplotout)
         print("\n * Plotting & saving UMAP..." + headdir + "/out/figures/"+ fplotout)
         pdf = mpdf.PdfPages(fplotout)
         f, axs = plt.subplots(1,1,figsize=(26,26))
