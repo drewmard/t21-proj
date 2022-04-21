@@ -176,7 +176,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
 
         direc=headdir + "/out/figures/"
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap.pdf"
-        os.remove(fplotout)
+        # os.remove(fplotout)
         print("\n * Plotting & saving UMAP..." + fplotout)
         # pdf = mpdf.PdfPages(fplotout)
         f, axs = plt.subplots(1,1,figsize=(26,26))
@@ -189,7 +189,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
         print("\n * Plot saved.")
 
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap.no_legend.pdf"
-        os.remove(fplotout)
+        # os.remove(fplotout)
         print("\n * Plotting & saving UMAP (no legend)..." + fplotout)
         # pdf = mpdf.PdfPages(fplotout)
         f, axs = plt.subplots(1,1,figsize=(26,26))
@@ -203,7 +203,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
 
         direc=headdir + "/out/figures/"
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap"+".numerical_labels.pdf"
-        os.remove(fplotout)
+        # os.remove(fplotout)
         print("\n * Plotting & saving UMAP (numerical labels)... " + fplotout)
         f, axs = plt.subplots(1,1,figsize=(26,26))
         sns.set(font_scale=2)
