@@ -176,13 +176,14 @@ for disease_status in ["Healthy"]:
         direc=headdir + "/out/figures/"
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap.pdf"
         print("\n * Plotting & saving UMAP..." + headdir + "/out/figures/"+ fplotout)
-        pdf = mpdf.PdfPages(fplotout)
+        # pdf = mpdf.PdfPages(fplotout)
         f, axs = plt.subplots(1,1,figsize=(26,26))
         sns.set(font_scale=2)
         sns.set_style("white")
         sc.pl.umap(adata, color="cell_type_groups", size=150, palette=myColors, components='1,2', ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
-        pdf.savefig()
-        # plt.show()
+        # pdf.savefig()
+        plt.savefig(fplotout)
+        plt.show()
         plt.close()
         print("\n * Plot saved.")
 
