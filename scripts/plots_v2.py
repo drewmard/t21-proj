@@ -3,7 +3,7 @@
 
 # In[1]:
 
-
+print("Beginning script...")
 import scanpy as sc
 import sys
 import seaborn as sns
@@ -14,7 +14,7 @@ import matplotlib.backends.backend_pdf as mpdf
 import numpy as np
 import pandas as pd
 
-print("Completed.")
+print("Module loading completed.")
 
 headdir="/oak/stanford/groups/smontgom/amarder/t21-proj"
 disease_status="Healthy"
