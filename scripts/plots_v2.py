@@ -54,30 +54,30 @@ for disease_status in ["DownSyndrome","Healthy"]:
 
 
         if disease_status=="Healthy" and sampletype=="Femur":    
-        cell_types_to_remove=["0 (to remove)", 
-                              "Osteoblasts,4", 
-                              "Megakaryocytes,3"]
-        colName="leiden_v7"
+            cell_types_to_remove=["0 (to remove)", 
+                                  "Osteoblasts,4", 
+                                  "Megakaryocytes,3"]
+            colName="leiden_v7"
         elif disease_status=="DownSyndrome" and sampletype=="Femur":
-        cell_types_to_remove=["Odd PTPRC+ cells", 
-                              "34,0", 
-                              "Odd NK cells", 
-                              "Pre pro B cells,4"]
-        colName="leiden_v12"
+            cell_types_to_remove=["Odd PTPRC+ cells", 
+                                  "34,0", 
+                                  "Odd NK cells", 
+                                  "Pre pro B cells,4"]
+            colName="leiden_v12"
         elif disease_status=="Healthy" and sampletype=="Liver":
-        cell_types_to_remove=["38,0", 
-                              "31,0", 
-                              "Erythroid cells,2,1", 
-                              "34", 
-                              "Megakaryocytes,2,0", 
-                              "36,1", 
-                              "36,0,0", 
-                              "36,0,1", 
-                              "38,1", 
-                              "Megakaryocytes,2,1"]
-        colName="leiden_v7"
+            cell_types_to_remove=["38,0", 
+                                  "31,0", 
+                                  "Erythroid cells,2,1", 
+                                  "34", 
+                                  "Megakaryocytes,2,0", 
+                                  "36,1", 
+                                  "36,0,0", 
+                                  "36,0,1", 
+                                  "38,1", 
+                                  "Megakaryocytes,2,1"]
+            colName="leiden_v7"
         else:
-        print("Error!")
+            print("Error!")
 
         print("\n * Indexing the scanpy object...")
         adata=adata[~adata.obs[colName].isin(cell_types_to_remove)]
@@ -137,8 +137,8 @@ for disease_status in ["DownSyndrome","Healthy"]:
         # print(list_of_cell_types)
         list_of_used_cell_types=[]
         for sublist in list(celltypeDict.values()):
-        for item in sublist:
-            list_of_used_cell_types.append(item)
+            for item in sublist:
+                list_of_used_cell_types.append(item)
 
         list_of_not_used_cell_types=list(set(list_of_cell_types) - set(list_of_used_cell_types))
 
@@ -149,9 +149,9 @@ for disease_status in ["DownSyndrome","Healthy"]:
         print("\n * Saving new cell type labels to 'cell_type_groups' column in the metadata...")
         adata.obs["cell_type_groups"] = np.nan
         def create_cell_type_groups(row):
-        word=row[colName] 
-        topiclist = [topic for topic in celltypeDict if word in celltypeDict[topic]]
-        return(topiclist[0])
+            word=row[colName] 
+            topiclist = [topic for topic in celltypeDict if word in celltypeDict[topic]]
+            return(topiclist[0])
 
         print("\n * About to run create_cell_type_groups...")
         adata.obs["cell_type_groups"] = adata.obs.apply(create_cell_type_groups, axis=1)
@@ -192,13 +192,13 @@ for disease_status in ["DownSyndrome","Healthy"]:
 
 
         markerDict= {'HSC/Progenitors' : ['CD34', 'SPINK2'],
-        'Erythroid' : ['GATA1', 'KLF1'],
-        'Mast cells' : ['HDC', 'CPA3'],
-        'Megakaryocytes' : ['ITGA2B', 'GP9'],
-        'Myeloid' :[ 'LYZ', 'SPI1'],
-        'NK cells' : ['NKG7', 'GZMA'],
-        'B cells' : ['CD79A', 'IGHM'],
-        'Stroma' : ['ALB', 'AFP']}
+                      'Erythroid' : ['GATA1', 'KLF1'],
+                      'Mast cells' : ['HDC', 'CPA3'],
+                      'Megakaryocytes' : ['ITGA2B', 'GP9'],
+                      'Myeloid' :[ 'LYZ', 'SPI1'],
+                      'NK cells' : ['NKG7', 'GZMA'],
+                      'B cells' : ['CD79A', 'IGHM'],
+                      'Stroma' : ['ALB', 'AFP']}
 
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.pdf"
         print("\n * Plotting & saving UMAP..." + headdir + "/out/figures/"+ fplotout)
