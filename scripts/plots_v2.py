@@ -22,10 +22,10 @@ sampletype="Liver"
 suffix="" # ".subset"
 # suffix=".subset"
 
-for disease_status in ["DownSyndrome"]:
-    for sampletype in ["Femur"]:
-# for disease_status in ["DownSyndrome","Healthy"]:
-#     for sampletype in ["Femur","Liver"]:
+# for disease_status in ["DownSyndrome"]:
+#     for sampletype in ["Femur"]:
+for disease_status in ["DownSyndrome","Healthy"]:
+    for sampletype in ["Femur","Liver"]:
 
         # In[43]:
 
@@ -239,7 +239,7 @@ for disease_status in ["DownSyndrome"]:
 
 
         pd.set_option('display.max_rows', None)
-        cluster_to_label_mapping=adata.obs[["leiden","leiden_v7","cell_type_groups"]].drop_duplicates().sort_values("leiden")
+        cluster_to_label_mapping=adata.obs[[colName,"cell_type_groups"]].drop_duplicates().sort_values("leiden")
         fout="10X_" + disease_status + "_" + sampletype + ".cluster_to_label_mapping.csv"
         # fout="10X_" + disease_status + "_" + sampletype + ".umap.h5ad"
         foutpath=headdir + "/out/data_small/" + fout
