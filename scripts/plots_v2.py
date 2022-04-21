@@ -22,6 +22,8 @@ sampletype="Liver"
 for disease_status in ["DownSyndrome","Healthy"]:
     for sampletype in ["Femur","Liver"]:
 
+        if disease_status=="DownSyndrome" and sampletype=="Femur":
+            continue
 
 
         # In[43]:
@@ -76,8 +78,13 @@ for disease_status in ["DownSyndrome","Healthy"]:
                                   "38,1", 
                                   "Megakaryocytes,2,1"]
             colName="leiden_v7"
+        elif disease_status=="DownSyndrome" and sampletype=="Liver":
+            cell_types_to_remove=["do not remove any cells"]
+            colName="leiden_v10"
         else:
             print("Error!")
+            break
+
 
         print("\n * Indexing the scanpy object...")
         adata=adata[~adata.obs[colName].isin(cell_types_to_remove)]
