@@ -1,0 +1,185 @@
+Start
+Beginning script plots_v2.py
+Beginning script...
+Module loading completed.
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_DownSyndrome_Femur.umap.h5ad
+Data read completed.
+
+ * Indexing the scanpy object...
+
+ * Saving data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_DownSyndrome_Femur.umap.cells_removed.h5ad
+
+ * Completed.
+
+ * Grouping clusters within broad cell types...
+
+ * Creating dictionary...
+{'Erythroid': ['Early erythroid cells', 'Late erythroid cells'], 'Myeloid': ['Cycling neutrophils', 'Neutrophils', 'Inflammatory macrophages', 'Tolerogenic macrophages', 'Cycling pDCs', 'pDCs', 'cDC2', 'Osteoclasts'], 'HSC/Progenitors': ['HSCs/MPPs', 'HSCs/MPPs', 'Cycling MEMPs', 'MEMPs', 'Cycling granulocyte progenitors', 'Granulocyte progenitors'], 'B cells': ['B cells', 'Pre pro B cells', 'Pre pro B cells,4 (to remove)', 'Pro B cells'], 'Mast cells': ['Mast cells'], 'Megakaryocytes': ['Megakaryocytes'], 'NK/T cells': ['Cycling NK cells', 'LYZ+ NK cells', 'NK cells', 'Odd NK cells (to remove)', 'Unknown', 'Early lymphoid cells'], 'Stroma': ['Collagen+ myeloid cells', 'Schwann cells', 'Sinusoidal endothelial cells', 'Myofibroblasts', 'Odd PTPRC+ cells (to remove)', 'Osteoprogenitors', 'Smooth muscle cells', 'Vascular endothelial cells', 'Cycling CAR cells', 'Transitioning endothelial cells', 'Striated muscle cells', 'LEPR+ CAR cells', 'CAR cells', '34,0 (to remove)', 'Fibroblasts']}
+
+ * Saving new cell type labels to 'cell_type_groups' column in the metadata...
+Trying to set attribute `.obs` of view, copying.
+
+ * About to run create_cell_type_groups...
+
+ * create_cell_type_groups running complete.
+
+ * New labels created.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures//oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.umap.pdf
+... storing 'cell_type_groups' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures//oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.umap.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures//oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.dotplot.pdf
+WARNING: dendrogram data not found (using key=dendrogram_cell_type_groups). Running `sc.tl.dendrogram` with default parameters. For fine tuning it is recommended to run `sc.tl.dendrogram` independently.
+WARNING: Groups are not reordered because the `groupby` categories and the `var_group_labels` are different.
+categories: B cells, Erythroid, HSC/Progenitors, etc.
+var_group_labels: HSC/Progenitors, Erythroid, Mast cells, etc.
+
+ * Plot saved.
+
+ * Saving cluster_to_label_mapping: /oak/stanford/groups/smontgom/amarder/t21-proj/out/data_small/10X_DownSyndrome_Femur.cluster_to_label_mapping.csv
+leiden                        leiden_v7 cell_type_groups
+     0                        CAR cells           Stroma
+     0                      Fibroblasts           Stroma
+     1                      Fibroblasts           Stroma
+     2                        CAR cells           Stroma
+     3          Tolerogenic macrophages          Myeloid
+     3                             cDC2          Myeloid
+     3         Inflammatory macrophages          Myeloid
+     4              Smooth muscle cells           Stroma
+     5         Inflammatory macrophages          Myeloid
+     6          Tolerogenic macrophages          Myeloid
+     6         Inflammatory macrophages          Myeloid
+     6                             cDC2          Myeloid
+     7                        CAR cells           Stroma
+     7                      Fibroblasts           Stroma
+     8     Sinusoidal endothelial cells           Stroma
+     8  Transitioning endothelial cells           Stroma
+     8       Vascular endothelial cells           Stroma
+     9       Vascular endothelial cells           Stroma
+     9  Transitioning endothelial cells           Stroma
+     9     Sinusoidal endothelial cells           Stroma
+    10                      Neutrophils          Myeloid
+    10              Cycling neutrophils          Myeloid
+    11     Sinusoidal endothelial cells           Stroma
+    11       Vascular endothelial cells           Stroma
+    12                         NK cells       NK/T cells
+    13         Inflammatory macrophages          Myeloid
+    14                    Schwann cells           Stroma
+    15            Early erythroid cells        Erythroid
+    16                      Neutrophils          Myeloid
+    16              Cycling neutrophils          Myeloid
+    17          Granulocyte progenitors  HSC/Progenitors
+    17          Granulocyte progenitors       Mast cells
+    18                      Neutrophils          Myeloid
+    18              Cycling neutrophils          Myeloid
+    19              Cycling neutrophils          Myeloid
+    19                      Neutrophils          Myeloid
+    20            Erythroid progenitors        Erythroid
+    20                    Cycling MEMPs  HSC/Progenitors
+    20                            MEMPs  HSC/Progenitors
+    21              Smooth muscle cells           Stroma
+    21                 Myofibroblasts,4           Stroma
+    21                      Fibroblasts           Stroma
+    21                        CAR cells           Stroma
+    21                 Myofibroblasts,0           Stroma
+    21                   Myofibroblasts           Stroma
+    22         Inflammatory macrophages          Myeloid
+    22                             cDC2          Myeloid
+    22          Tolerogenic macrophages          Myeloid
+    23         Inflammatory macrophages          Myeloid
+    23          Tolerogenic macrophages          Myeloid
+    23                             cDC2          Myeloid
+    24                      Fibroblasts           Stroma
+    24                   Myofibroblasts           Stroma
+    24                 Myofibroblasts,4           Stroma
+    24                        CAR cells           Stroma
+    25                 Myofibroblasts,0           Stroma
+    25                      Fibroblasts           Stroma
+    25                   Myofibroblasts           Stroma
+    25                 Myofibroblasts,4           Stroma
+    25              Smooth muscle cells           Stroma
+    25                        CAR cells           Stroma
+    26                          B cells          B cells
+    26                          B cells          Myeloid
+    26                     Cycling pDCs          Myeloid
+    26                      Pro B cells          B cells
+    26                  Pre pro B cells          B cells
+    27                             cDC2          Myeloid
+    28            Erythroid progenitors        Erythroid
+    28                            MEMPs  HSC/Progenitors
+    28                    Cycling MEMPs  HSC/Progenitors
+    29                   Megakaryocytes   Megakaryocytes
+    30             Early lymphoid cells       NK/T cells
+    30                 Odd PTPRC+ cells           Stroma
+    31     Sinusoidal endothelial cells           Stroma
+    31       Vascular endothelial cells           Stroma
+    31  Transitioning endothelial cells           Stroma
+    32                  Pre pro B cells          B cells
+    32                      Pro B cells          B cells
+    32                     Cycling pDCs          Myeloid
+    33                 Myofibroblasts,0           Stroma
+    33                      Fibroblasts           Stroma
+    34                             34,0           Stroma
+    34                      Fibroblasts           Stroma
+    35            Erythroid progenitors        Erythroid
+    35                      Osteoclasts          Myeloid
+    36                 Myofibroblasts,4           Stroma
+    36                      Fibroblasts           Stroma
+    36                        CAR cells           Stroma
+    36                 Myofibroblasts,0           Stroma
+    36          Collagen+ myeloid cells           Stroma
+    37       Vascular endothelial cells           Stroma
+    37     Sinusoidal endothelial cells           Stroma
+    37  Transitioning endothelial cells           Stroma
+    38                       Mast cells       Mast cells
+    39                     Cycling pDCs          Myeloid
+    39                     Cycling pDCs          B cells
+    40           Proliferating NK cells       NK/T cells
+    40                    LYZ+ NK cells       NK/T cells
+    41                     Odd NK cells       NK/T cells
+    41       Vascular endothelial cells           Stroma
+    42            Striated muscle cells           Stroma
+    43              Smooth muscle cells           Stroma
+    43                 Myofibroblasts,0           Stroma
+    43                 Myofibroblasts,4           Stroma
+    43                   Myofibroblasts           Stroma
+    44            Erythroid progenitors        Erythroid
+    44                            MEMPs  HSC/Progenitors
+    45       Vascular endothelial cells           Stroma
+    45     Sinusoidal endothelial cells           Stroma
+    45  Transitioning endothelial cells           Stroma
+    46             Late erythroid cells        Erythroid
+    47                          Unknown       NK/T cells
+Done
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_DownSyndrome_Liver.umap.h5ad
+Data read completed.
+Error!
+
+ * Indexing the scanpy object...
+Traceback (most recent call last):
+  File "/home/amarder/anaconda3/envs/minimal_env/lib/python3.6/site-packages/pandas/core/indexes/base.py", line 2898, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas/_libs/index.pyx", line 70, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 101, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 1675, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 1683, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'leiden_v12'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "plots_v2.py", line 83, in <module>
+    adata=adata[~adata.obs[colName].isin(cell_types_to_remove)]
+  File "/home/amarder/anaconda3/envs/minimal_env/lib/python3.6/site-packages/pandas/core/frame.py", line 2906, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/home/amarder/anaconda3/envs/minimal_env/lib/python3.6/site-packages/pandas/core/indexes/base.py", line 2900, in get_loc
+    raise KeyError(key) from err
+KeyError: 'leiden_v12'
