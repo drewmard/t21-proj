@@ -20,7 +20,7 @@ headdir="/oak/stanford/groups/smontgom/amarder/t21-proj"
 disease_status="Healthy"
 sampletype="Liver"
 suffix="" # ".subset"
-
+suffix=".subset"
 for disease_status in ["Healthy"]:
     for sampletype in ["Liver"]:
 # for disease_status in ["DownSyndrome","Healthy"]:
