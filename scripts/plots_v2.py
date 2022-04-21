@@ -19,6 +19,8 @@ print("Module loading completed.")
 headdir="/oak/stanford/groups/smontgom/amarder/t21-proj"
 disease_status="Healthy"
 sampletype="Liver"
+suffix="" # ".subset"
+
 for disease_status in ["Healthy"]:
     for sampletype in ["Liver"]:
 # for disease_status in ["DownSyndrome","Healthy"]:
@@ -31,7 +33,6 @@ for disease_status in ["Healthy"]:
         # In[43]:
 
 
-        suffix="" # ".subset"
         fout="10X_" + disease_status + "_" + sampletype + ".umap"+suffix+".h5ad"
         # fout="10X_" + disease_status + "_" + sampletype + ".umap.h5ad"
         foutpath=headdir + "/out/data/" + fout
