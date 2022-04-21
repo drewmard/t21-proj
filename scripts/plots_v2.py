@@ -126,13 +126,13 @@ for disease_status in ["DownSyndrome","Healthy"]:
         broad_cell_type="Megakaryocytes"; old_cell_types="Megakaryocytes"
         celltypeDict[broad_cell_type] = [s for s in list_of_cell_types if old_cell_types.upper() in s.upper()]
         if disease_status=="DownSyndrome" and sampletype=="Femur":
-        broad_cell_type="NK/T cells"; old_cell_types="NK"
-        celltypeDict[broad_cell_type] = [s for s in list_of_cell_types if old_cell_types.upper() in s.upper()]
-        broad_cell_type="NK/T cells"; old_cell_types="lymphoid"
-        celltypeDict[broad_cell_type] += [s for s in list_of_cell_types if old_cell_types.upper() in s.upper()]
+            broad_cell_type="NK/T cells"; old_cell_types="NK"
+            celltypeDict[broad_cell_type] = [s for s in list_of_cell_types if old_cell_types.upper() in s.upper()]
+            broad_cell_type="NK/T cells"; old_cell_types="lymphoid"
+            celltypeDict[broad_cell_type] += [s for s in list_of_cell_types if old_cell_types.upper() in s.upper()]
         else:
-        broad_cell_type="NK cells"; old_cell_types="NK"
-        celltypeDict[broad_cell_type] = [s for s in list_of_cell_types if old_cell_types.upper() in s.upper()]
+            broad_cell_type="NK cells"; old_cell_types="NK"
+            celltypeDict[broad_cell_type] = [s for s in list_of_cell_types if old_cell_types.upper() in s.upper()]
 
         # print(list_of_cell_types)
         list_of_used_cell_types=[]
