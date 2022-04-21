@@ -180,7 +180,7 @@ for disease_status in ["Healthy"]:
         f, axs = plt.subplots(1,1,figsize=(26,26))
         sns.set(font_scale=2)
         sns.set_style("white")
-        new_plot=sc.pl.umap(adata, color="cell_type_groups", size=150, palette=myColors, components='1,2', ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
+        sc.pl.umap(adata, color="cell_type_groups", size=150, palette=myColors, components='1,2', ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
         pdf.savefig()
         # plt.show()
         plt.close()
@@ -232,7 +232,7 @@ for disease_status in ["Healthy"]:
                        ax=axs,
                        linewidths=2,swap_axes=True)
         pdf.savefig()
-        plt.show()
+        # plt.show()
         plt.close()
         print("\n * Plot saved.")
 
