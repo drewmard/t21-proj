@@ -4,3 +4,7 @@ Beginning script...
 Module loading completed.
 
  * Reading in data.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_DownSyndrome_Liver.umap.h5ad
+Data read completed.
+
+ * Indexing the scanpy object...
+slurmstepd: error: *** JOB 31297822 ON cfx22885s-srcf-d11-07-east CANCELLED AT 2022-04-21T07:46:18 ***
