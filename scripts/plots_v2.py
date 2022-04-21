@@ -22,14 +22,10 @@ sampletype="Liver"
 suffix="" # ".subset"
 # suffix=".subset"
 
-# for disease_status in ["Healthy"]:
-    # for sampletype in ["Liver"]:
-for disease_status in ["DownSyndrome","Healthy"]:
-    for sampletype in ["Femur","Liver"]:
-
-        if disease_status=="DownSyndrome" and sampletype=="Femur":
-            continue
-
+for disease_status in ["DownSyndrome"]:
+    for sampletype in ["Femur"]:
+# for disease_status in ["DownSyndrome","Healthy"]:
+#     for sampletype in ["Femur","Liver"]:
 
         # In[43]:
 
