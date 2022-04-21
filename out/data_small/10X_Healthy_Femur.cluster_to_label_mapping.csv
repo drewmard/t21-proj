@@ -1,127 +1,40 @@
-,leiden,leiden_v7,cell_type_groups
+,numerical_labels,leiden_v7,cell_type_groups
+ACCTGAACAATGCAAA-1-4,0,B cells,B cells
 AACCACAAGGGCATGT-1-4,1,CAR cells,Stroma
-AGCCAATTCGAGAGAC-1-4,2,CAR cells,Stroma
-CTATCTAAGAGTCGAC-1-4,2,Fibroblasts,Stroma
-AGAGCCCTCCTACTGC-1-7,2,Osteoprogenitors,Stroma
-ACGCACGTCTGCTGAA-1-4,3,Mesenchymal cells 2,Stroma
-GTGTGATAGCAACTCT-1-3,4,"Osteoblasts,4 (to remove)",Stroma
-CCGTGAGTCGGCGATC-1-3,4,Osteoblasts,Stroma
-TACGGTATCCCAATAG-1-7,5,Vascular endothelial cells,Stroma
-AACAAGAAGCGACTAG-1-7,5,Unknown endothelial cells,NK cells
-AAGAACAAGAAGTGTT-1-7,5,Transitioning endothelial cells,Stroma
-AACAACCTCGATACAC-1-4,5,Sinusoidal endothelial cells,Stroma
-AAGACTCAGCTTTGTG-1-4,6,Sinusoidal endothelial cells,Stroma
-AAGGAATTCAAGGCTT-1-4,6,Vascular endothelial cells,Stroma
-AAAGTGATCGAGCCTG-1-7,6,Transitioning endothelial cells,Stroma
-AAAGTCCCAGGATCTT-1-4,7,Smooth muscle cells,Stroma
-CACAGGCGTCGTACTA-1-7,7,LEPR+ CAR cells,Stroma
-AAACCCACAAGGACAC-1-11,8,Collagen+ myeloid cells,Stroma
-AAACGAACACGGTGAA-1-7,8,Tolerogenic macrophages,Myeloid
-AACGGGATCCGCAACG-1-3,8,Cycling neutrophils,Myeloid
-TCCACCAAGACGACGT-1-3,8,Inflammatory macrophages,Myeloid
-GAACGTTTCACTGATG-1-3,8,Cycling cDC2,Myeloid
-TCCATGCTCCGCAAAT-1-4,9,Fibroblasts,Stroma
-AACCATGCATATAGCC-1-7,9,CAR cells,Stroma
-CTCAGGGTCCACGAAT-1-7,9,Osteoprogenitors,Stroma
-ATAGGCTGTTGAGAGC-1-3,10,Inflammatory macrophages,Myeloid
-GAATAGAGTCGTTGGC-1-4,10,Collagen+ myeloid cells,Stroma
-AAAGGATCATTCTGTT-1-7,11,Osteoblasts,Stroma
-AAGTTCGTCATGAGAA-1-7,11,Fibroblasts,Stroma
-AAGCGTTTCGCTAAAC-1-4,11,CAR cells,Stroma
-GGGAGTAAGTCTGCAT-1-4,11,Osteoprogenitors,Stroma
-GTAATGCGTCTAGGTT-1-7,11,Smooth muscle cells,Stroma
-AAAGGATTCCCACAGG-1-7,11,Mesenchymal cells 1,Stroma
-GCTTCACAGTCACACT-1-11,12,Cycling neutrophils,Myeloid
-AAGCATCAGAAGCGAA-1-3,12,Inflammatory macrophages,Myeloid
-AATTCCTTCTCACCCA-1-11,12,Collagen+ myeloid cells,Stroma
-ATTCCTAGTTTCGTAG-1-3,13,Inflammatory macrophages,Myeloid
-ACAAAGAAGAGGCGTT-1-3,13,cDC2,Myeloid
-AATGGAAAGCACAAAT-1-3,13,Cycling cDC2,Myeloid
-CCTCACAGTCCAGTTA-1-4,13,Cycling neutrophils,Myeloid
-ACTGATGAGGGATGTC-1-4,13,Collagen+ myeloid cells,Stroma
-AAACCCAGTCGGAACA-1-7,14,CAR cells,Stroma
-AAGCCATCAGCACAGA-1-7,14,Fibroblasts,Stroma
-ACAAAGAAGGACTAAT-1-7,14,Osteoprogenitors,Stroma
-ATGTCTTCAGGACGAT-1-7,14,Smooth muscle cells,Stroma
-TCCTAATCATTACGGT-1-4,14,Mesenchymal cells 1,Stroma
-AAACCCAAGTAACAGT-1-7,15,Collagen+ myeloid cells,Stroma
-AAAGTCCCAAGCTGTT-1-7,15,Inflammatory macrophages,Myeloid
-AAAGGGCTCTGATGGT-1-7,15,cDC2,Myeloid
-AAAGGATTCGTAGGAG-1-7,15,Cycling neutrophils,Myeloid
-AAACCCATCCTGTTGC-1-7,15,Cycling cDC2,Myeloid
-CACTGAACAGACACCC-1-4,16,LEPR+ CAR cells,Stroma
-TCAGTCCAGAGCCCAA-1-4,16,Smooth muscle cells,Stroma
-ACCATTTCAACGTATC-1-7,17,cDC2,Myeloid
-ACGGTTAAGCCATTTG-1-7,17,Collagen+ myeloid cells,Stroma
-CCTCCTCGTGGTCTAT-1-3,17,Cycling neutrophils,Myeloid
-AACGAAATCATTGCTT-1-4,17,Tolerogenic macrophages,Myeloid
-ATCGTGATCGTTCAGA-1-7,17,Inflammatory macrophages,Myeloid
-AACGGGAAGTCACTGT-1-7,17,Cycling cDC2,Myeloid
-ACATCCCGTAGGGAGG-1-4,17,Osteoclasts,Myeloid
-AAGGTAACAAATTGCC-1-4,18,CAR cells,Stroma
-AAAGGGCTCCGCAAAT-1-4,19,NK cells,NK cells
-ACTCTCGTCGGCCTTT-1-7,20,Transitioning endothelial cells,Stroma
-TCCATGCCAGCCCACA-1-4,20,Sinusoidal endothelial cells,Stroma
-ATCCACCAGTTGCGCC-1-4,20,Unknown endothelial cells,NK cells
-AACCATGGTTTGAACC-1-3,21,Megakaryocytes,Megakaryocytes
-AAGCGAGTCTAAGGAA-1-7,21,Sinusoidal endothelial cells,Stroma
-AGGAAATAGTGTAGAT-1-3,21,MEMPs,HSC/Progenitors
-ACCCTCACAGCGAACA-1-3,21,Late erythroid cells,Erythroid
-AAGATAGCATGTGGTT-1-3,21,Early erythroid cells,Erythroid
-TCGGATATCATAGAGA-1-3,21,"Megakaryocytes,3 (to remove)",Megakaryocytes
-AGGGCTCTCAGTGTTG-1-3,22,Unknown 1,NK cells
-CATAAGCGTAGGAAAG-1-4,23,Sinusoidal endothelial cells,Stroma
-CAAGAGGTCCGGCTTT-1-7,23,Unknown endothelial cells,NK cells
-AAACCCAGTTTGTTCT-1-7,23,Transitioning endothelial cells,Stroma
-ATCCTATCAATAGGAT-1-7,23,Vascular endothelial cells,Stroma
-CAAGACTCAGTGGGTA-1-4,24,Sinusoidal endothelial cells,Stroma
-AGTGTTGGTATGGAAT-1-4,24,Transitioning endothelial cells,Stroma
-ATCGTCCTCAGGAAAT-1-7,24,Vascular endothelial cells,Stroma
-AACCTTTTCCGCTTAC-1-3,25,Granulocyte progenitors,HSC/Progenitors
-AAAGTGAGTTCGGTAT-1-3,25,Neutrophils,Myeloid
-CCGTAGGTCAGCGCAC-1-4,25,HSCs/MPPs,HSC/Progenitors
-ATTTACCAGCTTTCCC-1-3,25,Mast cells,Mast cells
-ACGGGTCAGGCTGAAC-1-3,26,Pro B cells,B cells
+ACTGATGAGGGATGTC-1-4,2,Collagen+ myeloid cells,Stroma
+AACACACTCTCTTGCG-1-3,3,Cycling cDC2,Myeloid
+AAAGGTATCCGAGCTG-1-7,4,Cycling muscle cells,Stroma
+AACGGGATCCGCAACG-1-3,5,Cycling neutrophils,Myeloid
+AACCACATCAAACGAA-1-3,6,Cycling pro B cells,B cells
+AAGATAGCATGTGGTT-1-3,7,Early erythroid cells,Erythroid
+CTATCTAAGAGTCGAC-1-4,8,Fibroblasts,Stroma
+AACCTTTTCCGCTTAC-1-3,9,Granulocyte progenitors,HSC/Progenitors
+CCGTAGGTCAGCGCAC-1-4,10,HSCs/MPPs,HSC/Progenitors
+AAGCATCAGAAGCGAA-1-3,11,Inflammatory macrophages,Myeloid
+CACTGAACAGACACCC-1-4,12,LEPR+ CAR cells,Stroma
+ACCCTCACAGCGAACA-1-3,13,Late erythroid cells,Erythroid
+AGGAAATAGTGTAGAT-1-3,14,MEMPs,HSC/Progenitors
+ATTTACCAGCTTTCCC-1-3,15,Mast cells,Mast cells
+AACCATGGTTTGAACC-1-3,16,Megakaryocytes,Megakaryocytes
+TCGGATATCATAGAGA-1-3,17,"Megakaryocytes,3 (to remove)",Megakaryocytes
+TCCTAATCATTACGGT-1-4,18,Mesenchymal cells 1,Stroma
+ACGCACGTCTGCTGAA-1-4,19,Mesenchymal cells 2,Stroma
+AAAGGGCTCCGCAAAT-1-4,20,NK cells,NK cells
+AAAGTGAGTTCGGTAT-1-3,21,Neutrophils,Myeloid
+CCGTGAGTCGGCGATC-1-3,22,Osteoblasts,Stroma
+GTGTGATAGCAACTCT-1-3,23,"Osteoblasts,4 (to remove)",Stroma
+ACATCCCGTAGGGAGG-1-4,24,Osteoclasts,Myeloid
+GGGAGTAAGTCTGCAT-1-4,25,Osteoprogenitors,Stroma
 AAACGCTCATCTGCGG-1-3,26,Pre pro B cells,B cells
-GACAGCCTCTATTGTC-1-4,26,Cycling pro B cells,B cells
-ACCTGAACAATGCAAA-1-4,26,B cells,B cells
-GTGGCGTCATCAGCGC-1-4,27,Collagen+ myeloid cells,Stroma
-AAACCCAGTCTACACA-1-7,27,Inflammatory macrophages,Myeloid
-ACTTTCATCGGTAAGG-1-7,27,Cycling neutrophils,Myeloid
-AAGTTCGCACAGCATT-1-7,27,Cycling cDC2,Myeloid
-AAACGAAAGACCAAAT-1-7,28,Mesenchymal cells 1,Stroma
-ATATCCTTCGTTTACT-1-7,28,Osteoprogenitors,Stroma
-TACCTCGAGCGGCTCT-1-7,28,Fibroblasts,Stroma
-TGCTTGCAGAAGCGAA-1-7,28,Smooth muscle cells,Stroma
-AGGCCACCAATTGTGC-1-4,28,CAR cells,Stroma
-AACCACATCAAACGAA-1-3,29,Cycling pro B cells,B cells
-ACGTACACATGTCTAG-1-7,29,Pro B cells,B cells
-AGGGTTTTCATTACCT-1-7,30,Osteoprogenitors,Stroma
-ACGTAGTTCAGCTGAT-1-4,30,CAR cells,Stroma
-AAAGGTAAGGGCGAAG-1-7,30,Fibroblasts,Stroma
-AATCGACCATTGCAAC-1-7,30,Smooth muscle cells,Stroma
-GATAGAAGTGGTCTCG-1-7,30,Mesenchymal cells 1,Stroma
-AACACACTCTCTTGCG-1-3,31,Cycling cDC2,Myeloid
-CAACAGTTCTTCTGGC-1-3,31,Cycling neutrophils,Myeloid
-TCACGGGTCTTCCTAA-1-3,31,cDC2,Myeloid
-AATGAAGCATCCGTTC-1-7,32,Fibroblasts,Stroma
-AAACCCAGTATATGGA-1-7,32,CAR cells,Stroma
-CATAGACTCGACGACC-1-7,32,Mesenchymal cells 1,Stroma
-CACAGGCGTACAGTTC-1-7,32,Osteoprogenitors,Stroma
-CGAGAAGAGTGTACAA-1-3,33,Unknown 2,NK cells
-CACACAATCCTGTAAG-1-3,34,Neutrophils,Myeloid
-ACTTCCGCAATAACGA-1-4,35,Smooth muscle cells,Stroma
-CATTCATGTAACCCGC-1-7,35,Osteoblasts,Stroma
-AGTAACCTCATTGTGG-1-7,35,Fibroblasts,Stroma
-AAACCCAGTATCCTCC-1-7,35,Osteoprogenitors,Stroma
-AGTTCGAGTATCGAAA-1-7,36,Sinusoidal endothelial cells,Stroma
-AAACGCTGTGAGATTA-1-7,36,Transitioning endothelial cells,Stroma
-AAAGGTATCCGAGCTG-1-7,37,Cycling muscle cells,Stroma
-AACAACCGTGGTCTGC-1-7,38,Mesenchymal cells 2,Stroma
-ACACGCGGTATCGTTG-1-4,39,Schwann cells,Stroma
-ACTCTCGTCCCGTTGT-1-4,40,pDCs,Myeloid
-AATGACCTCATCGTAG-1-7,41,Cycling neutrophils,Myeloid
-GGAGAACTCTGCATAG-1-7,41,Tolerogenic macrophages,Myeloid
-ATCATTCTCGAACCAT-1-7,41,Inflammatory macrophages,Myeloid
-GCCGATGGTTACCCTC-1-7,42,Mesenchymal cells 1,Stroma
-AAAGGATTCGTTAGTG-1-7,42,CAR cells,Stroma
+ACGGGTCAGGCTGAAC-1-3,27,Pro B cells,B cells
+ACACGCGGTATCGTTG-1-4,28,Schwann cells,Stroma
+AACAACCTCGATACAC-1-4,29,Sinusoidal endothelial cells,Stroma
+AAAGTCCCAGGATCTT-1-4,30,Smooth muscle cells,Stroma
+AACGAAATCATTGCTT-1-4,31,Tolerogenic macrophages,Myeloid
+AGTGTTGGTATGGAAT-1-4,32,Transitioning endothelial cells,Stroma
+AGGGCTCTCAGTGTTG-1-3,33,Unknown 1,NK cells
+CGAGAAGAGTGTACAA-1-3,34,Unknown 2,NK cells
+ATCCACCAGTTGCGCC-1-4,35,Unknown endothelial cells,NK cells
+AAGGAATTCAAGGCTT-1-4,36,Vascular endothelial cells,Stroma
+ACAAAGAAGAGGCGTT-1-3,37,cDC2,Myeloid
+ACTCTCGTCCCGTTGT-1-4,38,pDCs,Myeloid

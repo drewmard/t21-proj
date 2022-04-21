@@ -1,0 +1,6 @@
+Start
+Beginning script create_cellComp_file.py
+  File "create_cellComp_file.py", line 12
+    print(disease_status + " " + sampletype)
+                                           ^
+TabError: inconsistent use of tabs and spaces in indentation

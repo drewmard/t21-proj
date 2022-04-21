@@ -1,0 +1,15 @@
+Start
+Beginning script test.py
+Go
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_Healthy_Liver.umap.h5ad
+                       patient   sample     sorting
+AAACCCAAGGAACGCT-1-0     15633  L15633A  CD34+/Lin-
+AAACCCAGTGAGATCG-1-1     15633  L15633B       CD45+
+AAACCCAAGACGCTCC-1-2     15633  L15633R     CD235a-
+AAACCCAAGCTACTAC-1-5     15657  F15657G     CD235a-
+AAACCCAAGTCACTCA-1-6     15657  L15657A       CD45+
+AAACGAACATGCACTA-1-8     15781  L15781A     CD235a-
+AAACCCAAGCGCCATC-1-9     15781  L15781C     CD235a-
+AAACCCACAGAGAGGG-1-10    15781  L15781D       CD45+
+Done
