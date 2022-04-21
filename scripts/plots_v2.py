@@ -175,8 +175,8 @@ for disease_status in ["Healthy"]:
         direc=headdir + "/out/figures/"
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap.pdf"
         print("\n * Plotting & saving UMAP..." + headdir + "/out/figures/"+ fplotout)
-        f, axs = plt.subplots(1,1,figsize=(26,26))
         pdf = mpdf.PdfPages(fplotout)
+        f, axs = plt.subplots(1,1,figsize=(26,26))
         sns.set(font_scale=2)
         sns.set_style("white")
         new_plot=sc.pl.umap(adata, color="cell_type_groups", size=150, palette=myColors, components='1,2', ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
@@ -187,8 +187,8 @@ for disease_status in ["Healthy"]:
 
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap.no_legend.pdf"
         print("\n * Plotting & saving UMAP..." + headdir + "/out/figures/"+ fplotout)
-        f, axs = plt.subplots(1,1,figsize=(26,26))
         pdf = mpdf.PdfPages(fplotout)
+        f, axs = plt.subplots(1,1,figsize=(26,26))
         sns.set(font_scale=2)
         sns.set_style("white")
         new_plot=sc.pl.umap(adata, color="cell_type_groups", size=150, palette=myColors, components='1,2', ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="None")
@@ -212,8 +212,8 @@ for disease_status in ["Healthy"]:
 
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.pdf"
         print("\n * Plotting & saving UMAP..." + headdir + "/out/figures/"+ fplotout)
-        f, axs = plt.subplots(1,1,figsize=(14,10))
         pdf = mpdf.PdfPages(fplotout)
+        f, axs = plt.subplots(1,1,figsize=(14,10))
         # sns.set(font_scale=2)
         # sns.set_style("white")
         # new_plot=
@@ -240,7 +240,6 @@ for disease_status in ["Healthy"]:
         # In[74]:
 
 
-        import pandas as pd
         pd.set_option('display.max_rows', None)
         cluster_to_label_mapping=adata.obs[["leiden","leiden_v7","cell_type_groups"]].drop_duplicates().sort_values("leiden")
         fout="10X_" + disease_status + "_" + sampletype + ".cluster_to_label_mapping.csv"
