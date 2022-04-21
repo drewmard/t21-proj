@@ -169,13 +169,14 @@ for disease_status in ["DownSyndrome","Healthy"]:
         print("\n * Mapping to numeric labels...")
         le = preprocessing.LabelEncoder()
         le.fit(adata.obs.loc[:,colName])
-        adata.obs['numerical_labels'] = le.transform(adata.obs.loc[:,colName])
+        adata.obs['numerical_labels'] = le.transform(adata.obs.loc[:,colName]).astype(str)
         print("\n * Numeric labels created.")
 
         # In[77]:
 
         direc=headdir + "/out/figures/"
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap.pdf"
+        os.remove(fplotout)
         print("\n * Plotting & saving UMAP..." + fplotout)
         # pdf = mpdf.PdfPages(fplotout)
         f, axs = plt.subplots(1,1,figsize=(26,26))
@@ -188,7 +189,8 @@ for disease_status in ["DownSyndrome","Healthy"]:
         print("\n * Plot saved.")
 
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap.no_legend.pdf"
-        print("\n * Plotting & saving UMAP..." + fplotout)
+        os.remove(fplotout)
+        print("\n * Plotting & saving UMAP (no legend)..." + fplotout)
         # pdf = mpdf.PdfPages(fplotout)
         f, axs = plt.subplots(1,1,figsize=(26,26))
         sns.set(font_scale=2)
@@ -201,6 +203,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
 
         direc=headdir + "/out/figures/"
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap"+".numerical_labels.pdf"
+        os.remove(fplotout)
         print("\n * Plotting & saving UMAP (numerical labels)... " + fplotout)
         f, axs = plt.subplots(1,1,figsize=(26,26))
         sns.set(font_scale=2)
@@ -279,6 +282,11 @@ for disease_status in ["DownSyndrome","Healthy"]:
         print(cluster_to_label_mapping.to_string(index=False))
         pd.set_option('display.max_rows', 10)
         print("Done")
+
+        foutpath=headdir + "/out/data_small/" + "10X_" + disease_status + "_" + sampletype + ".cellComp.csv"
+        print("\n * Saving celltypeComp: " + foutpath)
+        adata.obs.loc[:,["patient","sample","sorting","numerical_labels",colName,"cell_type_groups"]].to_csv(foutpath)
+
 
 
 
