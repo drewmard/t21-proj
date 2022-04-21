@@ -19,8 +19,10 @@ print("Module loading completed.")
 headdir="/oak/stanford/groups/smontgom/amarder/t21-proj"
 disease_status="Healthy"
 sampletype="Liver"
-for disease_status in ["DownSyndrome","Healthy"]:
-    for sampletype in ["Femur","Liver"]:
+for disease_status in ["Healthy"]:
+    for sampletype in ["Liver"]:
+# for disease_status in ["DownSyndrome","Healthy"]:
+#     for sampletype in ["Femur","Liver"]:
 
         if disease_status=="DownSyndrome" and sampletype=="Femur":
             continue
