@@ -6,6 +6,7 @@ import scanpy as sc
 headdir="/oak/stanford/groups/smontgom/amarder/t21-proj"
 disease_status="Healthy"
 sampletype="Liver"
+suffix=""
 for disease_status in ["DownSyndrome","Healthy"]:
 	for sampletype in ["Femur","Liver"]:
 
