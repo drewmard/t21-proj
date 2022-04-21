@@ -17,7 +17,7 @@ headdir="/oak/stanford/groups/smontgom/amarder/t21-proj"
 from scRNA_functions import scRNA_functions
 fc = scRNA_functions()
 
-disease_status="DownSyndrome"
+disease_status="Healthy"
 sampletype="Liver"
 for disease_status in ["DownSyndrome","Healthy"]:
       for sampletype in ["Femur","Liver"]:
