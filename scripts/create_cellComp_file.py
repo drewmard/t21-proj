@@ -7,7 +7,7 @@ headdir="/oak/stanford/groups/smontgom/amarder/t21-proj"
 disease_status="Healthy"
 sampletype="Liver"
 for disease_status in ["DownSyndrome","Healthy"]:
-    for sampletype in ["Femur","Liver"]:
+	for sampletype in ["Femur","Liver"]:
 
 		print(disease_status + " " + sampletype)
 
@@ -58,3 +58,4 @@ for disease_status in ["DownSyndrome","Healthy"]:
 
 
 print("Done!")
+

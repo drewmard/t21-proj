@@ -1,0 +1,8 @@
+Start
+Beginning script create_cellComp_file.py
+Go
+DownSyndrome Femur
+Traceback (most recent call last):
+  File "create_cellComp_file.py", line 46, in <module>
+    fout="10X_" + disease_status + "_" + sampletype + ".umap"+suffix+".cells_removed.h5ad"
+NameError: name 'suffix' is not defined
