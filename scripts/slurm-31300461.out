@@ -1,0 +1,24 @@
+Start
+Beginning script create_cellComp_file.py
+Go
+DownSyndrome Femur
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_DownSyndrome_Femur.umap.cells_removed.h5ad
+Traceback (most recent call last):
+  File "create_cellComp_file.py", line 55, in <module>
+    adata.obs.loc[:,["patient","sample","sorting","numerical_labels",colName,"cell_type_groups"]].to_csv(foutpath)
+  File "/home/amarder/anaconda3/envs/minimal_env/lib/python3.6/site-packages/pandas/core/indexing.py", line 873, in __getitem__
+    return self._getitem_tuple(key)
+  File "/home/amarder/anaconda3/envs/minimal_env/lib/python3.6/site-packages/pandas/core/indexing.py", line 1055, in _getitem_tuple
+    return self._getitem_tuple_same_dim(tup)
+  File "/home/amarder/anaconda3/envs/minimal_env/lib/python3.6/site-packages/pandas/core/indexing.py", line 750, in _getitem_tuple_same_dim
+    retval = getattr(retval, self.name)._getitem_axis(key, axis=i)
+  File "/home/amarder/anaconda3/envs/minimal_env/lib/python3.6/site-packages/pandas/core/indexing.py", line 1099, in _getitem_axis
+    return self._getitem_iterable(key, axis=axis)
+  File "/home/amarder/anaconda3/envs/minimal_env/lib/python3.6/site-packages/pandas/core/indexing.py", line 1037, in _getitem_iterable
+    keyarr, indexer = self._get_listlike_indexer(key, axis, raise_missing=False)
+  File "/home/amarder/anaconda3/envs/minimal_env/lib/python3.6/site-packages/pandas/core/indexing.py", line 1254, in _get_listlike_indexer
+    self._validate_read_indexer(keyarr, indexer, axis, raise_missing=raise_missing)
+  File "/home/amarder/anaconda3/envs/minimal_env/lib/python3.6/site-packages/pandas/core/indexing.py", line 1316, in _validate_read_indexer
+    "Passing list-likes to .loc or [] with any missing labels "
+KeyError: "Passing list-likes to .loc or [] with any missing labels is no longer supported. The following labels were missing: Index(['numerical_labels', 'cell_type_groups'], dtype='object'). See https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#deprecate-loc-reindex-listlike"

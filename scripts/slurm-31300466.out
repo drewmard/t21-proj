@@ -1,0 +1,35 @@
+Start
+Beginning script plots_v3.py
+Beginning script...
+Module loading completed.
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_DownSyndrome_Femur.umap.h5ad
+Data read completed.
+
+ * Indexing the scanpy object...
+
+ * Saving data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_DownSyndrome_Femur.umap.cells_removed.h5ad
+
+ * Completed.
+
+ * Grouping clusters within broad cell types...
+
+ * Creating dictionary...
+{'Erythroid': ['Early erythroid cells', 'Late erythroid cells'], 'Myeloid': ['Cycling neutrophils', 'Neutrophils', 'Inflammatory macrophages', 'Tolerogenic macrophages', 'Cycling pDCs', 'pDCs', 'cDC2', 'Osteoclasts'], 'HSC/Progenitors': ['HSCs/MPPs', 'HSCs/MPPs', 'Cycling MEMPs', 'MEMPs', 'Cycling granulocyte progenitors', 'Granulocyte progenitors'], 'B cells': ['B cells', 'Pre pro B cells', 'Pre pro B cells,4 (to remove)', 'Pro B cells'], 'Mast cells': ['Mast cells'], 'Megakaryocytes': ['Megakaryocytes'], 'NK/T cells': ['Cycling NK cells', 'LYZ+ NK cells', 'NK cells', 'Odd NK cells (to remove)', 'Unknown', 'Early lymphoid cells'], 'Stroma': ['34,0 (to remove)', 'Transitioning endothelial cells', 'Myofibroblasts', 'Osteoprogenitors', 'Collagen+ myeloid cells', 'Fibroblasts', 'Sinusoidal endothelial cells', 'LEPR+ CAR cells', 'Striated muscle cells', 'Cycling CAR cells', 'Smooth muscle cells', 'Schwann cells', 'Vascular endothelial cells', 'Odd PTPRC+ cells (to remove)', 'CAR cells']}
+
+ * Saving new cell type labels to 'cell_type_groups' column in the metadata...
+Trying to set attribute `.obs` of view, copying.
+
+ * About to run create_cell_type_groups...
+
+ * create_cell_type_groups running complete.
+
+ * New labels created.
+
+ * Mapping to numeric labels...
+
+ * Numeric labels created.
+Traceback (most recent call last):
+  File "plots_v3.py", line 179, in <module>
+    os.remove(fplotout)
+FileNotFoundError: [Errno 2] No such file or directory: '/oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.umap.pdf'
