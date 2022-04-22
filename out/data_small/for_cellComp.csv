@@ -1,0 +1,35 @@
+﻿Patient ID,Patient,Tissue,Organ,Sorting strategy,Age
+15532 L15532M,15532,Down Syndrome,Liver,CD235a-,14 pcw
+15582 15582E,15582,Down Syndrome,Liver,CD235a-,13 pcw
+15582 15582F,15582,Down Syndrome,Liver,CD235a-,13 pcw
+15646 L15646H,15646,Down Syndrome,Liver,CD235a-,13 pcw
+15669 L15669N,15669,Down Syndrome,Liver,CD235a-,14 pcw
+15712 L15712Q,15712,Down Syndrome,Liver,CD235a-,12 pcw
+15724 L15724T,15724,Down Syndrome,Liver,CD235a-,13 pcw
+15734 15734U,15734,Down Syndrome,Liver,CD235a-,14 pcw
+15582 F15582A,15582,Down Syndrome,Femur,CD235a-,13 pcw
+15646 F15646J,15646,Down Syndrome,Femur,CD235a-,13 pcw
+15669 F15669P,15669,Down Syndrome,Femur,CD235a-,14 pcw
+15712 15712D,15712,Down Syndrome,Femur,CD235a-,12 pcw
+15724 F15724H,15724,Down Syndrome,Femur,CD235a-,13 pcw
+15734 15734V,15734,Down Syndrome,Femur,CD235a-,14 pcw
+15633 F15633S,15633,Healthy,Femur,CD235a-,14 pcw
+15657 F15657F,15657,Healthy,Femur,CD235a-,12 pcw
+15781 F15781B,15781,Healthy,Femur,CD235a-,13 pcw
+15633 L15633R,15633,Healthy,Liver,CD235a-,14 pcw
+15657 F15657G,15657,Healthy,Liver,CD235a-,12 pcw
+15781 L15781A,15781,Healthy,Liver,CD235a-,13 pcw
+15781 L15781C,15781,Healthy,Liver,CD235a-,13 pcw
+15532 T21 15532 A,15532,Down Syndrome,Liver,CD45+,14 pcw
+15532 T21 15532 B,15532,Down Syndrome,Liver,CD45+,14 pcw
+15559 T21 15559 B,15559,Down Syndrome,Liver,CD45+,12 pcw
+15559 T21 15559 C,15559,Down Syndrome,Liver,CD45+,12 pcw
+15582 T21 15582 B,15582,Down Syndrome,Liver,CD45+,13 pcw
+15646 15646B,15646,Down Syndrome,Liver,CD45+,13 pcw
+15669 15669H,15669,Down Syndrome,Liver,CD45+,14 pcw
+15712 15712A,15712,Down Syndrome,Liver,CD45+,12 pcw
+15724 15724C,15724,Down Syndrome,Liver,CD45+,13 pcw
+15734 L15734A,15734,Down Syndrome,Liver,CD45+,14 pcw
+15633 L15633B,15633,Healthy,Liver,CD45+,14 pcw
+15657 L15657A,15657,Healthy,Liver,CD45+,12 pcw
+15781 L15781D,15781,Healthy,Liver,CD45+,13 pcw

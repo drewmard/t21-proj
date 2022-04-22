@@ -14,14 +14,14 @@ for disease_status in ["DownSyndrome","Healthy"]:
 
 		if disease_status=="Healthy" and sampletype=="Femur":
 		    cell_types_to_remove=["0 (to remove)",
-		                          "Osteoblasts,4",
-		                          "Megakaryocytes,3"]
+		                          "Osteoblasts,4 (to_remove)",
+		                          "Megakaryocytes,3 (to_remove)"]
 		    colName="leiden_v7"
 		elif disease_status=="DownSyndrome" and sampletype=="Femur":
-		    cell_types_to_remove=["Odd PTPRC+ cells",
-		                          "34,0",
-		                          "Odd NK cells",
-		                          "Pre pro B cells,4"]
+		    cell_types_to_remove=["Odd PTPRC+ cells (to_remove)",
+		                          "34,0 (to_remove)",
+		                          "Odd NK cells (to_remove)",
+		                          "Pre pro B cells,4 (to_remove)"]
 		    colName="leiden_v12"
 		elif disease_status=="Healthy" and sampletype=="Liver":
 		    cell_types_to_remove=["38,0",

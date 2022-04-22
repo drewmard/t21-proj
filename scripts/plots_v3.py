@@ -10,7 +10,7 @@ import seaborn as sns
 from matplotlib import pylab as plt
 # import matplotlib.text
 import os
-import matplotlib.backends.backend_pdf as mpdf
+# import matplotlib.backends.backend_pdf as mpdf
 import numpy as np
 import pandas as pd
 from sklearn import preprocessing
@@ -92,7 +92,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
         fout="10X_" + disease_status + "_" + sampletype + ".umap"+suffix+".cells_removed.h5ad"
         foutpath=headdir + "/out/data/" + fout
         print("\n * Saving data to file..." + foutpath)
-        adata.write(foutpath)
+        # adata.write(foutpath)
         print("\n * Completed.")
 
 
@@ -175,40 +175,39 @@ for disease_status in ["DownSyndrome","Healthy"]:
         # In[77]:
 
         direc=headdir + "/out/figures/"
-        fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap.pdf"
-        # os.remove(fplotout)
+        fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap.png"
         print("\n * Plotting & saving UMAP..." + fplotout)
-        # pdf = mpdf.PdfPages(fplotout)
         f, axs = plt.subplots(1,1,figsize=(26,26))
         sns.set(font_scale=2)
         sns.set_style("white")
         sc.pl.umap(adata, color="cell_type_groups", size=150, palette=myColors, components='1,2', ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
+        plt.tight_layout()
         plt.savefig(fplotout)
         plt.show()
         plt.close()
         print("\n * Plot saved.")
 
-        fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap.no_legend.pdf"
-        # os.remove(fplotout)
+        fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap.no_legend.png"
         print("\n * Plotting & saving UMAP (no legend)..." + fplotout)
-        # pdf = mpdf.PdfPages(fplotout)
         f, axs = plt.subplots(1,1,figsize=(26,26))
         sns.set(font_scale=2)
         sns.set_style("white")
         new_plot=sc.pl.umap(adata, color="cell_type_groups", size=150, palette=myColors, components='1,2', ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="None")
+        plt.tight_layout()
         plt.savefig(fplotout)
         plt.show()
         plt.close()
         print("\n * Plot saved.")
 
         direc=headdir + "/out/figures/"
-        fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap"+".numerical_labels.pdf"
+        fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap"+".numerical_labels.png"
         # os.remove(fplotout)
         print("\n * Plotting & saving UMAP (numerical labels)... " + fplotout)
         f, axs = plt.subplots(1,1,figsize=(26,26))
         sns.set(font_scale=2)
         sns.set_style("white")
         new_plot=sc.pl.umap(adata, color="numerical_labels", size=150, palette=myColors, components='1,2', ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
+        plt.tight_layout()
         plt.savefig(fplotout)
         plt.show()
         plt.close()
@@ -228,7 +227,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
                       'B cells' : ['CD79A', 'IGHM'],
                       'Stroma' : ['ALB', 'AFP']}
 
-        fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.pdf"
+        fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.png"
         print("\n * Plotting & saving UMAP..." + headdir + "/out/figures/"+ fplotout)
         f, axs = plt.subplots(1,1,figsize=(14,10))
         sc.pl.dotplot(adata,
@@ -243,12 +242,13 @@ for disease_status in ["DownSyndrome","Healthy"]:
                        show=False,
                        ax=axs,
                        linewidths=2,swap_axes=True)
+        plt.tight_layout()
         plt.savefig(fplotout)
         # plt.show()
         plt.close()
         print("\n * Plot saved.")
 
-        fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.clusters.pdf"
+        fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.clusters.png"
         print("\n * Plotting & saving UMAP..." + headdir + "/out/figures/"+ fplotout)
         f, axs = plt.subplots(1,1,figsize=(14,10))
         sc.pl.dotplot(adata,
@@ -263,6 +263,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
                        show=False,
                        ax=axs,
                        linewidths=2,swap_axes=True)
+        plt.tight_layout()
         plt.savefig(fplotout)
         # plt.show()
         plt.close()
