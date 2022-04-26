@@ -89,15 +89,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
         print("\n * Indexing the scanpy object...")
         adata=adata[~adata.obs[colName].isin(cell_types_to_remove)]
 
-        print("\n * Re-computing UMAPs...")
-        sc.tl.umap(adata, random_state=10, n_components=2, init_pos='random')
-
-        print("\n * Re-computing 3D UMAPs...")
-        adata_3d=sc.tl.umap(adata, random_state=10, n_components=3, init_pos='random',copy=True)
-        
-
         # In[48]:
-
 
         print("\n * Grouping clusters within broad cell types...")
         print("\n * Creating dictionary...")
@@ -173,6 +165,12 @@ for disease_status in ["DownSyndrome","Healthy"]:
         print("\n * Numeric labels created.")
 
         # In[77]:
+
+        print("\n * Re-computing UMAPs...")
+        sc.tl.umap(adata, random_state=10, n_components=2, init_pos='random')
+
+        print("\n * Re-computing 3D UMAPs...")
+        adata_3d=sc.tl.umap(adata, random_state=10, n_components=3, init_pos='random',copy=True)
 
         direc=headdir + "/out/figures/"
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap.png"
