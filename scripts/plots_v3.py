@@ -272,7 +272,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
                       'Stroma' : ['ALB', 'AFP']}
 
         if sampletype=="Femur":
-            markerDict["Stroma"] = ["PDFRB","DCN"]
+            markerDict["Stroma"] = ['PDGFRB','PDGFRB','DCN']
 
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.png"
         print("\n * Plotting & saving UMAP..." + headdir + "/out/figures/"+ fplotout)
