@@ -294,7 +294,7 @@ for disease_status in ["Healthy"]:
         print("\n * Plot saved.")
 
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.clusters.png"
-        print("\n * Plotting & saving UMAP..." + fplotout)
+        print("\n * Plotting & saving dotplot..." + fplotout)
         f, axs = plt.subplots(1,1,figsize=(14,10))
         sc.pl.dotplot(adata,
                        markerDict,
@@ -304,8 +304,7 @@ for disease_status in ["Healthy"]:
                        dot_min=None,
                        dot_max=None,
                        color_map='Reds',
-                       dendrogram=False,
-                       categories_order=categories_order_to_use,
+                       dendrogram=True,
                        show=False,
                        ax=axs,
                        linewidths=2,swap_axes=True)
