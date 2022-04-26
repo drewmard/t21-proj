@@ -93,7 +93,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
         sc.tl.umap(adata, random_state=10, n_components=2, init_pos='random')
 
         print("\n * Re-computing 3D UMAPs...")
-        adata_3d=sc.tl.umap(adata, random_state=10, n_components=3, init_pos='random',n_components=3,copy=True)
+        adata_3d=sc.tl.umap(adata, random_state=10, n_components=3, init_pos='random',copy=True)
         
 
         # In[48]:
