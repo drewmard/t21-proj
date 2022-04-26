@@ -32,7 +32,6 @@ for disease_status in ["DownSyndrome","Healthy"]:
 
 
         fout="10X_" + disease_status + "_" + sampletype + ".umap"+suffix+".h5ad"
-        # fout="10X_" + disease_status + "_" + sampletype + ".umap.h5ad"
         foutpath=headdir + "/out/data/" + fout
         print("\n * Reading in data..." + foutpath)
         adata=sc.read_h5ad(foutpath)
@@ -58,14 +57,14 @@ for disease_status in ["DownSyndrome","Healthy"]:
 
         if disease_status=="Healthy" and sampletype=="Femur":    
             cell_types_to_remove=["0 (to remove)", 
-                                  "Osteoblasts,4", 
-                                  "Megakaryocytes,3"]
+                                  "Osteoblasts,4 (to remove)", 
+                                  "Megakaryocytes,3 (to remove)"]
             colName="leiden_v7"
         elif disease_status=="DownSyndrome" and sampletype=="Femur":
-            cell_types_to_remove=["Odd PTPRC+ cells", 
-                                  "34,0", 
-                                  "Odd NK cells", 
-                                  "Pre pro B cells,4"]
+            cell_types_to_remove=["Odd PTPRC+ cells (to remove)", 
+                                  "34,0 (to remove)", 
+                                  "Odd NK cells (to remove)", 
+                                  "Pre pro B cells,4 (to remove)"]
             colName="leiden_v12"
         elif disease_status=="Healthy" and sampletype=="Liver":
             cell_types_to_remove=["38,0", 
@@ -89,12 +88,13 @@ for disease_status in ["DownSyndrome","Healthy"]:
 
         print("\n * Indexing the scanpy object...")
         adata=adata[~adata.obs[colName].isin(cell_types_to_remove)]
-        fout="10X_" + disease_status + "_" + sampletype + ".umap"+suffix+".cells_removed.h5ad"
-        foutpath=headdir + "/out/data/" + fout
-        print("\n * Saving data to file..." + foutpath)
-        # adata.write(foutpath)
-        print("\n * Completed.")
 
+        print("\n * Re-computing UMAPs...")
+        sc.tl.umap(adata, random_state=10, n_components=2, init_pos='random',n_components=2,copy=True)
+
+        print("\n * Re-computing 3D UMAPs...")
+        adata_3d=sc.tl.umap(adata, random_state=10, n_components=3, init_pos='random',n_components=3,copy=True)
+        
 
         # In[48]:
 
@@ -213,10 +213,56 @@ for disease_status in ["DownSyndrome","Healthy"]:
         plt.close()
         print("\n * Plot saved.")
 
+        ##############################
+
+        for components_to_use in [["1,2","1,3","2,3"]]:
+            Name_components_to_use = components_to_use.replace(",",".")
+            direc=headdir + "/out/figures/"
+            fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap."+Name_components_to_use+".png"
+            print("\n * Plotting & saving UMAP..." + fplotout)
+            f, axs = plt.subplots(1,1,figsize=(26,26))
+            sns.set(font_scale=2)
+            sns.set_style("white")
+            sc.pl.umap(adata_3d, color="cell_type_groups", size=150, palette=myColors, components=components_to_use, ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
+            plt.tight_layout()
+            plt.savefig(fplotout)
+            plt.show()
+            plt.close()
+            print("\n * Plot saved.")
+
+            fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap."+Name_components_to_use+".no_legend.png"
+            print("\n * Plotting & saving UMAP (no legend)..." + fplotout)
+            f, axs = plt.subplots(1,1,figsize=(26,26))
+            sns.set(font_scale=2)
+            sns.set_style("white")
+            new_plot=sc.pl.umap(adata_3d, color="cell_type_groups", size=150, palette=myColors, components=components_to_use, ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="None")
+            plt.tight_layout()
+            plt.savefig(fplotout)
+            plt.show()
+            plt.close()
+            print("\n * Plot saved.")
+
+            direc=headdir + "/out/figures/"
+            fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap."+Name_components_to_use+".numerical_labels.png"
+            # os.remove(fplotout)
+            print("\n * Plotting & saving UMAP (numerical labels)... " + fplotout)
+            f, axs = plt.subplots(1,1,figsize=(26,26))
+            sns.set(font_scale=2)
+            sns.set_style("white")
+            new_plot=sc.pl.umap(adata_3d, color="numerical_labels", size=150, palette=myColors, components=components_to_use, ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
+            plt.tight_layout()
+            plt.savefig(fplotout)
+            plt.show()
+            plt.close()
+            print("\n * Plot saved.")
+
+
+        ##############################
 
 
         # In[67]:
 
+        categories_order_to_use = ['HSC/Progenitors','Erythroid','Mast cells','Megakaryocytes','Myeloid','NK cells','B cells','Stroma']
 
         markerDict= {'HSC/Progenitors' : ['CD34', 'SPINK2'],
                       'Erythroid' : ['GATA1', 'KLF1'],
@@ -226,6 +272,9 @@ for disease_status in ["DownSyndrome","Healthy"]:
                       'NK cells' : ['NKG7', 'GZMA'],
                       'B cells' : ['CD79A', 'IGHM'],
                       'Stroma' : ['ALB', 'AFP']}
+
+        if sampletype=="Femur":
+            markerDict["Stroma"] = ["PDFRB","DCN"]
 
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.png"
         print("\n * Plotting & saving UMAP..." + headdir + "/out/figures/"+ fplotout)
@@ -238,7 +287,8 @@ for disease_status in ["DownSyndrome","Healthy"]:
                        dot_min=None,
                        dot_max=None,
                        color_map='Reds',
-                       dendrogram=True,
+                       dendrogram=False,
+                       categories_order=categories_order_to_use,
                        show=False,
                        ax=axs,
                        linewidths=2,swap_axes=True)
@@ -259,7 +309,8 @@ for disease_status in ["DownSyndrome","Healthy"]:
                        dot_min=None,
                        dot_max=None,
                        color_map='Reds',
-                       dendrogram=True,
+                       dendrogram=False,
+                       categories_order=categories_order_to_use,
                        show=False,
                        ax=axs,
                        linewidths=2,swap_axes=True)
@@ -288,6 +339,15 @@ for disease_status in ["DownSyndrome","Healthy"]:
         print("\n * Saving celltypeComp: " + foutpath)
         adata.obs.loc[:,["patient","sample","sorting","numerical_labels",colName,"cell_type_groups"]].to_csv(foutpath)
 
+        fout="10X_" + disease_status + "_" + sampletype + ".umap3d"+suffix+".h5ad"
+        foutpath=headdir + "/out/data/" + fout
+        print("\n * Saving 3d data to file..." + foutpath)
+        adata_3d.write(foutpath)
+        fout="10X_" + disease_status + "_" + sampletype + ".umap"+suffix+".cells_removed.h5ad"
+        foutpath=headdir + "/out/data/" + fout
+        print("\n * Saving 2d data to file..." + foutpath)
+        adata.write(foutpath)
+        print("\n * Completed.")
 
 
 

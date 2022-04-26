@@ -95,6 +95,27 @@ g2 <- ggplot(cd235a.melt,aes(x=variable,y=100*value,fill=disease_status)) +
 library(cowplot)
 plot_grid(g1,g2,ncol=2)
 
+g1 <- ggplot(cd45.melt, aes(fill=variable, y=value*100, x=Patient_ID,col=disease_status)) + 
+  geom_bar(position="stack", stat="identity") +
+  scale_color_manual(values=c("black","orange"),labels=c("Down Syndrome","Healthy"),name="Disease Status") +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        axis.text.x=element_text(hjust=1,angle=60),
+        plot.title = element_text(hjust=0.5)) +
+  scale_fill_brewer(palette="Set3",name="Cell type") + 
+  labs(x="Patient ID",y="Cell composition (%)",title="CD45+ sorting")
+g2 <- ggplot(cd235a.melt, aes(fill=variable, y=value*100, x=Patient_ID,col=disease_status)) + 
+  geom_bar(position="stack", stat="identity") +
+  scale_color_manual(values=c("black","orange"),labels=c("Down Syndrome","Healthy"),name="Disease Status") +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        axis.text.x=element_text(hjust=1,angle=60),
+        plot.title = element_text(hjust=0.5)) +
+  scale_fill_brewer(palette="Set3",name="Cell type") + 
+  labs(x="Patient ID",y="Cell composition (%)",title="CD235a- sorting")
+
+library(cowplot)
+plot_grid(g1,g2,ncol=2)
 
 
 

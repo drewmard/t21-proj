@@ -1,0 +1,27 @@
+,numerical_labels,leiden_v7,cell_type_groups
+AAACCCACACGGGTAA-1-2,0,Activated stellate cells,Stroma
+AAACCCAAGTAAACAC-1-0,1,B cells,B cells
+AACAGGGCACACACTA-1-2,2,Cholangiocytes,Stroma
+AAAGGTAAGGAGAGTA-1-0,3,Cycling MEMPs,HSC/Progenitors
+AAACGCTCACCCAAGC-1-0,4,Cycling erythroid cells,Erythroid
+AAACCCAAGGAACGCT-1-0,5,Early erythroid cells,Erythroid
+CGTGTCTAGCATAGGC-1-0,6,Granulocyte progenitors,HSC/Progenitors
+AAATGGAAGCAAATGT-1-0,7,HSCs/MPPs,HSC/Progenitors
+AAACGCTGTTCCAGGC-1-2,8,Hepatic stellate cells,Stroma
+AAACGCTAGACCAGAC-1-0,9,Hepatocytes,Stroma
+AACAACCGTAATGCGG-1-0,10,Inflammatory macrophages,Myeloid
+AAACCCATCGATTCCC-1-0,11,Kupffer cells,Myeloid
+AATAGAGCATCGCTGG-1-0,12,LSECs,Stroma
+AAACCCAAGCTCGGCT-1-2,13,Late erythroid cells,Erythroid
+AAACCCAGTAGAATAC-1-0,14,MEMPs,HSC/Progenitors
+AAAGAACTCAGCAGAG-1-0,15,Mast cells,Mast cells
+AAACCCACAGTCGGTC-1-0,16,Megakaryocytes,Megakaryocytes
+AAACCCACACAGAGCA-1-0,17,Monocyte progenitors,Myeloid
+AAACCCAAGTTACTCG-1-0,18,NK cells,NK cells
+AAACCCATCCCTATTA-1-0,19,NK progenitors,NK cells
+AAAGGGCCAACTTCTT-1-0,20,Neutrophils,Myeloid
+AAACGAAGTTGCTTGA-1-0,21,Pre pro B cells,B cells
+AAACGAAGTAACAGTA-1-0,22,Pro B cells,B cells
+AAACCCAAGATTAGAC-1-2,23,Vascular endothelial cells,Stroma
+AAACCCACAAGTTTGC-1-0,24,cDC2,Myeloid
+AAACGAAAGCTCTATG-1-0,25,pDCs,Myeloid
