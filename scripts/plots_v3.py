@@ -269,10 +269,10 @@ for disease_status in ["Healthy"]:
                       'Stroma' : ['ALB', 'AFP']}
 
         if sampletype=="Femur":
-            markerDict["Stroma"] = ['PDGFRB','DCN']
+            markerDict['Stroma'] = ['PDGFRB','DCN']
 
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.png"
-        print("\n * Plotting & saving dotplot..." + headdir + "/out/figures/"+ fplotout)
+        print("\n * Plotting & saving dotplot..." + fplotout)
         f, axs = plt.subplots(1,1,figsize=(14,10))
         sc.pl.dotplot(adata,
                        markerDict,
@@ -294,7 +294,7 @@ for disease_status in ["Healthy"]:
         print("\n * Plot saved.")
 
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.clusters.png"
-        print("\n * Plotting & saving UMAP..." + headdir + "/out/figures/"+ fplotout)
+        print("\n * Plotting & saving UMAP..." + fplotout)
         f, axs = plt.subplots(1,1,figsize=(14,10))
         sc.pl.dotplot(adata,
                        markerDict,
@@ -321,7 +321,7 @@ for disease_status in ["Healthy"]:
 
         pd.set_option('display.max_rows', None)
         cluster_to_label_mapping=adata.obs[["numerical_labels",colName,"cell_type_groups"]].drop_duplicates().sort_values("numerical_labels")
-        fout="10X_" + disease_status + "_" + sampletype + ".cluster_to_label_mapping.csv"
+        fout="10X_" + disease_status + "_" + sampletype + ".cluster_to_label_mapping"+suffix+".csv"
         # fout="10X_" + disease_status + "_" + sampletype + ".umap.h5ad"
         foutpath=headdir + "/out/data_small/" + fout
         print("\n * Saving cluster_to_label_mapping: " + foutpath)
@@ -330,7 +330,7 @@ for disease_status in ["Healthy"]:
         pd.set_option('display.max_rows', 10)
         print("Done")
 
-        foutpath=headdir + "/out/data_small/" + "10X_" + disease_status + "_" + sampletype + ".cellComp.csv"
+        foutpath=headdir + "/out/data_small/" + "10X_" + disease_status + "_" + sampletype + ".cellComp"+suffix+".csv"
         print("\n * Saving celltypeComp: " + foutpath)
         adata.obs.loc[:,["patient","sample","sorting","numerical_labels",colName,"cell_type_groups"]].to_csv(foutpath)
 
