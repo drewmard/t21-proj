@@ -26,11 +26,12 @@ suffix="" # ".subset"
 direc=headdir + "/out/figures/"
 
 
-suffix=".subset"
-for disease_status in ["Healthy"]:
-    for sampletype in ["Liver"]:
-# for disease_status in ["DownSyndrome","Healthy"]:
-#     for sampletype in ["Femur","Liver"]:
+# suffix=".subset"
+# for disease_status in ["Healthy"]:
+#     for sampletype in ["Liver"]:
+
+for disease_status in ["DownSyndrome","Healthy"]:
+    for sampletype in ["Femur","Liver"]:
 
         # In[43]:
 

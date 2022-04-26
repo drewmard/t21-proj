@@ -15,7 +15,6 @@ df.healthy$Patient_ID <- paste(df.healthy$patient,df.healthy$sample,sep=" ")
 df.ds.sub <- subset(df.ds,Patient_ID %in% for_cellComp[,"Patient ID"])
 df.healthy.sub <- subset(df.healthy,Patient_ID %in% for_cellComp[,"Patient ID"])
 
-ds.cd45.cluster_counts <- as.data.frame(table(subset(df.ds.sub,sorting=="CD45+")[,c("Patient_ID","cell_type_groups",colnames(df.ds.sub)[6])]))
 ds.cd45.counts <- as.data.frame(table(subset(df.ds.sub,sorting=="CD45+")[,c("Patient_ID","cell_type_groups")]))
 ds.cd45.total_counts <- as.data.frame(table(subset(df.ds.sub,sorting=="CD45+")[,c("Patient_ID")]))
 healthy.cd45.cluster_counts <- as.data.frame(table(subset(df.healthy.sub,sorting=="CD45+")[,c("Patient_ID","cell_type_groups",colnames(df.healthy.sub)[6])]))
@@ -34,6 +33,12 @@ convert_to_percentages <- function(counts,total_counts) {
   }
   return(counts)
 }
+
+cluster_to_label_mapping <- fread("~/Documents/Research/t21-proj/out/data_small/10X_DownSyndrome_Liver.cluster_to_label_mapping.csv",data.table = F,stringsAsFactors = F)[,c(3,4)]
+ds.cd45.cluster_counts <- as.data.frame(table(subset(df.ds.sub,sorting=="CD45+")[,c("Patient_ID",colnames(df.ds.sub)[6])]))
+colnames(cluster_to_label_mapping)[1] <- 'cluster'
+colnames(ds.cd45.cluster_counts)[2] <- 'cluster'
+ds.cd45.cluster_counts <- merge(ds.cd45.cluster_counts,cluster_to_label_mapping,by="cluster")
 
 convert_to_cluster_percentages <- function(counts,total_counts) {
   for (patient.uniq in unique(counts$Patient_ID)) {
@@ -62,10 +67,6 @@ healthy.cd45 <- dcast(healthy.cd45.percentages,Patient_ID~cell_type_groups,value
 ds.cd235a <- dcast(ds.cd235a.percentages,Patient_ID~cell_type_groups,value.var="Freq")
 healthy.cd235a <- dcast(healthy.cd235a.percentages,Patient_ID~cell_type_groups,value.var="Freq")
 
-library(reshape2)
-colnames(ds.cd45.cluster_percentages)[3] <- 'cluster'
-ds.cd45.cluster <- dcast(ds.cd45.cluster_percentages,Patient_ID~cell_type_groups,value.var="Freq")
-healthy.cd45.cluster <- dcast(healthy.cd45.cluster_percentages,Patient_ID~cell_type_groups,value.var="Freq")
 # ds.cd235a <- dcast(ds.cd235a.percentages,Patient_ID~cell_type_groups,value.var="Freq")
 # healthy.cd235a <- dcast(healthy.cd235a.percentages,Patient_ID~cell_type_groups,value.var="Freq")
 
