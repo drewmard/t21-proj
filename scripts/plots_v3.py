@@ -90,7 +90,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
         adata=adata[~adata.obs[colName].isin(cell_types_to_remove)]
 
         print("\n * Re-computing UMAPs...")
-        sc.tl.umap(adata, random_state=10, n_components=2, init_pos='random',n_components=2,copy=True)
+        sc.tl.umap(adata, random_state=10, n_components=2, init_pos='random')
 
         print("\n * Re-computing 3D UMAPs...")
         adata_3d=sc.tl.umap(adata, random_state=10, n_components=3, init_pos='random',n_components=3,copy=True)
