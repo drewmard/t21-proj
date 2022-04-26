@@ -215,7 +215,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
 
         ##############################
 
-        for components_to_use in [["1,2","1,3","2,3"]]:
+        for components_to_use in ["1,2","1,3","2,3"]:
             Name_components_to_use = components_to_use.replace(",",".")
             direc=headdir + "/out/figures/"
             fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap."+Name_components_to_use+".png"
@@ -223,7 +223,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
             f, axs = plt.subplots(1,1,figsize=(26,26))
             sns.set(font_scale=2)
             sns.set_style("white")
-            sc.pl.umap(adata_3d, color="cell_type_groups", size=150, palette=myColors, components=components_to_use, ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
+            sc.pl.umap(adata_3d, color="cell_type_groups", size=150, palette=myColors, components=[components_to_use], ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
             plt.tight_layout()
             plt.savefig(fplotout)
             plt.show()
@@ -235,7 +235,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
             f, axs = plt.subplots(1,1,figsize=(26,26))
             sns.set(font_scale=2)
             sns.set_style("white")
-            new_plot=sc.pl.umap(adata_3d, color="cell_type_groups", size=150, palette=myColors, components=components_to_use, ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="None")
+            new_plot=sc.pl.umap(adata_3d, color="cell_type_groups", size=150, palette=myColors, components=[components_to_use], ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="None")
             plt.tight_layout()
             plt.savefig(fplotout)
             plt.show()
@@ -249,7 +249,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
             f, axs = plt.subplots(1,1,figsize=(26,26))
             sns.set(font_scale=2)
             sns.set_style("white")
-            new_plot=sc.pl.umap(adata_3d, color="numerical_labels", size=150, palette=myColors, components=components_to_use, ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
+            new_plot=sc.pl.umap(adata_3d, color="numerical_labels", size=150, palette=myColors, components=[components_to_use], ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
             plt.tight_layout()
             plt.savefig(fplotout)
             plt.show()
