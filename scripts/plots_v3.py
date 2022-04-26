@@ -21,12 +21,16 @@ headdir="/oak/stanford/groups/smontgom/amarder/t21-proj"
 disease_status="Healthy"
 sampletype="Liver"
 suffix="" # ".subset"
-# suffix=".subset"
 
-# for disease_status in ["DownSyndrome"]:
-#     for sampletype in ["Femur"]:
-for disease_status in ["DownSyndrome","Healthy"]:
-    for sampletype in ["Femur","Liver"]:
+# initialize:
+direc=headdir + "/out/figures/"
+
+
+suffix=".subset"
+for disease_status in ["Healthy"]:
+    for sampletype in ["Liver"]:
+# for disease_status in ["DownSyndrome","Healthy"]:
+#     for sampletype in ["Femur","Liver"]:
 
         # In[43]:
 
@@ -50,10 +54,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
 
         print("Data read completed.")
 
-
-
         # In[44]:
-
 
         if disease_status=="Healthy" and sampletype=="Femur":    
             cell_types_to_remove=["0 (to remove)", 
@@ -172,7 +173,6 @@ for disease_status in ["DownSyndrome","Healthy"]:
         print("\n * Re-computing 3D UMAPs...")
         adata_3d=sc.tl.umap(adata, random_state=10, n_components=3, init_pos='random',copy=True)
 
-        direc=headdir + "/out/figures/"
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap.png"
         print("\n * Plotting & saving UMAP..." + fplotout)
         f, axs = plt.subplots(1,1,figsize=(26,26))
@@ -197,7 +197,6 @@ for disease_status in ["DownSyndrome","Healthy"]:
         plt.close()
         print("\n * Plot saved.")
 
-        direc=headdir + "/out/figures/"
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap"+".numerical_labels.png"
         # os.remove(fplotout)
         print("\n * Plotting & saving UMAP (numerical labels)... " + fplotout)
@@ -215,7 +214,6 @@ for disease_status in ["DownSyndrome","Healthy"]:
 
         for components_to_use in ["1,2","1,3","2,3"]:
             Name_components_to_use = components_to_use.replace(",",".")
-            direc=headdir + "/out/figures/"
             fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap."+Name_components_to_use+".png"
             print("\n * Plotting & saving UMAP..." + fplotout)
             f, axs = plt.subplots(1,1,figsize=(26,26))
@@ -240,7 +238,6 @@ for disease_status in ["DownSyndrome","Healthy"]:
             plt.close()
             print("\n * Plot saved.")
 
-            direc=headdir + "/out/figures/"
             fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap."+Name_components_to_use+".numerical_labels.png"
             # os.remove(fplotout)
             print("\n * Plotting & saving UMAP (numerical labels)... " + fplotout)
@@ -272,10 +269,10 @@ for disease_status in ["DownSyndrome","Healthy"]:
                       'Stroma' : ['ALB', 'AFP']}
 
         if sampletype=="Femur":
-            markerDict["Stroma"] = ['PDGFRB','PDGFRB','DCN']
+            markerDict["Stroma"] = ['PDGFRB','DCN']
 
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.png"
-        print("\n * Plotting & saving UMAP..." + headdir + "/out/figures/"+ fplotout)
+        print("\n * Plotting & saving dotplot..." + headdir + "/out/figures/"+ fplotout)
         f, axs = plt.subplots(1,1,figsize=(14,10))
         sc.pl.dotplot(adata,
                        markerDict,

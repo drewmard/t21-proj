@@ -1,3 +1,4 @@
+library(data.table)
 df.ds <- fread("~/Documents/Research/t21-proj/out/data_small/10X_DownSyndrome_Liver.cellComp.csv",data.table = F,stringsAsFactors = F)
 df.healthy <- fread("~/Documents/Research/t21-proj/out/data_small/10X_Healthy_Liver.cellComp.csv",data.table = F,stringsAsFactors = F)
 for_cellComp <- fread("~/Documents/Research/t21-proj/out/data_small/for_cellComp.csv",data.table = F,stringsAsFactors = F)
@@ -14,8 +15,10 @@ df.healthy$Patient_ID <- paste(df.healthy$patient,df.healthy$sample,sep=" ")
 df.ds.sub <- subset(df.ds,Patient_ID %in% for_cellComp[,"Patient ID"])
 df.healthy.sub <- subset(df.healthy,Patient_ID %in% for_cellComp[,"Patient ID"])
 
+ds.cd45.cluster_counts <- as.data.frame(table(subset(df.ds.sub,sorting=="CD45+")[,c("Patient_ID","cell_type_groups",colnames(df.ds.sub)[6])]))
 ds.cd45.counts <- as.data.frame(table(subset(df.ds.sub,sorting=="CD45+")[,c("Patient_ID","cell_type_groups")]))
 ds.cd45.total_counts <- as.data.frame(table(subset(df.ds.sub,sorting=="CD45+")[,c("Patient_ID")]))
+healthy.cd45.cluster_counts <- as.data.frame(table(subset(df.healthy.sub,sorting=="CD45+")[,c("Patient_ID","cell_type_groups",colnames(df.healthy.sub)[6])]))
 healthy.cd45.counts <- as.data.frame(table(subset(df.healthy.sub,sorting=="CD45+")[,c("Patient_ID","cell_type_groups")]))
 healthy.cd45.total_counts <- as.data.frame(table(subset(df.healthy.sub,sorting=="CD45+")[,c("Patient_ID")]))
 
@@ -32,16 +35,39 @@ convert_to_percentages <- function(counts,total_counts) {
   return(counts)
 }
 
-ds.cd45.counts <- convert_to_percentages(ds.cd45.counts,ds.cd45.total_counts)
-healthy.cd45.counts <- convert_to_percentages(healthy.cd45.counts,healthy.cd45.total_counts)
-ds.cd235a.counts <- convert_to_percentages(ds.cd235a.counts,ds.cd235a.total_counts)
-healthy.cd235a.counts <- convert_to_percentages(healthy.cd235a.counts,healthy.cd235a.total_counts)
+convert_to_cluster_percentages <- function(counts,total_counts) {
+  for (patient.uniq in unique(counts$Patient_ID)) {
+    for (broad_cell in unique(counts$cell_type_groups)) {
+      total_num_cells <- subset(total_counts,Patient_ID==patient.uniq & cell_type_groups==broad_cell)$Freq
+      counts$Freq[counts$Patient_ID==patient.uniq & counts$cell_type_groups==broad_cell] <- counts$Freq[counts$Patient_ID==patient.uniq & counts$cell_type_groups==broad_cell]/total_num_cells
+    }
+  }
+  return(counts)
+}
+
+
+ds.cd45.percentages <- convert_to_percentages(ds.cd45.counts,ds.cd45.total_counts)
+healthy.cd45.percentages <- convert_to_percentages(healthy.cd45.counts,healthy.cd45.total_counts)
+ds.cd235a.percentages <- convert_to_percentages(ds.cd235a.counts,ds.cd235a.total_counts)
+healthy.cd235a.percentages <- convert_to_percentages(healthy.cd235a.counts,healthy.cd235a.total_counts)
+
+ds.cd45.cluster_percentages <- convert_to_cluster_percentages(ds.cd45.cluster_counts,ds.cd45.counts)
+healthy.cd45.cluster_percentages <- convert_to_cluster_percentages(healthy.cd45.cluster_counts,healthy.cd45.counts)
+# ds.cd235a.cluster_counts <- convert_to_cluster_percentages(ds.cd235a.cluster_counts,ds.cd235a.counts)
+# healthy.cd235a.cluster_counts <- convert_to_cluster_percentages(healthy.cd235a.cluster_counts,healthy.cd235a.counts)
 
 library(reshape2)
-ds.cd45 <- dcast(ds.cd45.counts,Patient_ID~cell_type_groups,value.var="Freq")
-healthy.cd45 <- dcast(healthy.cd45.counts,Patient_ID~cell_type_groups,value.var="Freq")
-ds.cd235a <- dcast(ds.cd235a.counts,Patient_ID~cell_type_groups,value.var="Freq")
-healthy.cd235a <- dcast(healthy.cd235a.counts,Patient_ID~cell_type_groups,value.var="Freq")
+ds.cd45 <- dcast(ds.cd45.percentages,Patient_ID~cell_type_groups,value.var="Freq")
+healthy.cd45 <- dcast(healthy.cd45.percentages,Patient_ID~cell_type_groups,value.var="Freq")
+ds.cd235a <- dcast(ds.cd235a.percentages,Patient_ID~cell_type_groups,value.var="Freq")
+healthy.cd235a <- dcast(healthy.cd235a.percentages,Patient_ID~cell_type_groups,value.var="Freq")
+
+library(reshape2)
+colnames(ds.cd45.cluster_percentages)[3] <- 'cluster'
+ds.cd45.cluster <- dcast(ds.cd45.cluster_percentages,Patient_ID~cell_type_groups,value.var="Freq")
+healthy.cd45.cluster <- dcast(healthy.cd45.cluster_percentages,Patient_ID~cell_type_groups,value.var="Freq")
+# ds.cd235a <- dcast(ds.cd235a.percentages,Patient_ID~cell_type_groups,value.var="Freq")
+# healthy.cd235a <- dcast(healthy.cd235a.percentages,Patient_ID~cell_type_groups,value.var="Freq")
 
 
 res.lst <- list(); iter=0; for (sorting in c("cd45","cd235a")) {
