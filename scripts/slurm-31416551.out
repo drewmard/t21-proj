@@ -168,3 +168,375 @@ Trying to set attribute `.obs` of view, copying.
  * Numeric labels created.
 
  * Re-computing UMAPs...
+
+ * Re-computing 3D UMAPs...
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Liver.umap.png
+... storing 'cell_type_groups' as categorical
+... storing 'numerical_labels' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Liver.umap.no_legend.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Liver.umap.numerical_labels.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Liver.umap.1.2.png
+... storing 'cell_type_groups' as categorical
+... storing 'numerical_labels' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Liver.umap.1.2.no_legend.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Liver.umap.1.2.numerical_labels.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Liver.umap.1.3.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Liver.umap.1.3.no_legend.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Liver.umap.1.3.numerical_labels.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Liver.umap.2.3.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Liver.umap.2.3.no_legend.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Liver.umap.2.3.numerical_labels.png
+
+ * Plot saved.
+
+ * Plotting & saving dotplot.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Liver.dotplot.png
+
+ * Plot saved.
+
+ * Plotting & saving dotplot.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Liver.dotplot.clusters.png
+WARNING: dendrogram data not found (using key=dendrogram_leiden_v10). Running `sc.tl.dendrogram` with default parameters. For fine tuning it is recommended to run `sc.tl.dendrogram` independently.
+WARNING: Groups are not reordered because the `groupby` categories and the `var_group_labels` are different.
+categories: Activated stellate cells, Pre pro B cells, Pro B cells, etc.
+var_group_labels: HSC/Progenitors, Erythroid, Mast cells, etc.
+
+ * Plot saved.
+
+ * Saving cluster_to_label_mapping: /oak/stanford/groups/smontgom/amarder/t21-proj/out/data_small/10X_DownSyndrome_Liver.cluster_to_label_mapping.csv
+numerical_labels                  leiden_v10 cell_type_groups
+               0    Activated stellate cells           Stroma
+               1           Cycling HSCs/MPPs  HSC/Progenitors
+               2      Cycling megakaryocytes   Megakaryocytes
+               3                Cycling pDCs          Myeloid
+               4       Early erythroid cells        Erythroid
+               5     Granulocyte progenitors  HSC/Progenitors
+               6                   HSCs/MPPs  HSC/Progenitors
+               7      Hepatic stellate cells           Stroma
+               8                 Hepatocytes           Stroma
+               9    Inflammatory macrophages          Myeloid
+              10               Kupffer cells          Myeloid
+              11                       LSECs           Stroma
+              12        Late erythroid cells        Erythroid
+              13                       MEMPs  HSC/Progenitors
+              14                  Mast cells       Mast cells
+              15              Megakaryocytes   Megakaryocytes
+              16        Monocyte progenitors          Myeloid
+              17                    NK cells       NK/T cells
+              18              NK progenitors       NK/T cells
+              19             Pre pro B cells          B cells
+              20                 Pro B cells          B cells
+              21  Vascular endothelial cells           Stroma
+              22                           X           Stroma
+              23                        cDC2          Myeloid
+              24                        pDCs          Myeloid
+Done
+
+ * Saving celltypeComp: /oak/stanford/groups/smontgom/amarder/t21-proj/out/data_small/10X_DownSyndrome_Liver.cellComp.csv
+
+ * Saving 3d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_DownSyndrome_Liver.umap3d.h5ad
+
+ * Saving 2d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_DownSyndrome_Liver.umap.cells_removed.h5ad
+
+ * Script completed.
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_Healthy_Femur.umap.h5ad
+Data read completed.
+
+ * Indexing the scanpy object...
+
+ * Grouping clusters within broad cell types...
+
+ * Creating dictionary...
+{'Erythroid': ['Early erythroid cells', 'Late erythroid cells'], 'Myeloid': ['Cycling neutrophils', 'Neutrophils', 'Inflammatory macrophages', 'Tolerogenic macrophages', 'pDCs', 'Cycling cDC2', 'cDC2', 'Osteoclasts'], 'HSC/Progenitors': ['HSCs/MPPs', 'HSCs/MPPs', 'MEMPs', 'Granulocyte progenitors'], 'B cells': ['B cells', 'Cycling pro B cells', 'Pre pro B cells', 'Pro B cells'], 'Mast cells': ['Mast cells'], 'Megakaryocytes': ['Megakaryocytes'], 'NK/T cells': ['NK cells', 'Unknown 1', 'Unknown 2', 'Unknown endothelial cells'], 'Stroma': ['Mesenchymal cells 1', 'Vascular endothelial cells', 'Cycling muscle cells', 'Schwann cells', 'Collagen+ myeloid cells', 'Sinusoidal endothelial cells', 'Osteoprogenitors', 'LEPR+ CAR cells', 'Transitioning endothelial cells', 'Osteoblasts', 'CAR cells', 'Mesenchymal cells 2', 'Smooth muscle cells', 'Fibroblasts']}
+
+ * Saving new cell type labels to 'cell_type_groups' column in the metadata...
+Trying to set attribute `.obs` of view, copying.
+
+ * About to run create_cell_type_groups...
+
+ * create_cell_type_groups running complete.
+
+ * New labels created.
+
+ * Mapping to numeric labels...
+
+ * Numeric labels created.
+
+ * Re-computing UMAPs...
+
+ * Re-computing 3D UMAPs...
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Femur.umap.png
+... storing 'cell_type_groups' as categorical
+... storing 'numerical_labels' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Femur.umap.no_legend.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Femur.umap.numerical_labels.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Femur.umap.1.2.png
+... storing 'cell_type_groups' as categorical
+... storing 'numerical_labels' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Femur.umap.1.2.no_legend.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Femur.umap.1.2.numerical_labels.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Femur.umap.1.3.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Femur.umap.1.3.no_legend.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Femur.umap.1.3.numerical_labels.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Femur.umap.2.3.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Femur.umap.2.3.no_legend.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Femur.umap.2.3.numerical_labels.png
+
+ * Plot saved.
+
+ * Plotting & saving dotplot.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Femur.dotplot.png
+
+ * Plot saved.
+
+ * Plotting & saving dotplot.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Femur.dotplot.clusters.png
+WARNING: dendrogram data not found (using key=dendrogram_leiden_v7). Running `sc.tl.dendrogram` with default parameters. For fine tuning it is recommended to run `sc.tl.dendrogram` independently.
+WARNING: Groups are not reordered because the `groupby` categories and the `var_group_labels` are different.
+categories: B cells, CAR cells, Collagen+ myeloid cells, etc.
+var_group_labels: HSC/Progenitors, Erythroid, Mast cells, etc.
+
+ * Plot saved.
+
+ * Saving cluster_to_label_mapping: /oak/stanford/groups/smontgom/amarder/t21-proj/out/data_small/10X_Healthy_Femur.cluster_to_label_mapping.csv
+numerical_labels                        leiden_v7 cell_type_groups
+               0                          B cells          B cells
+               1                        CAR cells           Stroma
+               2          Collagen+ myeloid cells           Stroma
+               3                     Cycling cDC2          Myeloid
+               4             Cycling muscle cells           Stroma
+               5              Cycling neutrophils          Myeloid
+               6              Cycling pro B cells          B cells
+               7            Early erythroid cells        Erythroid
+               8                      Fibroblasts           Stroma
+               9          Granulocyte progenitors  HSC/Progenitors
+              10                        HSCs/MPPs  HSC/Progenitors
+              11         Inflammatory macrophages          Myeloid
+              12                  LEPR+ CAR cells           Stroma
+              13             Late erythroid cells        Erythroid
+              14                            MEMPs  HSC/Progenitors
+              15                       Mast cells       Mast cells
+              16                   Megakaryocytes   Megakaryocytes
+              17              Mesenchymal cells 1           Stroma
+              18              Mesenchymal cells 2           Stroma
+              19                         NK cells       NK/T cells
+              20                      Neutrophils          Myeloid
+              21                      Osteoblasts           Stroma
+              22                      Osteoclasts          Myeloid
+              23                 Osteoprogenitors           Stroma
+              24                  Pre pro B cells          B cells
+              25                      Pro B cells          B cells
+              26                    Schwann cells           Stroma
+              27     Sinusoidal endothelial cells           Stroma
+              28              Smooth muscle cells           Stroma
+              29          Tolerogenic macrophages          Myeloid
+              30  Transitioning endothelial cells           Stroma
+              31                        Unknown 1       NK/T cells
+              32                        Unknown 2       NK/T cells
+              33        Unknown endothelial cells       NK/T cells
+              34       Vascular endothelial cells           Stroma
+              35                             cDC2          Myeloid
+              36                             pDCs          Myeloid
+Done
+
+ * Saving celltypeComp: /oak/stanford/groups/smontgom/amarder/t21-proj/out/data_small/10X_Healthy_Femur.cellComp.csv
+
+ * Saving 3d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_Healthy_Femur.umap3d.h5ad
+
+ * Saving 2d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_Healthy_Femur.umap.cells_removed.h5ad
+
+ * Script completed.
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_Healthy_Liver.umap.h5ad
+Data read completed.
+
+ * Indexing the scanpy object...
+
+ * Grouping clusters within broad cell types...
+
+ * Creating dictionary...
+{'Erythroid': ['Cycling erythroid cells', 'Early erythroid cells', 'Late erythroid cells'], 'Myeloid': ['Neutrophils', 'Inflammatory macrophages', 'pDCs', 'cDC2', 'Kupffer cells', 'Monocyte progenitors'], 'HSC/Progenitors': ['HSCs/MPPs', 'HSCs/MPPs', 'Cycling MEMPs', 'MEMPs', 'Granulocyte progenitors'], 'B cells': ['B cells', 'Pre pro B cells', 'Pro B cells'], 'Mast cells': ['Mast cells'], 'Megakaryocytes': ['Megakaryocytes'], 'NK/T cells': ['NK cells', 'NK progenitors'], 'Stroma': ['Cholangiocytes', 'Vascular endothelial cells', 'LSECs', 'Activated stellate cells', 'Hepatocytes', 'Hepatic stellate cells']}
+
+ * Saving new cell type labels to 'cell_type_groups' column in the metadata...
+Trying to set attribute `.obs` of view, copying.
+
+ * About to run create_cell_type_groups...
+
+ * create_cell_type_groups running complete.
+
+ * New labels created.
+
+ * Mapping to numeric labels...
+
+ * Numeric labels created.
+
+ * Re-computing UMAPs...
+
+ * Re-computing 3D UMAPs...
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Liver.umap.png
+... storing 'cell_type_groups' as categorical
+... storing 'numerical_labels' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Liver.umap.no_legend.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Liver.umap.numerical_labels.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Liver.umap.1.2.png
+... storing 'cell_type_groups' as categorical
+... storing 'numerical_labels' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Liver.umap.1.2.no_legend.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Liver.umap.1.2.numerical_labels.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Liver.umap.1.3.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Liver.umap.1.3.no_legend.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Liver.umap.1.3.numerical_labels.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Liver.umap.2.3.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Liver.umap.2.3.no_legend.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Liver.umap.2.3.numerical_labels.png
+
+ * Plot saved.
+
+ * Plotting & saving dotplot.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Liver.dotplot.png
+
+ * Plot saved.
+
+ * Plotting & saving dotplot.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_Healthy_Liver.dotplot.clusters.png
+WARNING: dendrogram data not found (using key=dendrogram_leiden_v7). Running `sc.tl.dendrogram` with default parameters. For fine tuning it is recommended to run `sc.tl.dendrogram` independently.
+WARNING: Groups are not reordered because the `groupby` categories and the `var_group_labels` are different.
+categories: Activated stellate cells, B cells, Cholangiocytes, etc.
+var_group_labels: HSC/Progenitors, Erythroid, Mast cells, etc.
+
+ * Plot saved.
+
+ * Saving cluster_to_label_mapping: /oak/stanford/groups/smontgom/amarder/t21-proj/out/data_small/10X_Healthy_Liver.cluster_to_label_mapping.csv
+numerical_labels                   leiden_v7 cell_type_groups
+               0    Activated stellate cells           Stroma
+               1                     B cells          B cells
+               2              Cholangiocytes           Stroma
+               3               Cycling MEMPs  HSC/Progenitors
+               4     Cycling erythroid cells        Erythroid
+               5       Early erythroid cells        Erythroid
+               6     Granulocyte progenitors  HSC/Progenitors
+               7                   HSCs/MPPs  HSC/Progenitors
+               8      Hepatic stellate cells           Stroma
+               9                 Hepatocytes           Stroma
+              10    Inflammatory macrophages          Myeloid
+              11               Kupffer cells          Myeloid
+              12                       LSECs           Stroma
+              13        Late erythroid cells        Erythroid
+              14                       MEMPs  HSC/Progenitors
+              15                  Mast cells       Mast cells
+              16              Megakaryocytes   Megakaryocytes
+              17        Monocyte progenitors          Myeloid
+              18                    NK cells       NK/T cells
+              19              NK progenitors       NK/T cells
+              20                 Neutrophils          Myeloid
+              21             Pre pro B cells          B cells
+              22                 Pro B cells          B cells
+              23  Vascular endothelial cells           Stroma
+              24                        cDC2          Myeloid
+              25                        pDCs          Myeloid
+Done
+
+ * Saving celltypeComp: /oak/stanford/groups/smontgom/amarder/t21-proj/out/data_small/10X_Healthy_Liver.cellComp.csv
+
+ * Saving 3d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_Healthy_Liver.umap3d.h5ad
+
+ * Saving 2d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_Healthy_Liver.umap.cells_removed.h5ad
+
+ * Script completed.
