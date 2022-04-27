@@ -133,7 +133,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
             broad_cell_type="NK/T cells"; old_cell_types="lymphoid"
             celltypeDict[broad_cell_type] += [s for s in list_of_cell_types if old_cell_types.upper() in s.upper()]
         else:
-            broad_cell_type="NK cells"; old_cell_types="NK"
+            broad_cell_type="NK/T cells"; old_cell_types="NK"
             celltypeDict[broad_cell_type] = [s for s in list_of_cell_types if old_cell_types.upper() in s.upper()]
 
         # print(list_of_cell_types)
@@ -258,62 +258,62 @@ for disease_status in ["DownSyndrome","Healthy"]:
 
         # In[67]:
 
-        categories_order_to_use = ['HSC/Progenitors','Erythroid','Mast cells','Megakaryocytes','Myeloid','NK cells','B cells','Stroma']
+        categories_order_to_use = ['HSC/Progenitors','Erythroid','Mast cells','Megakaryocytes','Myeloid','NK/T cells','B cells','Stroma']
 
         markerDict= {'HSC/Progenitors' : ['CD34', 'SPINK2'],
                       'Erythroid' : ['GATA1', 'KLF1'],
                       'Mast cells' : ['HDC', 'CPA3'],
                       'Megakaryocytes' : ['ITGA2B', 'GP9'],
                       'Myeloid' :[ 'LYZ', 'SPI1'],
-                      'NK cells' : ['NKG7', 'GZMA'],
+                      'NK/T cells' : ['NKG7', 'GZMA'],
                       'B cells' : ['CD79A', 'IGHM'],
                       'Stroma' : ['ALB', 'AFP']}
 
         if sampletype=="Femur":
             markerDict['Stroma'] = ['PDGFRB','DCN']
 
-        # fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.png"
-        # print("\n * Plotting & saving dotplot..." + fplotout)
-        # f, axs = plt.subplots(1,1,figsize=(14,10))
-        # sc.pl.dotplot(adata,
-        #                markerDict,
-        #                groupby="cell_type_groups",
-        #                standard_scale='var',
-        #                smallest_dot=0.0,
-        #                dot_min=None,
-        #                dot_max=None,
-        #                color_map='Reds',
-        #                dendrogram=False,
-        #                categories_order=categories_order_to_use,
-        #                show=False,
-        #                ax=axs,
-        #                linewidths=2,swap_axes=True)
-        # plt.tight_layout()
-        # plt.savefig(fplotout)
-        # # plt.show()
-        # plt.close()
-        # print("\n * Plot saved.")
+        fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.png"
+        print("\n * Plotting & saving dotplot..." + fplotout)
+        f, axs = plt.subplots(1,1,figsize=(14,10))
+        sc.pl.dotplot(adata,
+                       markerDict,
+                       groupby="cell_type_groups",
+                       standard_scale='var',
+                       smallest_dot=0.0,
+                       dot_min=None,
+                       dot_max=None,
+                       color_map='Reds',
+                       dendrogram=False,
+                       categories_order=categories_order_to_use,
+                       show=False,
+                       ax=axs,
+                       linewidths=2,swap_axes=True)
+        plt.tight_layout()
+        plt.savefig(fplotout)
+        # plt.show()
+        plt.close()
+        print("\n * Plot saved.")
 
-        # fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.clusters.png"
-        # print("\n * Plotting & saving dotplot..." + fplotout)
-        # f, axs = plt.subplots(1,1,figsize=(14,10))
-        # sc.pl.dotplot(adata,
-        #                markerDict,
-        #                groupby=colName,
-        #                standard_scale='var',
-        #                smallest_dot=0.0,
-        #                dot_min=None,
-        #                dot_max=None,
-        #                color_map='Reds',
-        #                dendrogram=True,
-        #                show=False,
-        #                ax=axs,
-        #                linewidths=2,swap_axes=True)
-        # plt.tight_layout()
-        # plt.savefig(fplotout)
-        # # plt.show()
-        # plt.close()
-        # print("\n * Plot saved.")
+        fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.clusters.png"
+        print("\n * Plotting & saving dotplot..." + fplotout)
+        f, axs = plt.subplots(1,1,figsize=(14,10))
+        sc.pl.dotplot(adata,
+                       markerDict,
+                       groupby=colName,
+                       standard_scale='var',
+                       smallest_dot=0.0,
+                       dot_min=None,
+                       dot_max=None,
+                       color_map='Reds',
+                       dendrogram=True,
+                       show=False,
+                       ax=axs,
+                       linewidths=2,swap_axes=True)
+        plt.tight_layout()
+        plt.savefig(fplotout)
+        # plt.show()
+        plt.close()
+        print("\n * Plot saved.")
 
 
         # In[74]:
@@ -342,7 +342,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
         foutpath=headdir + "/out/data/" + fout
         print("\n * Saving 2d data to file..." + foutpath)
         adata.write(foutpath)
-        print("\n * Completed.")
+        print("\n * Script completed.")
 
 
 
