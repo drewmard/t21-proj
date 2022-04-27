@@ -112,7 +112,7 @@ for (sampletype in c("Femur","Liver")) {
     group_matrix.melt[[sampletype]][[sorting_strategy]] <- melt(group_matrix[[sampletype]][[sorting_strategy]],id.vars = c("Patient_ID","disease_status"))
     
     system("mkdir -p ~/Documents/Research/t21-proj/out/figures/cellComp/")
-    f.out=paste0("~/Documents/Research/t21-proj/out/figures/cellComp/group.",sampletype,'.',gsub("[[:punct:]]","",sorting_strategy),'.png')
+    f.out=paste0("~/Documents/Research/t21-proj/out/figures/cellComp/boxplot.group.",sampletype,'.',gsub("[[:punct:]]","",sorting_strategy),'.png')
     png(filename = f.out,width = 4000,height=1800,res=480)
     g1 <- ggplot(group_matrix.melt[[sampletype]][[sorting_strategy]],aes(x=variable,y=100*value,fill=disease_status)) + 
       theme_bw() + 
@@ -124,6 +124,21 @@ for (sampletype in c("Femur","Liver")) {
       scale_fill_brewer(palette = "Set3",name="Disease Status",labels=c("Down Syndrome","Healthy")) +
       labs(x="Cell type",y="Cell composition (%)",title=paste0(sorting_strategy))
     print(g1)
+    dev.off()
+    
+    system("mkdir -p ~/Documents/Research/t21-proj/out/figures/cellComp/")
+    f.out=paste0("~/Documents/Research/t21-proj/out/figures/cellComp/stacked.group.",sampletype,'.',gsub("[[:punct:]]","",sorting_strategy),'.png')
+    png(filename = f.out,width = 3300,height=2600,res=480)
+    g2<-ggplot(group_matrix.melt[[sampletype]][[sorting_strategy]], aes(fill=variable, y=value*100, x=Patient_ID,col=disease_status)) + 
+      geom_bar(position="stack", stat="identity") +
+      scale_color_manual(values=c("black","orange"),labels=c("Down Syndrome","Healthy"),name="Disease Status") +
+      theme_bw() +
+      theme(panel.grid = element_blank(),
+            axis.text.x=element_text(hjust=1,angle=60),
+            plot.title = element_text(hjust=0.5)) +
+      scale_fill_brewer(palette="Set3",name="Cell type") + 
+      labs(x="Patient ID",y="Cell composition (%)",title=sorting_strategy)
+    print(g2)
     dev.off()
   }
 }
@@ -144,7 +159,7 @@ for (cell_type in cell_type_groups) {
   # cluster_matrix_all[[sampletype]][[sorting_strategy]][[cell_type]] <- dcast(group_percentages[[sampletype]][[disease_status]][[sorting_strategy]],Patient_ID~cell_type_groups,value.var="Freq")
   
   system("mkdir -p ~/Documents/Research/t21-proj/out/figures/cellComp/")
-  f.out=paste0("~/Documents/Research/t21-proj/out/figures/cellComp/cluster.",sampletype,'.',gsub("[[:punct:]]","",sorting_strategy),'.',gsub('\\/','_',cell_type),'.png')
+  f.out=paste0("~/Documents/Research/t21-proj/out/figures/cellComp/boxplot.cluster.",sampletype,'.',gsub("[[:punct:]]","",sorting_strategy),'.',gsub('\\/','_',cell_type),'.png')
   png(filename = f.out,width = 4000,height=1800,res=480)
   g1 <- ggplot(cluster_percentages_all[[sampletype]][[sorting_strategy]][[cell_type]],aes(x=cluster,y=100*Freq,fill=disease_status)) + 
     theme_bw() + 
@@ -156,6 +171,21 @@ for (cell_type in cell_type_groups) {
     scale_fill_brewer(palette = "Set3",name="Disease Status",labels=c("Down Syndrome","Healthy")) +
     labs(x="Cell type",y="Cell composition (%)",title=paste0(sorting_strategy))
   print(g1)
+  dev.off()
+  
+  system("mkdir -p ~/Documents/Research/t21-proj/out/figures/cellComp/")
+  f.out=paste0("~/Documents/Research/t21-proj/out/figures/cellComp/stacked.cluster.",sampletype,'.',gsub("[[:punct:]]","",sorting_strategy),'.',gsub('\\/','_',cell_type),'.png')
+  png(filename = f.out,width = 3300,height=2600,res=480)
+  g2<-ggplot(cluster_percentages_all[[sampletype]][[sorting_strategy]][[cell_type]], aes(fill=cluster, y=Freq*100, x=Patient_ID,col=disease_status)) + 
+    geom_bar(position="stack", stat="identity") +
+    scale_color_manual(values=c("black","orange"),labels=c("Down Syndrome","Healthy"),name="Disease Status") +
+    theme_bw() +
+    theme(panel.grid = element_blank(),
+          axis.text.x=element_text(hjust=1,angle=60),
+          plot.title = element_text(hjust=0.5)) +
+    scale_fill_brewer(palette="Set3",name="Cell type") + 
+    labs(x="Patient ID",y="Cell composition (%)",title=sorting_strategy)
+  print(g2)
   dev.off()
   
 }
