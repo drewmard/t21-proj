@@ -1,0 +1,6 @@
+Start
+Beginning script subset_data.py
+  File "subset_data.py", line 7
+    headdir="/oak/stanford/groups/smontgom/amarder/t21-proj"
+                                                           ^
+TabError: inconsistent use of tabs and spaces in indentation
