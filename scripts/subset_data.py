@@ -2,25 +2,28 @@
 
 import scanpy as sc
 
-headdir="/oak/stanford/groups/smontgom/amarder/t21-proj"
-disease_status="Healthy"
-sampletype="Liver"
+for disease_status in ["DownSyndrome","Healthy"]:
+    for sampletype in ["Femur","Liver"]:
 
-print("1")
-fout="10X_" + disease_status + "_" + sampletype + ".umap.h5ad"
-foutpath=headdir + "/out/data/" + fout
-print("\n * Reading in data..." + foutpath)
-adata=sc.read_h5ad(foutpath)
+		headdir="/oak/stanford/groups/smontgom/amarder/t21-proj"
+		disease_status="Healthy"
+		sampletype="Liver"
 
-print("2")
+		print("1")
+		fout="10X_" + disease_status + "_" + sampletype + ".umap.h5ad"
+		foutpath=headdir + "/out/data/" + fout
+		print("\n * Reading in data..." + foutpath)
+		adata=sc.read_h5ad(foutpath)
 
-adata_subset=adata[:10000,]
+		print("2")
 
-print("3")
+		adata_subset=adata[:10000,]
 
-fout="10X_" + disease_status + "_" + sampletype + ".umap.subset.h5ad"
-foutpath=headdir + "/out/data/" + fout
-print("\n * Saving data to file..." + foutpath)
-adata_subset.write(foutpath)
+		print("3")
 
-print("4")
+		fout="10X_" + disease_status + "_" + sampletype + ".umap.subset.h5ad"
+		foutpath=headdir + "/out/data/" + fout
+		print("\n * Saving data to file..." + foutpath)
+		adata_subset.write(foutpath)
+
+		print("4")

@@ -91,14 +91,21 @@ for (sampletype in c("Femur","Liver")) {
       tryCatch({
         # tres <- t.test(cluster_matrix[[sampletype]][["DownSyndrome"]][[sorting_strategy]][,celltype],cluster_matrix[[sampletype]][["Healthy"]][[sorting_strategy]][,celltype])
         tres <- t.test(group_matrix[[sampletype]][["DownSyndrome"]][[sorting_strategy]][,celltype],group_matrix[[sampletype]][["Healthy"]][[sorting_strategy]][,celltype])
-        res.lst[[iter]] <- data.frame(sampletype,sorting_strategy,celltype,cases=as.numeric(tres$estimate[1]),controls=as.numeric(tres$estimate[2]),pval=as.numeric(tres$p.value))
+        ures <- wilcox.test(group_matrix[[sampletype]][["DownSyndrome"]][[sorting_strategy]][,celltype],group_matrix[[sampletype]][["Healthy"]][[sorting_strategy]][,celltype])
+        res.lst[[iter]] <- data.frame(sampletype,sorting_strategy,celltype,cases=as.numeric(tres$estimate[1]),controls=as.numeric(tres$estimate[2]),t_pval=as.numeric(tres$p.value),mwu_pval=ures$p.value)
       },error=function(e) {print(paste(sampletype,sorting_strategy,celltype))})
     }
     res[[sampletype]][[sorting_strategy]] <- as.data.frame(do.call(rbind,res.lst))
+    res[[sampletype]][[sorting_strategy]]$t_pval.adj <- p.adjust(res[[sampletype]][[sorting_strategy]]$t_pval,method='fdr')
+    res[[sampletype]][[sorting_strategy]]$mwu_pval.adj <- p.adjust(res[[sampletype]][[sorting_strategy]]$mwu_pval,method='fdr')
+    f.out <- paste0("~/Documents/Research/t21-proj/out/results_etc/cellComp.group.",sampletype,'.',gsub("[[:punct:]]","",sorting_strategy),'.txt')
+    fwrite(res[[sampletype]][[sorting_strategy]],file = f.out,quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
   }
 }
 
+group_matrix.melt <- list()
 for (sampletype in c("Femur","Liver")) { 
+  group_matrix.melt[[sampletype]] <- list()
   for (sorting_strategy in c("CD45+","CD235a-")) {
     if (sorting_strategy=="CD45+" & sampletype=="Femur") {next}
     
@@ -107,8 +114,6 @@ for (sampletype in c("Femur","Liver")) {
     if (sampletype=="Femur" & sorting_strategy=="CD235a-") {colnames(group_matrix[[sampletype]][["Healthy"]][[sorting_strategy]])[colnames(group_matrix[[sampletype]][["Healthy"]][[sorting_strategy]])=="NK cells"] <- "NK/T cells"}
     group_matrix[[sampletype]][[sorting_strategy]] <- as.data.frame(rbind(group_matrix[[sampletype]][["DownSyndrome"]][[sorting_strategy]],group_matrix[[sampletype]][["Healthy"]][[sorting_strategy]]))
     
-    group_matrix.melt <- list()
-    group_matrix.melt[[sampletype]] <- list()
     group_matrix.melt[[sampletype]][[sorting_strategy]] <- melt(group_matrix[[sampletype]][[sorting_strategy]],id.vars = c("Patient_ID","disease_status"))
     
     system("mkdir -p ~/Documents/Research/t21-proj/out/figures/cellComp/")
@@ -144,27 +149,65 @@ for (sampletype in c("Femur","Liver")) {
 }
 
 sampletype="Liver"
-sorting_strategy="CD45+"
-cluster_percentages[[sampletype]][["DownSyndrome"]][[sorting_strategy]]$disease_status <- "DownSyndrome"
-cluster_percentages[[sampletype]][["Healthy"]][[sorting_strategy]]$disease_status <- "Healthy"
-
 cluster_percentages_all <- list()
 cluster_percentages_all[[sampletype]] <- list()
-cluster_percentages_all[[sampletype]][[sorting_strategy]] <- list()
-cell_type_groups <- unique(cluster_percentages[[sampletype]][["Healthy"]][[sorting_strategy]]$cell_type_groups)
-for (cell_type in cell_type_groups) {
-  mat1 <- subset(cluster_percentages[[sampletype]][["DownSyndrome"]][[sorting_strategy]],cell_type_groups==cell_type)
-  mat2 <- subset(cluster_percentages[[sampletype]][["Healthy"]][[sorting_strategy]],cell_type_groups==cell_type)
-  cluster_percentages_all[[sampletype]][[sorting_strategy]][[cell_type]] <- as.data.frame(rbind(mat1,mat2))
-  # cluster_matrix_all[[sampletype]][[sorting_strategy]][[cell_type]] <- dcast(group_percentages[[sampletype]][[disease_status]][[sorting_strategy]],Patient_ID~cell_type_groups,value.var="Freq")
+for (sorting_strategy in c("CD45+","CD235a-")) {
+  # sorting_strategy="CD45+"
+  cluster_percentages[[sampletype]][["DownSyndrome"]][[sorting_strategy]]$disease_status <- "DownSyndrome"
+  cluster_percentages[[sampletype]][["Healthy"]][[sorting_strategy]]$disease_status <- "Healthy"
   
-  system("mkdir -p ~/Documents/Research/t21-proj/out/figures/cellComp/")
-  f.out=paste0("~/Documents/Research/t21-proj/out/figures/cellComp/boxplot.cluster.",sampletype,'.',gsub("[[:punct:]]","",sorting_strategy),'.',gsub('\\/','_',cell_type),'.png')
-  png(filename = f.out,width = 4000,height=1800,res=480)
+  cluster_percentages_all[[sampletype]][[sorting_strategy]] <- list()
+  cell_type_groups <- unique(cluster_percentages[[sampletype]][["Healthy"]][[sorting_strategy]]$cell_type_groups)
+  for (cell_type in cell_type_groups) {
+    mat1 <- subset(cluster_percentages[[sampletype]][["DownSyndrome"]][[sorting_strategy]],cell_type_groups==cell_type)
+    mat2 <- subset(cluster_percentages[[sampletype]][["Healthy"]][[sorting_strategy]],cell_type_groups==cell_type)
+    cluster_percentages_all[[sampletype]][[sorting_strategy]][[cell_type]] <- as.data.frame(rbind(mat1,mat2))
+    # cluster_matrix_all[[sampletype]][[sorting_strategy]][[cell_type]] <- dcast(group_percentages[[sampletype]][[disease_status]][[sorting_strategy]],Patient_ID~cell_type_groups,value.var="Freq")
+    
+    system("mkdir -p ~/Documents/Research/t21-proj/out/figures/cellComp/")
+    f.out=paste0("~/Documents/Research/t21-proj/out/figures/cellComp/boxplot.cluster.",sampletype,'.',gsub("[[:punct:]]","",sorting_strategy),'.',gsub('\\/','_',cell_type),'.png')
+    png(filename = f.out,width = 4000,height=1800,res=480)
+    g1 <- ggplot(cluster_percentages_all[[sampletype]][[sorting_strategy]][[cell_type]],aes(x=cluster,y=100*Freq,fill=disease_status)) + 
+      theme_bw() + 
+      theme(panel.grid=element_blank(),
+            axis.text.x =element_text(angle=60,hjust=1),
+            plot.title = element_text(hjust=0.5)) +
+      geom_boxplot(outlier.shape=NA) + 
+      geom_point(position=position_jitterdodge(jitter.width=0.075),alpha=0.5) + 
+      scale_fill_brewer(palette = "Set3",name="Disease Status",labels=c("Down Syndrome","Healthy")) +
+      labs(x="Cell type",y="Cell composition (%)",title=paste0(sorting_strategy))
+    print(g1)
+    dev.off()
+    
+    system("mkdir -p ~/Documents/Research/t21-proj/out/figures/cellComp/")
+    f.out=paste0("~/Documents/Research/t21-proj/out/figures/cellComp/stacked.cluster.",sampletype,'.',gsub("[[:punct:]]","",sorting_strategy),'.',gsub('\\/','_',cell_type),'.png')
+    png(filename = f.out,width = 3300,height=2600,res=480)
+    g2<-ggplot(cluster_percentages_all[[sampletype]][[sorting_strategy]][[cell_type]], aes(fill=cluster, y=Freq*100, x=Patient_ID,col=disease_status)) + 
+      geom_bar(position="stack", stat="identity") +
+      scale_color_manual(values=c("black","orange"),labels=c("Down Syndrome","Healthy"),name="Disease Status") +
+      theme_bw() +
+      theme(panel.grid = element_blank(),
+            axis.text.x=element_text(hjust=1,angle=60),
+            plot.title = element_text(hjust=0.5)) +
+      scale_fill_brewer(palette="Set3",name="Cell type") + 
+      labs(x="Patient ID",y="Cell composition (%)",title=sorting_strategy)
+    print(g2)
+    dev.off()
+    
+  }
+}
+
+
+sampletype="Liver"
+sorting_strategy="CD45+"
+for (cell_type in c("B cells","HSC/Progenitors","Myeloid")) {
+  f.out=paste0("~/Documents/Research/t21-proj/out/figures/cellComp/boxplot.cluster.",sampletype,'.',gsub("[[:punct:]]","",sorting_strategy),'.',gsub('\\/','_',cell_type),'.pdf')
+  x=2.4
+  pdf(file = f.out,width = 4*x,height=1.8*x)
   g1 <- ggplot(cluster_percentages_all[[sampletype]][[sorting_strategy]][[cell_type]],aes(x=cluster,y=100*Freq,fill=disease_status)) + 
     theme_bw() + 
     theme(panel.grid=element_blank(),
-          axis.text.x =element_text(angle=30,hjust=1),
+          axis.text.x =element_text(angle=60,hjust=1),
           plot.title = element_text(hjust=0.5)) +
     geom_boxplot(outlier.shape=NA) + 
     geom_point(position=position_jitterdodge(jitter.width=0.075),alpha=0.5) + 
@@ -172,39 +215,14 @@ for (cell_type in cell_type_groups) {
     labs(x="Cell type",y="Cell composition (%)",title=paste0(sorting_strategy))
   print(g1)
   dev.off()
-  
-  system("mkdir -p ~/Documents/Research/t21-proj/out/figures/cellComp/")
-  f.out=paste0("~/Documents/Research/t21-proj/out/figures/cellComp/stacked.cluster.",sampletype,'.',gsub("[[:punct:]]","",sorting_strategy),'.',gsub('\\/','_',cell_type),'.png')
-  png(filename = f.out,width = 3300,height=2600,res=480)
-  g2<-ggplot(cluster_percentages_all[[sampletype]][[sorting_strategy]][[cell_type]], aes(fill=cluster, y=Freq*100, x=Patient_ID,col=disease_status)) + 
-    geom_bar(position="stack", stat="identity") +
-    scale_color_manual(values=c("black","orange"),labels=c("Down Syndrome","Healthy"),name="Disease Status") +
-    theme_bw() +
-    theme(panel.grid = element_blank(),
-          axis.text.x=element_text(hjust=1,angle=60),
-          plot.title = element_text(hjust=0.5)) +
-    scale_fill_brewer(palette="Set3",name="Cell type") + 
-    labs(x="Patient ID",y="Cell composition (%)",title=sorting_strategy)
-  print(g2)
-  dev.off()
-  
 }
 
-
-mat1=cluster_matrix[[sampletype]][["DownSyndrome"]][[sorting_strategy]]
-mat2=cluster_matrix[[sampletype]][["Healthy"]][[sorting_strategy]]
-
-cluster_matrix[[sampletype]][[sorting_strategy]] <- as.data.frame(rbind(mat1,cluster_matrix[[sampletype]][["Healthy"]][[sorting_strategy]]))
-
-cluster_matrix.melt <- list()
-cluster_matrix.melt[[sampletype]] <- list()
-cluster_matrix.melt[[sampletype]][[sorting_strategy]] <- melt(cluster_matrix[[sampletype]][[sorting_strategy]],id.vars = c("Patient_ID","disease_status"))
-
-
-
-f.out=paste0("~/Documents/Research/t21-proj/out/figures/cellComp/cluster.",sampletype,'.',gsub("[[:punct:]]","",sorting_strategy),'.png')
-png(filename = f.out,width = 4000,height=1800,res=480)
-ggplot(group_matrix.melt[[sampletype]][[sorting_strategy]],aes(x=variable,y=100*value,fill=disease_status)) + 
+sampletype="Liver"
+sorting_strategy="CD45+"
+f.out=paste0("~/Documents/Research/t21-proj/out/figures/cellComp/boxplot.group.",sampletype,'.',gsub("[[:punct:]]","",sorting_strategy),'.pdf')
+x=2.4
+pdf(file = f.out,width = 4*x,height=1.8*x)
+g1 <- ggplot(group_matrix.melt[[sampletype]][[sorting_strategy]],aes(x=variable,y=100*value,fill=disease_status)) + 
   theme_bw() + 
   theme(panel.grid=element_blank(),
         axis.text.x =element_text(angle=30,hjust=1),
@@ -213,5 +231,34 @@ ggplot(group_matrix.melt[[sampletype]][[sorting_strategy]],aes(x=variable,y=100*
   geom_point(position=position_jitterdodge(jitter.width=0.075),alpha=0.5) + 
   scale_fill_brewer(palette = "Set3",name="Disease Status",labels=c("Down Syndrome","Healthy")) +
   labs(x="Cell type",y="Cell composition (%)",title=paste0(sorting_strategy))
+print(g1)
 dev.off()
 
+
+
+
+
+# mat1=cluster_matrix[[sampletype]][["DownSyndrome"]][[sorting_strategy]]
+# mat2=cluster_matrix[[sampletype]][["Healthy"]][[sorting_strategy]]
+# 
+# cluster_matrix[[sampletype]][[sorting_strategy]] <- as.data.frame(rbind(mat1,cluster_matrix[[sampletype]][["Healthy"]][[sorting_strategy]]))
+# 
+# cluster_matrix.melt <- list()
+# cluster_matrix.melt[[sampletype]] <- list()
+# cluster_matrix.melt[[sampletype]][[sorting_strategy]] <- melt(cluster_matrix[[sampletype]][[sorting_strategy]],id.vars = c("Patient_ID","disease_status"))
+# 
+# 
+# 
+# f.out=paste0("~/Documents/Research/t21-proj/out/figures/cellComp/cluster.",sampletype,'.',gsub("[[:punct:]]","",sorting_strategy),'.png')
+# png(filename = f.out,width = 4000,height=1800,res=480)
+# ggplot(group_matrix.melt[[sampletype]][[sorting_strategy]],aes(x=variable,y=100*value,fill=disease_status)) + 
+#   theme_bw() + 
+#   theme(panel.grid=element_blank(),
+#         axis.text.x =element_text(angle=30,hjust=1),
+#         plot.title = element_text(hjust=0.5)) +
+#   geom_boxplot(outlier.shape=NA) + 
+#   geom_point(position=position_jitterdodge(jitter.width=0.075),alpha=0.5) + 
+#   scale_fill_brewer(palette = "Set3",name="Disease Status",labels=c("Down Syndrome","Healthy")) +
+#   labs(x="Cell type",y="Cell composition (%)",title=paste0(sorting_strategy))
+# dev.off()
+# 

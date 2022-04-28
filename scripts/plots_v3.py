@@ -299,7 +299,8 @@ for disease_status in ["DownSyndrome","Healthy"]:
         f, axs = plt.subplots(1,1,figsize=(14,10))
         sc.pl.dotplot(adata,
                        markerDict,
-                       groupby=colName,
+                       # groupby=colName,
+                       groupby="numerical_labels",
                        standard_scale='var',
                        smallest_dot=0.0,
                        dot_min=None,
