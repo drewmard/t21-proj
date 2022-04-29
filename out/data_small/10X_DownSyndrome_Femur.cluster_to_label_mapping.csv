@@ -1,4 +1,4 @@
-,numerical_labels,leiden_v12,cell_type_groups
+,numerical_labels,leiden_v13,cell_type_groups
 CACGTTCAGCTGGAGT-1-16-0,0,B cells,B cells
 AAACCCAAGAATTTGG-1-16-0,1,CAR cells,Stroma
 AACAGGGGTGGTTCTA-1-16-0,2,Collagen+ myeloid cells,Stroma
@@ -25,11 +25,11 @@ AAAGGGCGTGCCCTTT-1-16-0,22,NK cells,NK/T cells
 AAAGAACCATATCTCT-1-16-0,23,Neutrophils,Myeloid
 AACAACCGTTGTGGCC-1-16-0,24,Osteoclasts,Myeloid
 AAACGCTAGGAAACGA-1-16-0,25,Osteoprogenitors,Stroma
-AGTAGCTGTTCTCTAT-1-16-0,26,Pre pro B cells,B cells
-ATGCGATCACAGAGAC-1-16-0,27,Pro B cells,B cells
-AAACCCATCTAGAACC-1-16-0,28,Schwann cells,Stroma
-AAACCCACAGGTGACA-1-16-0,29,Sinusoidal endothelial cells,Stroma
-AAACCCAAGCGCATCC-1-16-0,30,Smooth muscle cells,Stroma
+AAACCCAAGCGCATCC-1-16-0,26,Pericytes,Stroma
+AGTAGCTGTTCTCTAT-1-16-0,27,Pre pro B cells,B cells
+ATGCGATCACAGAGAC-1-16-0,28,Pro B cells,B cells
+AAACCCATCTAGAACC-1-16-0,29,Schwann cells,Stroma
+AAACCCACAGGTGACA-1-16-0,30,Sinusoidal endothelial cells,Stroma
 AAATGGACACCTGCAG-1-16-0,31,Striated muscle cells,Stroma
 AAAGTCCAGTCGGGAT-1-16-0,32,Tolerogenic macrophages,Myeloid
 AAACCCACACGTACTA-1-16-0,33,Transitioning endothelial cells,Stroma

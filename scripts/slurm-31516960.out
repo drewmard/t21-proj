@@ -1,0 +1,174 @@
+Start
+Beginning script plots_v4.py
+Beginning script...
+Module loading completed.
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/data/t21/ScanpyObjects/10X_DownSyndrome_Femur.h5ad
+Data read completed.
+
+ * Indexing the scanpy object...
+
+ * Grouping clusters within broad cell types...
+
+ * Creating dictionary...
+{'Erythroid': ['Early erythroid cells', 'Late erythroid cells'], 'Myeloid': ['Cycling neutrophils', 'Neutrophils', 'Inflammatory macrophages', 'Tolerogenic macrophages', 'Cycling pDCs', 'pDCs', 'cDC2', 'Osteoclasts'], 'HSC/Progenitors': ['HSCs/MPPs', 'HSCs/MPPs', 'Cycling MEMPs', 'MEMPs', 'Cycling granulocyte progenitors', 'Granulocyte progenitors'], 'B cells': ['B cells', 'Pre pro B cells', 'Pro B cells'], 'Mast cells': ['Mast cells'], 'Megakaryocytes': ['Megakaryocytes'], 'NK/T cells': ['Cycling NK cells', 'LYZ+ NK cells', 'NK cells', 'Unknown', 'Early lymphoid cells'], 'Stroma': ['Transitioning endothelial cells', 'Fibroblasts', 'Schwann cells', 'Striated muscle cells', 'Cycling CAR cells', 'LEPR+ CAR cells', 'CAR cells', 'Pericytes', 'Osteoprogenitors', 'Collagen+ myeloid cells', 'Myofibroblasts', 'Vascular endothelial cells', 'Sinusoidal endothelial cells']}
+
+ * Saving new cell type labels to 'cell_type_groups' column in the metadata...
+Trying to set attribute `.obs` of view, copying.
+
+ * About to run create_cell_type_groups...
+
+ * create_cell_type_groups running complete.
+
+ * New labels created.
+
+ * Mapping to numeric labels...
+
+ * Numeric labels created.
+
+ * Re-computing 3D UMAPs...
+
+ * Re-computing 2D UMAPs...
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.umap.png
+... storing 'cell_type_groups' as categorical
+... storing 'numerical_labels' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.umap.no_legend.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.umap.numerical_labels.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.umap.1.2.png
+... storing 'cell_type_groups' as categorical
+... storing 'numerical_labels' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.umap.1.2.no_legend.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.umap.1.2.numerical_labels.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.umap.1.3.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.umap.1.3.no_legend.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.umap.1.3.numerical_labels.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.umap.2.3.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.umap.2.3.no_legend.png
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.umap.2.3.numerical_labels.png
+
+ * Plot saved.
+
+ * Plotting & saving dotplot.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.dotplot.pdf
+
+ * Plot saved.
+
+ * Plotting & saving dotplot.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.dotplot.png
+
+ * Plot saved.
+
+ * Plotting & saving dotplot.../oak/stanford/groups/smontgom/amarder/t21-proj/out/figures/10X_DownSyndrome_Femur.dotplot.clusters.png
+WARNING: dendrogram data not found (using key=dendrogram_numerical_labels). Running `sc.tl.dendrogram` with default parameters. For fine tuning it is recommended to run `sc.tl.dendrogram` independently.
+WARNING: Groups are not reordered because the `groupby` categories and the `var_group_labels` are different.
+categories: 0, 1, 2, etc.
+var_group_labels: HSC/Progenitors, Erythroid, Mast cells, etc.
+
+ * Plot saved.
+
+ * Saving cluster_to_label_mapping: /oak/stanford/groups/smontgom/amarder/t21-proj/out/data_small/10X_DownSyndrome_Femur.cluster_to_label_mapping.csv
+numerical_labels                       leiden_v13 cell_type_groups
+               0                          B cells          B cells
+               1                        CAR cells           Stroma
+               2          Collagen+ myeloid cells           Stroma
+               3                Cycling CAR cells           Stroma
+               4                    Cycling MEMPs  HSC/Progenitors
+               5                 Cycling NK cells       NK/T cells
+               6  Cycling granulocyte progenitors  HSC/Progenitors
+               7              Cycling neutrophils          Myeloid
+               8                     Cycling pDCs          Myeloid
+               9            Early erythroid cells        Erythroid
+              10             Early lymphoid cells       NK/T cells
+              11                      Fibroblasts           Stroma
+              12          Granulocyte progenitors  HSC/Progenitors
+              13                        HSCs/MPPs  HSC/Progenitors
+              14         Inflammatory macrophages          Myeloid
+              15                  LEPR+ CAR cells           Stroma
+              16                    LYZ+ NK cells       NK/T cells
+              17             Late erythroid cells        Erythroid
+              18                            MEMPs  HSC/Progenitors
+              19                       Mast cells       Mast cells
+              20                   Megakaryocytes   Megakaryocytes
+              21                   Myofibroblasts           Stroma
+              22                         NK cells       NK/T cells
+              23                      Neutrophils          Myeloid
+              24                      Osteoclasts          Myeloid
+              25                 Osteoprogenitors           Stroma
+              26                        Pericytes           Stroma
+              27                  Pre pro B cells          B cells
+              28                      Pro B cells          B cells
+              29                    Schwann cells           Stroma
+              30     Sinusoidal endothelial cells           Stroma
+              31            Striated muscle cells           Stroma
+              32          Tolerogenic macrophages          Myeloid
+              33  Transitioning endothelial cells           Stroma
+              34                          Unknown       NK/T cells
+              35       Vascular endothelial cells           Stroma
+              36                             cDC2          Myeloid
+              37                             pDCs          Myeloid
+Done
+
+ * Saving celltypeComp: /oak/stanford/groups/smontgom/amarder/t21-proj/out/data_small/10X_DownSyndrome_Femur.cellComp.csv
+
+ * Saving 3d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_DownSyndrome_Femur.umap3d.h5ad
+
+ * Saving 2d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/data/10X_DownSyndrome_Femur.umap.cells_removed.h5ad
+
+ * Script completed.
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/data/t21/ScanpyObjects/10X_DownSyndrome_Liver.h5ad
+Data read completed.
+
+ * Indexing the scanpy object...
+
+ * Grouping clusters within broad cell types...
+
+ * Creating dictionary...
+{'Erythroid': ['Early erythroid cells', 'Late erythroid cells'], 'Myeloid': ['Inflammatory macrophages', 'Cycling pDCs', 'pDCs', 'cDC2', 'Kupffer cells', 'Monocyte progenitors'], 'HSC/Progenitors': ['Cycling HSCs/MPPs', 'HSCs/MPPs', 'Cycling HSCs/MPPs', 'HSCs/MPPs', 'MEMPs', 'Granulocyte progenitors'], 'B cells': ['Pre pro B cells', 'Pro B cells'], 'Mast cells': ['Mast cells'], 'Megakaryocytes': ['Cycling megakaryocytes', 'Megakaryocytes'], 'NK/T cells': ['NK cells', 'NK progenitors'], 'Stroma': ['Activated stellate cells', 'Hepatocytes', 'LSECs', 'X', 'Hepatic stellate cells', 'Vascular endothelial cells']}
+
+ * Saving new cell type labels to 'cell_type_groups' column in the metadata...
+Trying to set attribute `.obs` of view, copying.
+
+ * About to run create_cell_type_groups...
+
+ * create_cell_type_groups running complete.
+
+ * New labels created.
+
+ * Mapping to numeric labels...
+
+ * Numeric labels created.
+
+ * Re-computing 3D UMAPs...
