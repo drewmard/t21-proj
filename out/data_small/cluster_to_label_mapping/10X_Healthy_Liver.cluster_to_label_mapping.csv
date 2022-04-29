@@ -17,8 +17,8 @@ AAACCCAGTAGAATAC-1-0,14,MEMPs,HSC/Progenitors
 AAAGAACTCAGCAGAG-1-0,15,Mast cells,Mast cells
 AAACCCACAGTCGGTC-1-0,16,Megakaryocytes,Megakaryocytes
 AAACCCACACAGAGCA-1-0,17,Monocyte progenitors,Myeloid
-AAACCCAAGTTACTCG-1-0,18,NK cells,NK cells
-AAACCCATCCCTATTA-1-0,19,NK progenitors,NK cells
+AAACCCAAGTTACTCG-1-0,18,NK cells,NK/T cells
+AAACCCATCCCTATTA-1-0,19,NK progenitors,NK/T cells
 AAAGGGCCAACTTCTT-1-0,20,Neutrophils,Myeloid
 AAACGAAGTTGCTTGA-1-0,21,Pre pro B cells,B cells
 AAACGAAGTAACAGTA-1-0,22,Pro B cells,B cells

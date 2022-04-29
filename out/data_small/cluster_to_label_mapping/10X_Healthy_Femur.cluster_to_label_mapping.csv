@@ -1,4 +1,4 @@
-,numerical_labels,leiden_v7,cell_type_groups
+,numerical_labels,leiden_v9,cell_type_groups
 ACCTGAACAATGCAAA-1-4,0,B cells,B cells
 AACCACAAGGGCATGT-1-4,1,CAR cells,Stroma
 ACTGATGAGGGATGTC-1-4,2,Collagen+ myeloid cells,Stroma
@@ -10,31 +10,29 @@ AAGATAGCATGTGGTT-1-3,7,Early erythroid cells,Erythroid
 CTATCTAAGAGTCGAC-1-4,8,Fibroblasts,Stroma
 AACCTTTTCCGCTTAC-1-3,9,Granulocyte progenitors,HSC/Progenitors
 CCGTAGGTCAGCGCAC-1-4,10,HSCs/MPPs,HSC/Progenitors
-AAGCATCAGAAGCGAA-1-3,11,Inflammatory macrophages,Myeloid
-CACTGAACAGACACCC-1-4,12,LEPR+ CAR cells,Stroma
-ACCCTCACAGCGAACA-1-3,13,Late erythroid cells,Erythroid
-AGGAAATAGTGTAGAT-1-3,14,MEMPs,HSC/Progenitors
-ATTTACCAGCTTTCCC-1-3,15,Mast cells,Mast cells
-AACCATGGTTTGAACC-1-3,16,Megakaryocytes,Megakaryocytes
-TCGGATATCATAGAGA-1-3,17,"Megakaryocytes,3 (to remove)",Megakaryocytes
+ATCCACCAGTTGCGCC-1-4,11,Immature endothelial cells,Stroma
+AAGCATCAGAAGCGAA-1-3,12,Inflammatory macrophages,Myeloid
+CACTGAACAGACACCC-1-4,13,LEPR+ CAR cells,Stroma
+ACCCTCACAGCGAACA-1-3,14,Late erythroid cells,Erythroid
+AGGAAATAGTGTAGAT-1-3,15,MEMPs,HSC/Progenitors
+ATTTACCAGCTTTCCC-1-3,16,Mast cells,Mast cells
+AACCATGGTTTGAACC-1-3,17,Megakaryocytes,Megakaryocytes
 TCCTAATCATTACGGT-1-4,18,Mesenchymal cells 1,Stroma
 ACGCACGTCTGCTGAA-1-4,19,Mesenchymal cells 2,Stroma
-AAAGGGCTCCGCAAAT-1-4,20,NK cells,NK cells
+AAAGGGCTCCGCAAAT-1-4,20,NK cells,NK/T cells
 AAAGTGAGTTCGGTAT-1-3,21,Neutrophils,Myeloid
 CCGTGAGTCGGCGATC-1-3,22,Osteoblasts,Stroma
-GTGTGATAGCAACTCT-1-3,23,"Osteoblasts,4 (to remove)",Stroma
-ACATCCCGTAGGGAGG-1-4,24,Osteoclasts,Myeloid
-GGGAGTAAGTCTGCAT-1-4,25,Osteoprogenitors,Stroma
+ACATCCCGTAGGGAGG-1-4,23,Osteoclasts,Myeloid
+GGGAGTAAGTCTGCAT-1-4,24,Osteoprogenitors,Stroma
+AAAGTCCCAGGATCTT-1-4,25,Pericytes,Stroma
 AAACGCTCATCTGCGG-1-3,26,Pre pro B cells,B cells
 ACGGGTCAGGCTGAAC-1-3,27,Pro B cells,B cells
 ACACGCGGTATCGTTG-1-4,28,Schwann cells,Stroma
 AACAACCTCGATACAC-1-4,29,Sinusoidal endothelial cells,Stroma
-AAAGTCCCAGGATCTT-1-4,30,Smooth muscle cells,Stroma
-AACGAAATCATTGCTT-1-4,31,Tolerogenic macrophages,Myeloid
-AGTGTTGGTATGGAAT-1-4,32,Transitioning endothelial cells,Stroma
-AGGGCTCTCAGTGTTG-1-3,33,Unknown 1,NK cells
-CGAGAAGAGTGTACAA-1-3,34,Unknown 2,NK cells
-ATCCACCAGTTGCGCC-1-4,35,Unknown endothelial cells,NK cells
-AAGGAATTCAAGGCTT-1-4,36,Vascular endothelial cells,Stroma
-ACAAAGAAGAGGCGTT-1-3,37,cDC2,Myeloid
-ACTCTCGTCCCGTTGT-1-4,38,pDCs,Myeloid
+AACGAAATCATTGCTT-1-4,30,Tolerogenic macrophages,Myeloid
+AGTGTTGGTATGGAAT-1-4,31,Transitioning endothelial cells,Stroma
+AGGGCTCTCAGTGTTG-1-3,32,Unknown 1,NK/T cells
+CGAGAAGAGTGTACAA-1-3,33,Unknown 2,NK/T cells
+AAGGAATTCAAGGCTT-1-4,34,Vascular endothelial cells,Stroma
+ACAAAGAAGAGGCGTT-1-3,35,cDC2,Myeloid
+ACTCTCGTCCCGTTGT-1-4,36,pDCs,Myeloid
