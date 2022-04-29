@@ -178,7 +178,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
         print("\n * Re-computing 3D UMAPs...")
         if make_new_3D_UMAP:
             adata_3d=sc.tl.umap(adata, random_state=10, n_components=3, init_pos='random',copy=True)
-        else
+        else:
             adata_3d=adata
 
         print("\n * Re-computing 2D UMAPs...")
