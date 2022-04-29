@@ -1,0 +1,6 @@
+Start
+Beginning script plots_v4.py
+  File "plots_v4.py", line 181
+    else
+       ^
+SyntaxError: invalid syntax
