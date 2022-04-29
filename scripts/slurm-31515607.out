@@ -1,6 +1,0 @@
-Start
-Beginning script subset_data.py
-  File "subset_data.py", line 12
-    fout="10X_" + disease_status + "_" + sampletype + ".umap.cells_removed.h5ad"
-                                                                               ^
-TabError: inconsistent use of tabs and spaces in indentation
