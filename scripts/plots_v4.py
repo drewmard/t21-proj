@@ -21,6 +21,7 @@ headdir="/oak/stanford/groups/smontgom/amarder/t21-proj"
 disease_status="Healthy"
 sampletype="Liver"
 suffix="" # ".subset"
+make_new_3D_UMAP=False
 
 # initialize:
 direc=headdir + "/out/figures/"
@@ -30,14 +31,16 @@ direc=headdir + "/out/figures/"
 # for disease_status in ["Healthy"]:
 #     for sampletype in ["Liver"]:
 
+
 for disease_status in ["DownSyndrome","Healthy"]:
     for sampletype in ["Femur","Liver"]:
 
         # In[43]:
+        fout="/oak/stanford/groups/smontgom/amarder/data/t21/ScanpyObjects/10X_" + disease_status + "_" + sampletype + ".h5ad"
+        foutpath=headdir + "/" + fout
 
-
-        fout="10X_" + disease_status + "_" + sampletype + ".umap"+suffix+".h5ad"
-        foutpath=headdir + "/out/data/" + fout
+        # fout="10X_" + disease_status + "_" + sampletype + ".umap"+suffix+".h5ad"
+        # foutpath=headdir + "/out/data/" + fout
         print("\n * Reading in data..." + foutpath)
         adata=sc.read_h5ad(foutpath)
 
@@ -71,7 +74,6 @@ for disease_status in ["DownSyndrome","Healthy"]:
                                   "Pre pro B cells,4 (to remove)"]
             a=[columnName[8:] for columnName in adata.obs.columns if 'leiden_v' in columnName]
             colName="leiden_v" + str(max([int(x) for x in a if x.isdigit()]))
-
         elif disease_status=="Healthy" and sampletype=="Liver":
             cell_types_to_remove=["38,0", 
                                   "31,0", 
@@ -92,7 +94,6 @@ for disease_status in ["DownSyndrome","Healthy"]:
         else:
             print("Error!")
             break
-
 
         print("\n * Indexing the scanpy object...")
         adata=adata[~adata.obs[colName].isin(cell_types_to_remove)]
@@ -174,18 +175,21 @@ for disease_status in ["DownSyndrome","Healthy"]:
 
         # In[77]:
 
-        print("\n * Re-computing UMAPs...")
-        sc.tl.umap(adata, random_state=10, n_components=2, init_pos='random')
-
         print("\n * Re-computing 3D UMAPs...")
-        adata_3d=sc.tl.umap(adata, random_state=10, n_components=3, init_pos='random',copy=True)
+        if make_new_3D_UMAP:
+            adata_3d=sc.tl.umap(adata, random_state=10, n_components=3, init_pos='random',copy=True)
+        else
+            adata_3d=adata
+
+        print("\n * Re-computing 2D UMAPs...")
+        sc.tl.umap(adata, random_state=10, n_components=2, init_pos='random')
 
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".umap.png"
         print("\n * Plotting & saving UMAP..." + fplotout)
         f, axs = plt.subplots(1,1,figsize=(26,26))
         sns.set(font_scale=2)
         sns.set_style("white")
-        sc.pl.umap(adata, color="cell_type_groups", size=150, palette=myColors, components='1,2', ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
+        sc.pl.umap(adata, color="cell_type_groups", size=150, palette=Set3_8.mpl_colors, components='1,2', ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
         plt.tight_layout()
         plt.savefig(fplotout)
         plt.show()
@@ -197,7 +201,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
         f, axs = plt.subplots(1,1,figsize=(26,26))
         sns.set(font_scale=2)
         sns.set_style("white")
-        new_plot=sc.pl.umap(adata, color="cell_type_groups", size=150, palette=myColors, components='1,2', ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="None")
+        new_plot=sc.pl.umap(adata, color="cell_type_groups", size=150, palette=Set3_8.mpl_colors, components='1,2', ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="None")
         plt.tight_layout()
         plt.savefig(fplotout)
         plt.show()
@@ -226,7 +230,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
             f, axs = plt.subplots(1,1,figsize=(26,26))
             sns.set(font_scale=2)
             sns.set_style("white")
-            sc.pl.umap(adata_3d, color="cell_type_groups", size=150, palette=myColors, components=[components_to_use], ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
+            sc.pl.umap(adata_3d, color="cell_type_groups", size=150, palette=Set3_8.mpl_colors, components=[components_to_use], ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
             plt.tight_layout()
             plt.savefig(fplotout)
             plt.show()
@@ -238,7 +242,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
             f, axs = plt.subplots(1,1,figsize=(26,26))
             sns.set(font_scale=2)
             sns.set_style("white")
-            new_plot=sc.pl.umap(adata_3d, color="cell_type_groups", size=150, palette=myColors, components=[components_to_use], ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="None")
+            new_plot=sc.pl.umap(adata_3d, color="cell_type_groups", size=150, palette=Set3_8.mpl_colors, components=[components_to_use], ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="None")
             plt.tight_layout()
             plt.savefig(fplotout)
             plt.show()
@@ -278,6 +282,30 @@ for disease_status in ["DownSyndrome","Healthy"]:
         if sampletype=="Femur":
             markerDict['Stroma'] = ['PDGFRB','DCN']
 
+        if disease_status=="DownSyndrome" and sampletype=="Femur":
+            fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.pdf"
+            print("\n * Plotting & saving dotplot..." + fplotout)
+            f, axs = plt.subplots(1,1,figsize=(14,10))
+            sc.pl.dotplot(adata,
+               markerDict,
+               groupby="cell_type_groups",
+               standard_scale='var',
+               smallest_dot=0.0,
+               dot_min=None,
+               dot_max=None,
+               color_map='Reds',
+               dendrogram=False,
+               categories_order=categories_order_to_use,
+               show=False,
+               ax=axs,
+               linewidths=2,swap_axes=True)
+            plt.tight_layout()
+            plt.savefig(fplotout)
+            # plt.show()
+            plt.close()
+            print("\n * Plot saved.")
+
+        
         fplotout=direc + "10X_"+disease_status+"_"+sampletype+".dotplot.png"
         print("\n * Plotting & saving dotplot..." + fplotout)
         f, axs = plt.subplots(1,1,figsize=(14,10))
