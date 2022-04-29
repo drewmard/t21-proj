@@ -180,7 +180,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
         if make_new_3D_UMAP:
             adata_3d=sc.tl.umap(adata, random_state=10, n_components=3, init_pos='random',copy=True)
         else:
-            adata_3d=adata
+            adata_3d=adata.copy()
 
         print("\n * Re-computing 2D UMAPs...")
         sc.tl.umap(adata, random_state=10, n_components=2, init_pos='random')
