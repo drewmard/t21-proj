@@ -5,8 +5,8 @@ import scanpy as sc
 for disease_status in ["DownSyndrome","Healthy"]:
 	for sampletype in ["Femur","Liver"]:
 		headdir="/oak/stanford/groups/smontgom/amarder/t21-proj"
-		disease_status="Healthy"
-		sampletype="Liver"
+#		disease_status="Healthy"
+#		sampletype="Liver"
 
 		print("1")
 		fout="10X_" + disease_status + "_" + sampletype + ".umap.h5ad"
