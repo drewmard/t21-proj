@@ -14,6 +14,7 @@ import os
 import numpy as np
 import pandas as pd
 from sklearn import preprocessing
+from palettable.colorbrewer.qualitative import Set3_8
 
 print("Module loading completed.")
 
