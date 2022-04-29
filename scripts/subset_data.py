@@ -9,8 +9,8 @@ for disease_status in ["DownSyndrome","Healthy"]:
 #		sampletype="Liver"
 
 		print("1")
-        fout="10X_" + disease_status + "_" + sampletype + ".umap.cells_removed.h5ad"
-        foutpath=headdir + "/out/data/" + fout
+		fout="10X_" + disease_status + "_" + sampletype + ".umap.cells_removed.h5ad"
+		foutpath=headdir + "/out/data/" + fout
 		print("\n * Reading in data..." + foutpath)
 		adata=sc.read_h5ad(foutpath)
 
