@@ -36,8 +36,8 @@ for disease_status in ["DownSyndrome","Healthy"]:
     for sampletype in ["Femur","Liver"]:
 
         # In[43]:
-        fout="/oak/stanford/groups/smontgom/amarder/data/t21/ScanpyObjects/10X_" + disease_status + "_" + sampletype + ".h5ad"
-        foutpath=headdir + "/" + fout
+        fout="10X_" + disease_status + "_" + sampletype + ".h5ad"
+        foutpath="/oak/stanford/groups/smontgom/amarder/data/t21/ScanpyObjects" + "/" + fout
 
         # fout="10X_" + disease_status + "_" + sampletype + ".umap"+suffix+".h5ad"
         # foutpath=headdir + "/out/data/" + fout
