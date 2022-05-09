@@ -4,6 +4,7 @@
 # sbatch --account=smontgom --partition=batch --time=24:00:00 --mem=256G --nodes=1 --ntasks=1 --cpus-per-task=1 run_script.sh subset_data.py
 # sbatch --account=smontgom --partition=batch --time=24:00:00 --mem=356G --nodes=1 --ntasks=1 --cpus-per-task=1 run_script.sh plots_v4.py
 # srun --account=smontgom --partition=batch --time=1:00:00 --mem=356G --nodes=1 --ntasks=1 --cpus-per-task=1 --pty bash
+sbatch --account=smontgom --partition=batch --time=24:00:00 --mem=356G --nodes=1 --ntasks=1 --cpus-per-task=1 run_script.sh diff_exp.py
 
 echo "Start"
 source /oak/stanford/groups/smontgom/amarder/bin/conda_init.sh 
