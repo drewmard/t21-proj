@@ -1,0 +1,196 @@
+Start
+Beginning script diff_exp.py
+Done.
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/t21-proj/out/subset/data/10X_Healthy_Liver.umap.subset.cells_removed.h5ad
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/t21-proj/out/subset/data/10X_DownSyndrome_Liver.umap.subset.cells_removed.h5ad
+Data read completed.
+
+ * Cell type column name to use: leiden_v7
+
+ * Cell type column name to use: leiden_v10
+... storing 'sample' as categorical
+... storing 'sorting' as categorical
+... storing 'environment' as categorical
+... storing 'sangerID' as categorical
+... storing 'patient_sample' as categorical
+... storing 'leiden' as categorical
+... storing 'leiden_v1' as categorical
+... storing 'leiden_v2' as categorical
+... storing 'leiden_v3' as categorical
+... storing 'leiden_v4' as categorical
+... storing 'leiden_v5' as categorical
+... storing 'leiden_v5_split' as categorical
+... storing 'leiden_v6' as categorical
+... storing 'leiden_v7_split' as categorical
+... storing 'leiden_v7' as categorical
+... storing 'annotations_atac' as categorical
+... storing 'annotations_atac_v2' as categorical
+... storing 'numerical_labels' as categorical
+... storing 'leiden_names' as categorical
+... storing 'leiden_v8' as categorical
+... storing 'leiden_v9' as categorical
+... storing 'leiden_v10_split' as categorical
+... storing 'leiden_v10' as categorical
+... storing 'sample' as categorical
+... storing 'sorting' as categorical
+... storing 'environment' as categorical
+... storing 'sangerID' as categorical
+... storing 'patient_sample' as categorical
+... storing 'leiden' as categorical
+... storing 'leiden_v1' as categorical
+... storing 'leiden_v2' as categorical
+... storing 'leiden_v3' as categorical
+... storing 'leiden_v4' as categorical
+... storing 'leiden_v5' as categorical
+... storing 'leiden_v5_split' as categorical
+... storing 'leiden_v6' as categorical
+... storing 'leiden_v7_split' as categorical
+... storing 'leiden_v7' as categorical
+... storing 'annotations_atac' as categorical
+... storing 'annotations_atac_v2' as categorical
+... storing 'numerical_labels' as categorical
+... storing 'leiden_names' as categorical
+... storing 'leiden_v8' as categorical
+... storing 'leiden_v9' as categorical
+... storing 'leiden_v10_split' as categorical
+... storing 'leiden_v10' as categorical
+... storing 'sample' as categorical
+... storing 'sorting' as categorical
+... storing 'environment' as categorical
+... storing 'sangerID' as categorical
+... storing 'patient_sample' as categorical
+... storing 'leiden' as categorical
+... storing 'leiden_v1' as categorical
+... storing 'leiden_v2' as categorical
+... storing 'leiden_v3' as categorical
+... storing 'leiden_v4' as categorical
+... storing 'leiden_v5' as categorical
+... storing 'leiden_v5_split' as categorical
+... storing 'leiden_v6' as categorical
+... storing 'leiden_v7_split' as categorical
+... storing 'leiden_v7' as categorical
+... storing 'annotations_atac' as categorical
+... storing 'annotations_atac_v2' as categorical
+... storing 'numerical_labels' as categorical
+... storing 'leiden_names' as categorical
+... storing 'leiden_v8' as categorical
+... storing 'leiden_v9' as categorical
+... storing 'leiden_v10_split' as categorical
+... storing 'leiden_v10' as categorical
+... storing 'sample' as categorical
+... storing 'sorting' as categorical
+... storing 'environment' as categorical
+... storing 'sangerID' as categorical
+... storing 'patient_sample' as categorical
+... storing 'phase' as categorical
+... storing 'leiden' as categorical
+... storing 'leiden_v1' as categorical
+... storing 'leiden_v2' as categorical
+... storing 'leiden_v3' as categorical
+... storing 'leiden_v4' as categorical
+... storing 'leiden_v5_split' as categorical
+... storing 'leiden_v7_split' as categorical
+... storing 'annotations_atac_v2' as categorical
+... storing 'numerical_labels' as categorical
+... storing 'leiden_v8' as categorical
+... storing 'leiden_v9' as categorical
+... storing 'leiden_v10_split' as categorical
+... storing 'leiden_v10' as categorical
+... storing 'sample' as categorical
+... storing 'sorting' as categorical
+... storing 'environment' as categorical
+... storing 'sangerID' as categorical
+... storing 'patient_sample' as categorical
+... storing 'leiden' as categorical
+... storing 'leiden_v1' as categorical
+... storing 'leiden_v2' as categorical
+... storing 'leiden_v3' as categorical
+... storing 'leiden_v4' as categorical
+... storing 'leiden_v5' as categorical
+... storing 'leiden_v5_split' as categorical
+... storing 'leiden_v6' as categorical
+... storing 'leiden_v7_split' as categorical
+... storing 'leiden_v7' as categorical
+... storing 'annotations_atac_v2' as categorical
+... storing 'numerical_labels' as categorical
+... storing 'leiden_names' as categorical
+... storing 'leiden_v8' as categorical
+... storing 'leiden_v9' as categorical
+... storing 'leiden_v10_split' as categorical
+... storing 'leiden_v10' as categorical
+... storing 'sample' as categorical
+... storing 'sorting' as categorical
+... storing 'environment' as categorical
+... storing 'sangerID' as categorical
+... storing 'patient_sample' as categorical
+... storing 'leiden' as categorical
+... storing 'leiden_v1' as categorical
+... storing 'leiden_v2' as categorical
+... storing 'leiden_v3' as categorical
+... storing 'leiden_v4' as categorical
+... storing 'leiden_v5' as categorical
+... storing 'leiden_v5_split' as categorical
+... storing 'leiden_v6' as categorical
+... storing 'leiden_v7_split' as categorical
+... storing 'leiden_v7' as categorical
+... storing 'annotations_atac' as categorical
+... storing 'annotations_atac_v2' as categorical
+... storing 'numerical_labels' as categorical
+... storing 'leiden_names' as categorical
+... storing 'leiden_v8' as categorical
+... storing 'leiden_v9' as categorical
+... storing 'leiden_v10_split' as categorical
+... storing 'leiden_v10' as categorical
+... storing 'sample' as categorical
+... storing 'sorting' as categorical
+... storing 'environment' as categorical
+... storing 'sangerID' as categorical
+... storing 'patient_sample' as categorical
+... storing 'leiden' as categorical
+... storing 'leiden_v1' as categorical
+... storing 'leiden_v2' as categorical
+... storing 'leiden_v3' as categorical
+... storing 'leiden_v4' as categorical
+... storing 'leiden_v5_split' as categorical
+... storing 'leiden_v7_split' as categorical
+... storing 'annotations_atac_v2' as categorical
+... storing 'numerical_labels' as categorical
+... storing 'leiden_v8' as categorical
+... storing 'leiden_v9' as categorical
+... storing 'leiden_v10_split' as categorical
+... storing 'leiden_v10' as categorical
+... storing 'sample' as categorical
+... storing 'sorting' as categorical
+... storing 'environment' as categorical
+... storing 'sangerID' as categorical
+... storing 'patient_sample' as categorical
+... storing 'leiden' as categorical
+... storing 'leiden_v1' as categorical
+... storing 'leiden_v2' as categorical
+... storing 'leiden_v3' as categorical
+... storing 'leiden_v4' as categorical
+... storing 'leiden_v5' as categorical
+... storing 'leiden_v5_split' as categorical
+... storing 'leiden_v6' as categorical
+... storing 'leiden_v7_split' as categorical
+... storing 'leiden_v7' as categorical
+... storing 'annotations_atac' as categorical
+... storing 'annotations_atac_v2' as categorical
+... storing 'numerical_labels' as categorical
+... storing 'leiden_names' as categorical
+... storing 'leiden_v8' as categorical
+... storing 'leiden_v9' as categorical
+... storing 'leiden_v10_split' as categorical
+... storing 'leiden_v10' as categorical
+Traceback (most recent call last):
+  File "diff_exp.py", line 141, in <module>
+    ind=np.where(adata.obs[["DE_leiden_names"]]==cell_type)[0]
+  File "/home/amarder/anaconda3/envs/minimal_env/lib/python3.6/site-packages/pandas/core/frame.py", line 2912, in __getitem__
+    indexer = self.loc._get_listlike_indexer(key, axis=1, raise_missing=True)[1]
+  File "/home/amarder/anaconda3/envs/minimal_env/lib/python3.6/site-packages/pandas/core/indexing.py", line 1254, in _get_listlike_indexer
+    self._validate_read_indexer(keyarr, indexer, axis, raise_missing=raise_missing)
+  File "/home/amarder/anaconda3/envs/minimal_env/lib/python3.6/site-packages/pandas/core/indexing.py", line 1298, in _validate_read_indexer
+    raise KeyError(f"None of [{key}] are in the [{axis_name}]")
+KeyError: "None of [Index(['DE_leiden_names'], dtype='object')] are in the [columns]"
