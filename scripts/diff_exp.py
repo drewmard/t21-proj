@@ -138,8 +138,8 @@ for sampletype in ["Liver","Femur"]:
     # cell_type=clusters_for_DE[0]
     for cell_type in clusters_for_DE:
         
-        ind=np.where(adata.obs[["DE_leiden_names"]]==cell_type)[0]
-        ind2=np.where(adata2.obs[["DE_leiden_names"]]==cell_type)[0]
+        ind=np.where(adata.obs[["leiden_names"]]==cell_type)[0]
+        ind2=np.where(adata2.obs[["leiden_names"]]==cell_type)[0]
         adata4=adata[ind,].concatenate(adata2[ind2,]) #in cell_types_of_interest
 
         # ind=np.where(adata3.obs[["leiden_names"]]==cell_type)[0]
