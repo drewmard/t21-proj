@@ -18,7 +18,8 @@ print("Done.")
 headdir="/oak/stanford/groups/smontgom/amarder/t21-proj"
 # disease_status="Healthy"
 # sampletype="Liver"
-suffix="subset"
+# suffix="subset"
+suffix="full"
 
 for sampletype in ["Liver","Femur"]:
     # suffix="subset"
