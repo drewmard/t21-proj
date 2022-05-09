@@ -1,0 +1,440 @@
+Start
+Beginning script plots_v4.py
+Beginning script...
+Module loading completed.
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/data/t21/ScanpyObjects/10X_DownSyndrome_Femur.h5ad
+Data read completed.
+
+ * Cell type column name to use: leiden_v13
+
+ * Indexing the scanpy object...
+
+ * Grouping clusters within broad cell types...
+
+ * Creating dictionary...
+{'Erythroid': ['Early erythroid cells', 'Late erythroid cells'], 'Myeloid': ['Cycling neutrophils', 'Neutrophils', 'Inflammatory macrophages', 'Tolerogenic macrophages', 'Cycling pDCs', 'pDCs', 'cDC2', 'Osteoclasts'], 'HSC/Progenitors': ['HSCs/MPPs', 'HSCs/MPPs', 'Cycling MEMPs', 'MEMPs', 'Cycling granulocyte progenitors', 'Granulocyte progenitors'], 'B cells': ['B cells', 'Pre pro B cells', 'Pro B cells'], 'Mast cells': ['Mast cells'], 'Megakaryocytes': ['Megakaryocytes'], 'NK/T cells': ['Cycling NK cells', 'LYZ+ NK cells', 'NK cells', 'Early lymphoid cells'], 'Unknown': ['Unknown'], 'Stroma': ['Vascular endothelial cells', 'Cycling CAR cells', 'Pericytes', 'Myofibroblasts', 'Transitioning endothelial cells', 'Sinusoidal endothelial cells', 'Osteoprogenitors', 'Fibroblasts', 'LEPR+ CAR cells', 'Collagen+ myeloid cells', 'Striated muscle cells', 'CAR cells', 'Schwann cells']}
+
+ * Saving new cell type labels to 'cell_type_groups' column in the metadata...
+Trying to set attribute `.obs` of view, copying.
+
+ * About to run create_cell_type_groups...
+
+ * create_cell_type_groups running complete.
+
+ * New labels created.
+
+ * Mapping to numeric labels...
+
+ * Numeric labels created.
+
+ * Re-computing 3D UMAPs...
+
+ * Re-computing 2D UMAPs...
+
+ * It is time for... the... U-MAP plots!
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_group/10X_DownSyndrome_Femur.umap.pdf
+... storing 'cell_type_groups' as categorical
+... storing 'numerical_labels' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_group/10X_DownSyndrome_Femur.umap.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_group/10X_DownSyndrome_Femur.umap.numerical_labels.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Femur.umap.1.2.pdf
+... storing 'cell_type_groups' as categorical
+... storing 'numerical_labels' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Femur.umap.1.2.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Femur.umap.1.2.numerical_labels.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Femur.umap.1.3.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Femur.umap.1.3.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Femur.umap.1.3.numerical_labels.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Femur.umap.2.3.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Femur.umap.2.3.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Femur.umap.2.3.numerical_labels.pdf
+
+ * Plot saved.
+
+ * Plotting & saving dotplot.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/dotplots/10X_DownSyndrome_Femur.dotplot.pdf
+
+ * Plot saved.
+
+ * Plotting & saving dotplot.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/dotplots/10X_DownSyndrome_Femur.dotplot.clusters.pdf
+WARNING: dendrogram data not found (using key=dendrogram_numerical_labels). Running `sc.tl.dendrogram` with default parameters. For fine tuning it is recommended to run `sc.tl.dendrogram` independently.
+WARNING: Groups are not reordered because the `groupby` categories and the `var_group_labels` are different.
+categories: 0, 1, 2, etc.
+var_group_labels: HSC/Progenitors, Erythroid, Mast cells, etc.
+
+ * Plot saved.
+
+ * Saving cluster_to_label_mapping: /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/cluster_to_label_mapping/10X_DownSyndrome_Femur.cluster_to_label_mapping.csv
+Done.
+
+ * Saving celltypeComp: /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/cellComp/10X_DownSyndrome_Femur.cellComp.csv
+Done.
+
+ * Saving 3d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_DownSyndrome_Femur.umap3d.cells_removed.h5ad
+Done.
+
+ * Saving 2d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_DownSyndrome_Femur.umap2d.cells_removed.h5ad
+Done.
+
+ * Script completed.
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/data/t21/ScanpyObjects/10X_DownSyndrome_Liver.h5ad
+Data read completed.
+
+ * Cell type column name to use: leiden_v10
+
+ * Indexing the scanpy object...
+
+ * Grouping clusters within broad cell types...
+
+ * Creating dictionary...
+{'Erythroid': ['Early erythroid cells', 'Late erythroid cells'], 'Myeloid': ['Inflammatory macrophages', 'Cycling pDCs', 'pDCs', 'cDC2', 'Kupffer cells', 'Monocyte progenitors'], 'HSC/Progenitors': ['Cycling HSCs/MPPs', 'HSCs/MPPs', 'Cycling HSCs/MPPs', 'HSCs/MPPs', 'MEMPs', 'Granulocyte progenitors'], 'B cells': ['Pre pro B cells', 'Pro B cells'], 'Mast cells': ['Mast cells'], 'Megakaryocytes': ['Cycling megakaryocytes', 'Megakaryocytes'], 'NK/T cells': ['NK cells', 'NK progenitors'], 'Unknown': ['X'], 'Stroma': ['Vascular endothelial cells', 'Hepatocytes', 'Activated stellate cells', 'Hepatic stellate cells', 'LSECs']}
+
+ * Saving new cell type labels to 'cell_type_groups' column in the metadata...
+Trying to set attribute `.obs` of view, copying.
+
+ * About to run create_cell_type_groups...
+
+ * create_cell_type_groups running complete.
+
+ * New labels created.
+
+ * Mapping to numeric labels...
+
+ * Numeric labels created.
+
+ * Re-computing 3D UMAPs...
+
+ * Re-computing 2D UMAPs...
+
+ * It is time for... the... U-MAP plots!
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_group/10X_DownSyndrome_Liver.umap.pdf
+... storing 'cell_type_groups' as categorical
+... storing 'numerical_labels' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_group/10X_DownSyndrome_Liver.umap.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_group/10X_DownSyndrome_Liver.umap.numerical_labels.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Liver.umap.1.2.pdf
+... storing 'cell_type_groups' as categorical
+... storing 'numerical_labels' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Liver.umap.1.2.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Liver.umap.1.2.numerical_labels.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Liver.umap.1.3.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Liver.umap.1.3.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Liver.umap.1.3.numerical_labels.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Liver.umap.2.3.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Liver.umap.2.3.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Liver.umap.2.3.numerical_labels.pdf
+
+ * Plot saved.
+
+ * Plotting & saving dotplot.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/dotplots/10X_DownSyndrome_Liver.dotplot.pdf
+
+ * Plot saved.
+
+ * Plotting & saving dotplot.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/dotplots/10X_DownSyndrome_Liver.dotplot.clusters.pdf
+WARNING: dendrogram data not found (using key=dendrogram_numerical_labels). Running `sc.tl.dendrogram` with default parameters. For fine tuning it is recommended to run `sc.tl.dendrogram` independently.
+WARNING: Groups are not reordered because the `groupby` categories and the `var_group_labels` are different.
+categories: 0, 1, 2, etc.
+var_group_labels: HSC/Progenitors, Erythroid, Mast cells, etc.
+
+ * Plot saved.
+
+ * Saving cluster_to_label_mapping: /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/cluster_to_label_mapping/10X_DownSyndrome_Liver.cluster_to_label_mapping.csv
+Done.
+
+ * Saving celltypeComp: /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/cellComp/10X_DownSyndrome_Liver.cellComp.csv
+Done.
+
+ * Saving 3d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_DownSyndrome_Liver.umap3d.cells_removed.h5ad
+Done.
+
+ * Saving 2d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_DownSyndrome_Liver.umap2d.cells_removed.h5ad
+Done.
+
+ * Script completed.
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/data/t21/ScanpyObjects/10X_Healthy_Femur.h5ad
+Data read completed.
+
+ * Cell type column name to use: leiden_v9
+
+ * Indexing the scanpy object...
+
+ * Grouping clusters within broad cell types...
+
+ * Creating dictionary...
+{'Erythroid': ['Early erythroid cells', 'Late erythroid cells'], 'Myeloid': ['Cycling neutrophils', 'Neutrophils', 'Inflammatory macrophages', 'Tolerogenic macrophages', 'pDCs', 'Cycling cDC2', 'cDC2', 'Osteoclasts'], 'HSC/Progenitors': ['HSCs/MPPs', 'HSCs/MPPs', 'MEMPs', 'Granulocyte progenitors'], 'B cells': ['B cells', 'Cycling pro B cells', 'Pre pro B cells', 'Pro B cells'], 'Mast cells': ['Mast cells'], 'Megakaryocytes': ['Megakaryocytes'], 'NK/T cells': ['NK cells'], 'Unknown': ['Unknown 1', 'Unknown 2'], 'Stroma': ['Vascular endothelial cells', 'Pericytes', 'Mesenchymal cells 2', 'Transitioning endothelial cells', 'Immature endothelial cells', 'Sinusoidal endothelial cells', 'Osteoblasts', 'Cycling muscle cells', 'Osteoprogenitors', 'Fibroblasts', 'LEPR+ CAR cells', 'Collagen+ myeloid cells', 'Mesenchymal cells 1', 'CAR cells', 'Schwann cells']}
+
+ * Saving new cell type labels to 'cell_type_groups' column in the metadata...
+Trying to set attribute `.obs` of view, copying.
+
+ * About to run create_cell_type_groups...
+
+ * create_cell_type_groups running complete.
+
+ * New labels created.
+
+ * Mapping to numeric labels...
+
+ * Numeric labels created.
+
+ * Re-computing 3D UMAPs...
+
+ * Re-computing 2D UMAPs...
+
+ * It is time for... the... U-MAP plots!
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_group/10X_Healthy_Femur.umap.pdf
+... storing 'cell_type_groups' as categorical
+... storing 'numerical_labels' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_group/10X_Healthy_Femur.umap.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_group/10X_Healthy_Femur.umap.numerical_labels.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_Healthy_Femur.umap.1.2.pdf
+... storing 'cell_type_groups' as categorical
+... storing 'numerical_labels' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_Healthy_Femur.umap.1.2.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_Healthy_Femur.umap.1.2.numerical_labels.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_Healthy_Femur.umap.1.3.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_Healthy_Femur.umap.1.3.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_Healthy_Femur.umap.1.3.numerical_labels.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_Healthy_Femur.umap.2.3.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_Healthy_Femur.umap.2.3.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_Healthy_Femur.umap.2.3.numerical_labels.pdf
+
+ * Plot saved.
+
+ * Plotting & saving dotplot.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/dotplots/10X_Healthy_Femur.dotplot.pdf
+
+ * Plot saved.
+
+ * Plotting & saving dotplot.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/dotplots/10X_Healthy_Femur.dotplot.clusters.pdf
+WARNING: dendrogram data not found (using key=dendrogram_numerical_labels). Running `sc.tl.dendrogram` with default parameters. For fine tuning it is recommended to run `sc.tl.dendrogram` independently.
+WARNING: Groups are not reordered because the `groupby` categories and the `var_group_labels` are different.
+categories: 0, 1, 2, etc.
+var_group_labels: HSC/Progenitors, Erythroid, Mast cells, etc.
+
+ * Plot saved.
+
+ * Saving cluster_to_label_mapping: /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/cluster_to_label_mapping/10X_Healthy_Femur.cluster_to_label_mapping.csv
+Done.
+
+ * Saving celltypeComp: /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/cellComp/10X_Healthy_Femur.cellComp.csv
+Done.
+
+ * Saving 3d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_Healthy_Femur.umap3d.cells_removed.h5ad
+Done.
+
+ * Saving 2d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_Healthy_Femur.umap2d.cells_removed.h5ad
+Done.
+
+ * Script completed.
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/data/t21/ScanpyObjects/10X_Healthy_Liver.h5ad
+Data read completed.
+
+ * Cell type column name to use: leiden_v7
+
+ * Indexing the scanpy object...
+
+ * Grouping clusters within broad cell types...
+
+ * Creating dictionary...
+{'Erythroid': ['Cycling erythroid cells', 'Early erythroid cells', 'Late erythroid cells'], 'Myeloid': ['Neutrophils', 'Inflammatory macrophages', 'pDCs', 'cDC2', 'Kupffer cells', 'Monocyte progenitors'], 'HSC/Progenitors': ['HSCs/MPPs', 'HSCs/MPPs', 'Cycling MEMPs', 'MEMPs', 'Granulocyte progenitors'], 'B cells': ['B cells', 'Pre pro B cells', 'Pro B cells'], 'Mast cells': ['Mast cells'], 'Megakaryocytes': ['Megakaryocytes'], 'NK/T cells': ['NK cells', 'NK progenitors'], 'Stroma': ['Vascular endothelial cells', 'Hepatocytes', 'Activated stellate cells', 'Cholangiocytes', 'Hepatic stellate cells', 'LSECs']}
+
+ * Saving new cell type labels to 'cell_type_groups' column in the metadata...
+Trying to set attribute `.obs` of view, copying.
+
+ * About to run create_cell_type_groups...
+
+ * create_cell_type_groups running complete.
+
+ * New labels created.
+
+ * Mapping to numeric labels...
+
+ * Numeric labels created.
+
+ * Re-computing 3D UMAPs...
+
+ * Re-computing 2D UMAPs...
+
+ * It is time for... the... U-MAP plots!
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_group/10X_Healthy_Liver.umap.pdf
+... storing 'cell_type_groups' as categorical
+... storing 'numerical_labels' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_group/10X_Healthy_Liver.umap.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_group/10X_Healthy_Liver.umap.numerical_labels.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_Healthy_Liver.umap.1.2.pdf
+... storing 'cell_type_groups' as categorical
+... storing 'numerical_labels' as categorical
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_Healthy_Liver.umap.1.2.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_Healthy_Liver.umap.1.2.numerical_labels.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_Healthy_Liver.umap.1.3.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_Healthy_Liver.umap.1.3.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_Healthy_Liver.umap.1.3.numerical_labels.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_Healthy_Liver.umap.2.3.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_Healthy_Liver.umap.2.3.no_legend.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_Healthy_Liver.umap.2.3.numerical_labels.pdf
+
+ * Plot saved.
+
+ * Plotting & saving dotplot.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/dotplots/10X_Healthy_Liver.dotplot.pdf
+
+ * Plot saved.
+
+ * Plotting & saving dotplot.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/dotplots/10X_Healthy_Liver.dotplot.clusters.pdf
+WARNING: dendrogram data not found (using key=dendrogram_numerical_labels). Running `sc.tl.dendrogram` with default parameters. For fine tuning it is recommended to run `sc.tl.dendrogram` independently.
+WARNING: Groups are not reordered because the `groupby` categories and the `var_group_labels` are different.
+categories: 0, 1, 2, etc.
+var_group_labels: HSC/Progenitors, Erythroid, Mast cells, etc.
+
+ * Plot saved.
+
+ * Saving cluster_to_label_mapping: /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/cluster_to_label_mapping/10X_Healthy_Liver.cluster_to_label_mapping.csv
+Done.
+
+ * Saving celltypeComp: /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/cellComp/10X_Healthy_Liver.cellComp.csv
+Done.
+
+ * Saving 3d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_Healthy_Liver.umap3d.cells_removed.h5ad
+Done.
+
+ * Saving 2d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_Healthy_Liver.umap2d.cells_removed.h5ad
+Done.
+
+ * Script completed.
