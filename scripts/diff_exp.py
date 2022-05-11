@@ -82,6 +82,15 @@ for sampletype in ["Liver","Femur"]:
 
     # adata=adata[:1000,]
     # adata2=adata2[:1000,]
+
+    print("\n * Normalization for healthy...")
+    adata.layers["X_norm"] = sc.pp.normalize_total(adata,target_sum=1e6,inplace=False)["X"]
+    sc.pp.log1p(adata,layer="X_norm",copy=False) # update in place
+
+    print("\n * Normalization for t21...")
+    adata2.layers["X_norm"] = sc.pp.normalize_total(adata2,target_sum=1e6,inplace=False)["X"]
+    sc.pp.log1p(adata2,layer="X_norm",copy=False) # update in place
+
     healthy_cells = np.unique(adata.obs["cell_type_groups"])
     ds_cells = np.unique(adata2.obs["cell_type_groups"])
 
@@ -102,16 +111,18 @@ for sampletype in ["Liver","Femur"]:
     # cell_type=clusters_for_DE[0]
     for cell_type in clusters_for_DE:
 
+        print("\n * Running: " + cell_type)
+
         ind=np.where(adata.obs[["cell_type_groups"]]==cell_type)[0]
         ind2=np.where(adata2.obs[["cell_type_groups"]]==cell_type)[0]
         adata4=adata[ind,].concatenate(adata2[ind2,]) #in cell_types_of_interest
 
         # ind=np.where(adata3.obs[["cell_type_groups"]]==cell_type)[0]
         # adata4=adata3[ind,] #in cell_types_of_interest
-        sc.tl.rank_genes_groups(adata4, 'environment', method='wilcoxon')
+        sc.tl.rank_genes_groups(adata4, 'environment', method='wilcoxon',layer="X_norm")
 
         cell_type_filename = cell_type.replace("/","_")
-        filename_out=headdir + "/out/" + suffixDirec +"/" + subDirec + "/" + cell_type_filename + ".txt"
+        filename_out=headdir + "/out/" + suffixDirec +"/" + subDirec + "/" + sampletype + "." + cell_type_filename + ".txt"
 
         sc.get.rank_genes_groups_df(adata4,group='Down Syndrome').to_csv(filename_out,na_rep='NA',index=False)
 
@@ -139,16 +150,18 @@ for sampletype in ["Liver","Femur"]:
     # cell_type=clusters_for_DE[0]
     for cell_type in clusters_for_DE:
         
+        print("\n * Running: " + cell_type)
+
         ind=np.where(adata.obs[["leiden_names"]]==cell_type)[0]
         ind2=np.where(adata2.obs[["leiden_names"]]==cell_type)[0]
         adata4=adata[ind,].concatenate(adata2[ind2,]) #in cell_types_of_interest
 
         # ind=np.where(adata3.obs[["leiden_names"]]==cell_type)[0]
         # adata4=adata3[ind,] #in cell_types_of_interest
-        sc.tl.rank_genes_groups(adata4, 'environment', method='wilcoxon')
+        sc.tl.rank_genes_groups(adata4, 'environment', method='wilcoxon',layer="X_norm")
 
         cell_type_filename = cell_type.replace("/","_")
-        filename_out=headdir + "/out/" + suffixDirec +"/" + subDirec + "/" + cell_type_filename + ".txt"
+        filename_out=headdir + "/out/" + suffixDirec +"/" + subDirec + "/" + sampletype + "." + cell_type_filename + ".txt"
 
         sc.get.rank_genes_groups_df(adata4,group='Down Syndrome').to_csv(filename_out,na_rep='NA',index=False)
 
