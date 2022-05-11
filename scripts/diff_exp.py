@@ -119,7 +119,7 @@ for sampletype in ["Liver","Femur"]:
 
         # ind=np.where(adata3.obs[["cell_type_groups"]]==cell_type)[0]
         # adata4=adata3[ind,] #in cell_types_of_interest
-        sc.tl.rank_genes_groups(adata4, 'environment', method='wilcoxon',layer="X_norm")
+        sc.tl.rank_genes_groups(adata4, 'environment', method='wilcoxon',layer="X_norm",raw=False)
 
         cell_type_filename = cell_type.replace("/","_")
         filename_out=headdir + "/out/" + suffixDirec +"/" + subDirec + "/" + sampletype + "." + cell_type_filename + ".txt"
@@ -158,7 +158,7 @@ for sampletype in ["Liver","Femur"]:
 
         # ind=np.where(adata3.obs[["leiden_names"]]==cell_type)[0]
         # adata4=adata3[ind,] #in cell_types_of_interest
-        sc.tl.rank_genes_groups(adata4, 'environment', method='wilcoxon',layer="X_norm")
+        sc.tl.rank_genes_groups(adata4, 'environment', method='wilcoxon',layer="X_norm",raw=False)
 
         cell_type_filename = cell_type.replace("/","_")
         filename_out=headdir + "/out/" + suffixDirec +"/" + subDirec + "/" + sampletype + "." + cell_type_filename + ".txt"
