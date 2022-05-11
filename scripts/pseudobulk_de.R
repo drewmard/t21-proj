@@ -65,6 +65,7 @@ for (sampletype in c("Liver","Femur")) {
     res$gene <- rownames(res)
     rownames(res) <- NULL
     
+    system("mkdir -p /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_cell_type_groups")
     f.out <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_cell_type_groups/",sampletype,".",cell_type,".txt")
     fwrite(res,f.out,quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
   }
@@ -102,6 +103,7 @@ for (sampletype in c("Liver","Femur")) {
     res$gene <- rownames(res)
     rownames(res) <- NULL
     
+    system("mkdir -p /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_leiden_names")
     f.out <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_leiden_names/",sampletype,".",cell_type,".txt")
     fwrite(res,f.out,quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
   }
