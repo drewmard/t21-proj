@@ -5,7 +5,8 @@ library(edgeR)
 sampletype="Liver"
 
 disease_status="Healthy"
-f=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_",disease_status,"_",sampletype,".umap2d.cells_removed")
+# f=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_",disease_status,"_",sampletype,".umap2d.cells_removed")
+f=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/subset/data/10X_",disease_status,"_",sampletype,".umap.subset.cells_removed")
 fileName=paste0(f,".rds")
 df <- readRDS(file = fileName)
 df <- NormalizeData(df, normalization.method = "LogNormalize", scale.factor = 10000)
@@ -13,7 +14,8 @@ colName1 <- paste0("leiden_v",max(as.numeric(substring(colnames(df@meta.data)[gr
 df@meta.data["leiden_names"] <- df@meta.data[colName1]
 
 disease_status="DownSyndrome"
-f=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_",disease_status,"_",sampletype,".umap2d.cells_removed")
+# f=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_",disease_status,"_",sampletype,".umap2d.cells_removed")
+f=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_",disease_status,"_",sampletype,".umap.subset.cells_removed.rds")
 fileName=paste0(f,".rds")
 df2 <- readRDS(file = fileName)
 df2 <- NormalizeData(df2, normalization.method = "LogNormalize", scale.factor = 10000)

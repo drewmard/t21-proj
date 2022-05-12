@@ -1,10 +1,52 @@
 library(data.table)
 library(ggplot2)
+library(biomaRt)
 
 # df <- fread("~/Documents/Research/t21-proj/out/full/DE_cell_type_groups/HSC_Progenitors.txt",data.table = F,stringsAsFactors = F)
 # df <- fread("~/Documents/Research/t21-proj/out/full/DE_cell_type_groups/Erythroid.txt",data.table = F,stringsAsFactors = F)
 # df <- fread("~/Documents/Research/t21-proj/out/full/DE_leiden_names/Early erythroid cells.txt",data.table = F,stringsAsFactors = F)
 df <- fread("~/Documents/Research/t21-proj/out/full/DE_cell_type_groups/Liver.Erythroid.txt",data.table = F,stringsAsFactors = F)
+head(df)
+
+ensembl <- useEnsembl(biomart = "genes", dataset = "hsapiens_gene_ensembl")
+annot <- getBM(attributes = c('hgnc_symbol', 'chromosome_name',
+                     'start_position', 'end_position'),
+      filters = 'hgnc_symbol', 
+      values = df$names, 
+      mart = ensembl)
+df1 <- merge(df,annot,by.x="names",by.y="hgnc_symbol")
+df1 <- df1[df1$chromosome_name %in% seq(1,22),]
+df1$chromosome_name <- factor(df1$chromosome_name,levels=seq(1,22))
+df1$chr21 <- factor(ifelse(df1$chromosome_name==21,'Chr 21','Not Chr 21'),levels=c('Not Chr 21','Chr 21'))
+
+gene_info <- fread("~/Documents/Research/data/grch38/protein_coding_genes.txt",data.table = F,stringsAsFactors = F)
+df2 <- merge(df,gene_info[,c("Chromosome/scaffold name","Gene name")],by.x="names",by.y="Gene name")
+df2 <- df2[df2$`Chromosome/scaffold name` %in% seq(1,22),]
+df2$`Chromosome/scaffold name` <- factor(df2$`Chromosome/scaffold name`,levels=seq(1,22))
+df2$chr21 <- factor(ifelse(df2$`Chromosome/scaffold name`==21,'Chr 21','Not Chr 21'),levels=c('Not Chr 21','Chr 21'))
+
+dim(df1)
+dim(df2)
+
+subset(df2,!(names %in% df1$names))[1,]
+subset(df1,!(names %in% df2$names))[1:23,]
+
+ggplot(df1,aes(x=chr21,y=rank(logfoldchanges)/nrow(df1),fill=chr21)) + 
+  geom_boxplot() + 
+  theme_bw() +
+  labs(x="Chromosome",y='Log Fold Change Percentile (T21 vs Healthy)') +
+  scale_fill_brewer(palette = "Set2") + guides(fill=F) + ylim(0,1)
+
+ggplot(df2,aes(x=chr21,y=rank(logfoldchanges)/nrow(df2),fill=chr21)) + 
+  geom_boxplot() + 
+  theme_bw() +
+  labs(x="Chromosome",y='Log Fold Change Percentile (T21 vs Healthy)') +
+  scale_fill_brewer(palette = "Set2") + guides(fill=F)
+
+
+
+
+
 df_pb <- fread("~/Documents/Research/t21-proj/out/full/DE_pb_cell_type_groups/Liver.Erythroid.txt",data.table = F,stringsAsFactors = F)
 df.mg <- merge(df,df_pb,by.x="names",by.y="gene")
 cor(df.mg$logfoldchanges,df.mg$logFC)
@@ -42,18 +84,31 @@ ggplot(df,aes(x=`Chromosome/scaffold name`,y=logFC)) + geom_boxplot()
 
 aggregate(df$pvals_adj<0.01,by=list(df$`Chromosome/scaffold name`),mean)
 
+###################
+
 # module load R/4.0
 library(data.table)
 cell_type_filename="Erythroid"
 sampletype="Liver"
 f <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".pb.",cell_type_filename,".txt")
-df.aggre <- fread(f,data.table = F,stringsAsFactors = F)
+df.aggre <- fread(f,data.table = F,stringsAsFactors = F,header = T)
 f=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".metadata.txt")
 x <- fread(f,data.table = F,stringsAsFactors = F)
 
 library(seurat)
 cell_type_filename="Erythroid"
 sampletype="Liver"
-dfcombined <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".pb.",cell_type_filename,".rds")
+f <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".sc.",cell_type_filename,".rds")
+dfcombined <- readRDS(f)
+
+library( "DESeq2" )
+dds <- DESeqDataSetFromMatrix(countData=apply(df.aggre,2,as.integer), 
+                              colData=x$environment)#, 
+                              design=~environment, tidy = TRUE)
+dds <- DESeq(dds)
+res <- results(dds)
+
+
+
 
 

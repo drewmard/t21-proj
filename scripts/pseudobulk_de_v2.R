@@ -38,23 +38,22 @@ for (sampletype in c("Liver","Femur")) {
   clusters_for_DE <- healthy_cells[healthy_cells %in% ds_cells]
   # cell_type=clusters_for_DE[1]
   P <- length(clusters_for_DE)
-  iter=0; for (cell_type in clusters_for_DE) {
+  iter=0; for (cell_type in clusters_for_DE[1]) {
     iter = iter + 1
     print(paste0(iter,"/",P,": ",cell_type))
     dfcombined <- merge(df[,which(df@meta.data[column_to_use][,1]==cell_type)],
                         df2[,which(df2@meta.data[column_to_use][,1]==cell_type)])
     
-    counts <- 
-    pb <- aggregate.Matrix(
+    df.aggre <- aggregate.Matrix(
       t(
         GetAssayData(object = dfcombined, slot = "counts", assay="RNA")
       ),
       groupings=df$patient,fun="sum")
-    pb <- t(pb)
-    pb <- as.data.frame(pb)
-    
-    df.aggre <- AggregateExpression(dfcombined,assays="RNA",group.by="patient")
-    df.aggre <- df.aggre[["RNA"]]
+    df.aggre <- t(df.aggre)
+    df.aggre <- as.data.frame(df.aggre)
+    system("mkdir -p /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data_pb_groups")
+    fsave=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data_pb_groups/",sampletype,".pb.",cell_type_filename,".txt")
+    fwrite(df.aggre,file=fsave,quote = F,na = "NA",sep = '\t',row.names = T,col.names = T)
     
     x <- unique(dfcombined@meta.data[,c("patient","environment")]); rownames(x) <- NULL
     
@@ -87,15 +86,23 @@ for (sampletype in c("Liver","Femur")) {
   ds_cells=unique(df2@meta.data[column_to_use][,1])
   clusters_for_DE <- healthy_cells[healthy_cells %in% ds_cells]
   # cell_type=clusters_for_DE[1]
-  iter=0; for (cell_type in clusters_for_DE) {
+  iter=0; for (cell_type in clusters_for_DE[1]) {
     iter = iter + 1
     print(paste0(iter,"/",P,": ",cell_type))
     
     dfcombined <- merge(df[,which(df@meta.data[column_to_use][,1]==cell_type)],
                         df2[,which(df2@meta.data[column_to_use][,1]==cell_type)])
     
-    df.aggre <- AggregateExpression(dfcombined,assays="RNA",group.by="patient")
-    df.aggre <- df.aggre[["RNA"]]
+    df.aggre <- aggregate.Matrix(
+      t(
+        GetAssayData(object = dfcombined, slot = "counts", assay="RNA")
+      ),
+      groupings=df$patient,fun="sum")
+    df.aggre <- t(df.aggre)
+    df.aggre <- as.data.frame(df.aggre)
+    system("mkdir -p /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data_pb_leiden")
+    fsave=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data_pb_leiden/",sampletype,".pb.",cell_type_filename,".txt")
+    fwrite(df.aggre,file=fsave,quote = F,na = "NA",sep = '\t',row.names = T,col.names = T)
     
     x <- unique(dfcombined@meta.data[,c("patient","environment")]); rownames(x) <- NULL
     
