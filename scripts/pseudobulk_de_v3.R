@@ -64,7 +64,8 @@ for (sampletype in c("Liver","Femur")) {
     fsave=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data_pb_groups/",sampletype,".pb.",cell_type_filename,".txt")
     fwrite(df.aggre,file=fsave,quote = F,na = "NA",sep = '\t',row.names = T,col.names = T)
     
-    x <- unique(dfcombined@meta.data[,c("patient","environment")]); rownames(x) <- NULL
+    x <- unique(dfcombined@meta.data[,c("patient","environment")]); 
+    rownames(x) <- x$patient
     
     # DESeq2:
     df.aggre <- as.matrix(df.aggre[,match(rownames(x),colnames(df.aggre))])
