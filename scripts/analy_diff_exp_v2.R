@@ -141,16 +141,22 @@ cor(-log10(res.df$pvals+1e-216),-log10(res.df$pvalue+1e-216),use="complete.obs")
 
 aggregate(df1$padj < 0.1,by=list(df1$chr21),mean,na.rm=T)
 aggregate(df1$pvals_adj < 0.1,by=list(df1$chr21),mean,na.rm=T)
-
 aggregate(df1$padj < 0.1 & df1$pvals_adj < 0.1,by=list(df1$chr21),mean,na.rm=T)
-
+aggregate(df1$padj < 0.01,by=list(df1$chr21),mean,na.rm=T)
+aggregate(df1$pvals_adj < 0.01,by=list(df1$chr21),mean,na.rm=T)
+aggregate(df1$padj < 0.01 & df1$pvals_adj < 0.01,by=list(df1$chr21),mean,na.rm=T)
 
 aggregate(df1$log2FoldChange,by=list(df1$chr21),median,na.rm=T)
 aggregate(rank(df1$log2FoldChange)/nrow(df1),by=list(df1$chr21),median,na.rm=T)
 aggregate(df1$logfoldchanges,by=list(df1$chr21),median,na.rm=T)
 aggregate(rank(df1$logfoldchanges)/nrow(df1),by=list(df1$chr21),median,na.rm=T)
 
+fisher.test(df1$padj < 0.1,df1$pvals_adj < 0.1)
+fisher.test(df1$padj[df1$chr21=="Chr 21"] < 0.1,df1$pvals_adj[df1$chr21=="Chr 21"] < 0.1)
+fisher.test(df1$padj[df1$chr21=="Not Chr 21"] < 0.1,df1$pvals_adj[df1$chr21=="Not Chr 21"] < 0.1)
 
+df1[order(df1$padj)[1:5],]
+df1[order(df1$padj)[1:25],]
 
 
 
