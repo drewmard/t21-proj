@@ -40,11 +40,11 @@ P <- length(clusters_for_DE)
 cell_type="Erythroid"
 cell_type_filename = gsub("/","_",cell_type)
 # 
-# iter=0
-# iter = iter + 1
-# print(paste0(iter,"/",P,": ",cell_type))
-# dfcombined <- merge(df[,which(df@meta.data[column_to_use][,1]==cell_type)],
-#                     df2[,which(df2@meta.data[column_to_use][,1]==cell_type)])
+iter=0
+iter = iter + 1
+print(paste0(iter,"/",P,": ",cell_type))
+dfcombined <- merge(df[,which(df@meta.data[column_to_use][,1]==cell_type)],
+                    df2[,which(df2@meta.data[column_to_use][,1]==cell_type)])
 # 
 # saveRDS(dfcombined,file=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".sc.",cell_type_filename,".rds"))
 # 
