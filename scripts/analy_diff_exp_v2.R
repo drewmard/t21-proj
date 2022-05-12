@@ -90,23 +90,61 @@ aggregate(df$pvals_adj<0.01,by=list(df$`Chromosome/scaffold name`),mean)
 library(data.table)
 cell_type_filename="Erythroid"
 sampletype="Liver"
-f <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".pb.",cell_type_filename,".txt")
+f <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data_pb_groups/",sampletype,".pb.",cell_type_filename,".txt")
 df.aggre <- fread(f,data.table = F,stringsAsFactors = F,header = T)
+rownames(df.aggre) <- df.aggre[,1]; df.aggre <- df.aggre[,-1]
 f=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".metadata.txt")
 x <- fread(f,data.table = F,stringsAsFactors = F)
+x <- data.frame(x,row.names=x$patient)
+# x <- x[match(colnames(df.aggre),rownames(x)),]
+df.aggre <- as.matrix(df.aggre[,match(rownames(x),colnames(df.aggre))])
 
-library(seurat)
-cell_type_filename="Erythroid"
-sampletype="Liver"
-f <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".sc.",cell_type_filename,".rds")
-dfcombined <- readRDS(f)
+# library(seurat)
+# cell_type_filename="Erythroid"
+# sampletype="Liver"
+# f <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".sc.",cell_type_filename,".rds")
+# dfcombined <- readRDS(f)
 
 library( "DESeq2" )
-dds <- DESeqDataSetFromMatrix(countData=apply(df.aggre,2,as.integer), 
-                              colData=x$environment)#, 
-                              design=~environment, tidy = TRUE)
+dds <- DESeqDataSetFromMatrix(countData=df.aggre, 
+                              colData=x, 
+                              design=~environment)
+dds$environment <- relevel(dds$environment, ref = "Healthy")
 dds <- DESeq(dds)
 res <- results(dds)
+res.df <- as.data.frame(res)
+res.df$names <- rownames(res.df)
+
+library(biomaRt)
+ensembl <- useEnsembl(biomart = "genes", dataset = "hsapiens_gene_ensembl")
+annot <- getBM(attributes = c('hgnc_symbol', 'chromosome_name',
+                              'start_position', 'end_position'),
+               filters = 'hgnc_symbol', 
+               values = res.df$names, 
+               mart = ensembl)
+df1 <- merge(res.df,annot,by.x="names",by.y="hgnc_symbol")
+df1 <- df1[df1$chromosome_name %in% seq(1,22),]
+df1$chromosome_name <- factor(df1$chromosome_name,levels=seq(1,22))
+df1$chr21 <- factor(ifelse(df1$chromosome_name==21,'Chr 21','Not Chr 21'),levels=c('Not Chr 21','Chr 21'))
+aggregate(df1$log2FoldChange,by=list(df1$chr21),median,na.rm=T)
+aggregate(rank(df1$log2FoldChange)/nrow(df1),by=list(df1$chr21),median,na.rm=T)
+
+df <- fread("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_cell_type_groups/Liver.Erythroid.txt",data.table = F,stringsAsFactors = F)
+res.df <- merge(res.df,df,by='names')
+df1 <- merge(res.df,annot,by.x="names",by.y="hgnc_symbol")
+df1 <- df1[df1$chromosome_name %in% seq(1,22),]
+df1$chromosome_name <- factor(df1$chromosome_name,levels=seq(1,22))
+df1$chr21 <- factor(ifelse(df1$chromosome_name==21,'Chr 21','Not Chr 21'),levels=c('Not Chr 21','Chr 21'))
+
+cor(res.df$logfoldchanges,res.df$log2FoldChange,use='complete.obs')
+cor(-log10(res.df$pvals+1e-216),-log10(res.df$pvalue+1e-216),use="complete.obs")
+
+aggregate(df1$padj < 0.1,by=list(df1$chr21),mean,na.rm=T)
+aggregate(df1$pvals_adj < 0.1,by=list(df1$chr21),mean,na.rm=T)
+aggregate(df1$log2FoldChange,by=list(df1$chr21),median,na.rm=T)
+aggregate(rank(df1$log2FoldChange)/nrow(df1),by=list(df1$chr21),median,na.rm=T)
+aggregate(df1$logfoldchanges,by=list(df1$chr21),median,na.rm=T)
+aggregate(rank(df1$logfoldchanges)/nrow(df1),by=list(df1$chr21),median,na.rm=T)
 
 
 

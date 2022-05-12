@@ -65,7 +65,7 @@ for (sampletype in c("Liver","Femur")) {
     
     x <- unique(dfcombined@meta.data[,c("patient","environment")]); rownames(x) <- NULL
     
-    # construct design & contrast matrix
+    # DESeq2:
     df.aggre <- as.matrix(df.aggre[,match(rownames(x),colnames(df.aggre))])
     dds <- DESeqDataSetFromMatrix(countData=df.aggre, 
                                   colData=x, 
@@ -75,23 +75,6 @@ for (sampletype in c("Liver","Femur")) {
     res <- results(dds)
     res.df <- as.data.frame(res)
     res.df$names <- rownames(res.df)
-    
-    
-    design <- model.matrix(~ 0 + x$environment)
-    colnames(design) <- make.names(levels(factor(x$environment)))
-    rownames(design) <- x$patient
-    
-    # A positive FC is increased expression in the DS compared to healthy
-    contrast <- makeContrasts(paste0(make.names("Down.Syndrome"),"-Healthy"), levels = design)
-    
-    y <- DGEList(counts=df.aggre,group=x$environment)
-    y <- calcNormFactors(y)
-    y <- estimateDisp(y, design)
-    fit <- glmFit(y,design)
-    lrt <- glmLRT(fit,coef=2)
-    res <- topTags(lrt, n=Inf)$table
-    res$gene <- rownames(res)
-    rownames(res) <- NULL
     
     system("mkdir -p /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_cell_type_groups")
     f.out <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_cell_type_groups/",sampletype,".",cell_type_filename,".txt")
@@ -124,23 +107,16 @@ for (sampletype in c("Liver","Femur")) {
     
     x <- unique(dfcombined@meta.data[,c("patient","environment")]); rownames(x) <- NULL
     
-    # construct design & contrast matrix
-    
-    design <- model.matrix(~ 0 + x$environment)
-    colnames(design) <- make.names(levels(factor(x$environment)))
-    rownames(design) <- x$patient
-    
-    # A positive FC is increased expression in the DS compared to healthy
-    contrast <- makeContrasts(paste0(make.names("Down.Syndrome"),"-Healthy"), levels = design)
-    
-    y <- DGEList(counts=df.aggre,group=x$environment)
-    y <- calcNormFactors(y)
-    y <- estimateDisp(y, design)
-    fit <- glmFit(y,design)
-    lrt <- glmLRT(fit,coef=2)
-    res <- topTags(lrt, n=Inf)$table
-    res$gene <- rownames(res)
-    rownames(res) <- NULL
+    # DESeq2:
+    df.aggre <- as.matrix(df.aggre[,match(rownames(x),colnames(df.aggre))])
+    dds <- DESeqDataSetFromMatrix(countData=df.aggre, 
+                                  colData=x, 
+                                  design=~environment)
+    dds$environment <- relevel(dds$environment, ref = "Healthy")
+    dds <- DESeq(dds)
+    res <- results(dds)
+    res.df <- as.data.frame(res)
+    res.df$names <- rownames(res.df)
     
     system("mkdir -p /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_leiden_names")
     f.out <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_leiden_names/",sampletype,".",cell_type_filename,".txt")
