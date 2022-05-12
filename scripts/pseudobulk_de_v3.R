@@ -13,7 +13,6 @@ for (sampletype in c("Liver","Femur")) {
   df <- NormalizeData(df, normalization.method = "LogNormalize", scale.factor = 10000)
   colName1 <- paste0("leiden_v",max(as.numeric(substring(colnames(df@meta.data)[grep("leiden_v",colnames(df@meta.data))],nchar("leiden_v")+1)),na.rm=T))
   df@meta.data["leiden_names"] <- df@meta.data[colName1]
-  df <- df[which(rownames(df) %in% rownames(df2)),]
   
   disease_status="DownSyndrome"
   f=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_",disease_status,"_",sampletype,".umap2d.cells_removed")
@@ -22,7 +21,9 @@ for (sampletype in c("Liver","Femur")) {
   df2 <- NormalizeData(df2, normalization.method = "LogNormalize", scale.factor = 10000)
   colName2 <- paste0("leiden_v",max(as.numeric(substring(colnames(df2@meta.data)[grep("leiden_v",colnames(df2@meta.data))],nchar("leiden_v")+1)),na.rm=T))
   df2@meta.data["leiden_names"] <- df2@meta.data[colName1]
-  df2 <- df2[which(rownames(df2) %in% rownames(df)),]
+  
+  # df <- df[which(rownames(df) %in% rownames(df2)),]
+  # df2 <- df2[which(rownames(df2) %in% rownames(df)),]
   
   ################################################################
   # # if simulated data
