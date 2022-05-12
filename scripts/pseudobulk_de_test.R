@@ -40,6 +40,7 @@ P <- length(clusters_for_DE)
 cell_type="Erythroid"
 cell_type_filename = gsub("/","_",cell_type)
 
+iter=0
 iter = iter + 1
 print(paste0(iter,"/",P,": ",cell_type))
 dfcombined <- merge(df[,which(df@meta.data[column_to_use][,1]==cell_type)],
@@ -53,5 +54,5 @@ df.aggre <- df.aggre[["RNA"]]
 fwrite(df.aggre,file=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".pb.",cell_type_filename,".txt"),quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
 
 x <- unique(dfcombined@meta.data[,c("patient","environment")]); rownames(x) <- NULL
-fwrite(x,file="/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/metadata.txt",quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
+fwrite(x,file="/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".metadata.txt",quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
 
