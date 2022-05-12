@@ -1,4 +1,5 @@
 library(data.table)
+library(ggplot2)
 
 # df <- fread("~/Documents/Research/t21-proj/out/full/DE_cell_type_groups/HSC_Progenitors.txt",data.table = F,stringsAsFactors = F)
 # df <- fread("~/Documents/Research/t21-proj/out/full/DE_cell_type_groups/Erythroid.txt",data.table = F,stringsAsFactors = F)
@@ -11,7 +12,7 @@ cor(-log10(df.mg$pvals+1e-216),-log10(df.mg$PValue+1e-216),use="complete.obs")
 
 gene_info <- fread("~/Documents/Research/data/grch38/protein_coding_genes.txt",data.table = F,stringsAsFactors = F)
 
-df <- merge(df,gene_info[,c("Chromosome/scaffold name","Gene name")],by.x="names",by.y="Gene name")
+df <- merge(df.mg,gene_info[,c("Chromosome/scaffold name","Gene name")],by.x="names",by.y="Gene name")
 
 df <- df[df$`Chromosome/scaffold name` %in% seq(1,22),]
 df$`Chromosome/scaffold name` <- factor(df$`Chromosome/scaffold name`,levels=seq(1,22))
@@ -30,8 +31,14 @@ ggplot(df,aes(x=chr21,y=rank(logfoldchanges)/nrow(df),fill=chr21)) +
   theme_bw() +
   labs(x="Chromosome",y='Log Fold Change Percentile (T21 vs Healthy)') +
   scale_fill_brewer(palette = "Set2") + guides(fill=F)
+ggplot(df,aes(x=chr21,y=rank(logFC)/nrow(df),fill=chr21)) + 
+  geom_boxplot() + 
+  theme_bw() +
+  labs(x="Chromosome",y='Log Fold Change Percentile (T21 vs Healthy)') +
+  scale_fill_brewer(palette = "Set2") + guides(fill=F)
 
 ggplot(df,aes(x=`Chromosome/scaffold name`,y=logfoldchanges)) + geom_boxplot()
+ggplot(df,aes(x=`Chromosome/scaffold name`,y=logFC)) + geom_boxplot()
 
 aggregate(df$pvals_adj<0.01,by=list(df$`Chromosome/scaffold name`),mean)
 

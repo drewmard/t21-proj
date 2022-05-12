@@ -1,4 +1,3 @@
-
 library(Seurat)
 library(data.table)
 library(edgeR)
@@ -36,9 +35,11 @@ for (sampletype in c("Liver","Femur")) {
   healthy_cells=unique(df@meta.data[column_to_use][,1])
   ds_cells=unique(df2@meta.data[column_to_use][,1])
   clusters_for_DE <- healthy_cells[healthy_cells %in% ds_cells]
-  cell_type=clusters_for_DE[1]
-  for (cell_type in clusters_for_DE) {
-    
+  # cell_type=clusters_for_DE[1]
+  P <- length(clusters_for_DE)
+  iter=0; for (cell_type in clusters_for_DE) {
+    iter = iter + 1
+    print(paste0(iter,"/",P,": ",cell_type))
     dfcombined <- merge(df[,which(df@meta.data[column_to_use][,1]==cell_type)],
                         df2[,which(df2@meta.data[column_to_use][,1]==cell_type)])
     
@@ -66,7 +67,8 @@ for (sampletype in c("Liver","Femur")) {
     rownames(res) <- NULL
     
     system("mkdir -p /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_cell_type_groups")
-    f.out <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_cell_type_groups/",sampletype,".",cell_type,".txt")
+    cell_type_filename = gsub("/","_",cell_type)
+    f.out <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_cell_type_groups/",sampletype,".",cell_type_filename,".txt")
     fwrite(res,f.out,quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
   }
   
@@ -74,8 +76,10 @@ for (sampletype in c("Liver","Femur")) {
   healthy_cells=unique(df@meta.data[column_to_use][,1])
   ds_cells=unique(df2@meta.data[column_to_use][,1])
   clusters_for_DE <- healthy_cells[healthy_cells %in% ds_cells]
-  cell_type=clusters_for_DE[1]
-  for (cell_type in clusters_for_DE) {
+  # cell_type=clusters_for_DE[1]
+  iter=0; for (cell_type in clusters_for_DE) {
+    iter = iter + 1
+    print(paste0(iter,"/",P,": ",cell_type))
     
     dfcombined <- merge(df[,which(df@meta.data[column_to_use][,1]==cell_type)],
                         df2[,which(df2@meta.data[column_to_use][,1]==cell_type)])
@@ -104,7 +108,8 @@ for (sampletype in c("Liver","Femur")) {
     rownames(res) <- NULL
     
     system("mkdir -p /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_leiden_names")
-    f.out <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_leiden_names/",sampletype,".",cell_type,".txt")
+    cell_type_filename = gsub("/","_",cell_type)
+    f.out <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_leiden_names/",sampletype,".",cell_type_filename,".txt")
     fwrite(res,f.out,quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
   }
 }
