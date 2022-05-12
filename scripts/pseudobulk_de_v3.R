@@ -80,7 +80,7 @@ for (sampletype in c("Liver","Femur")) {
     
     system("mkdir -p /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_cell_type_groups")
     f.out <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_cell_type_groups/",sampletype,".",cell_type_filename,".txt")
-    fwrite(res,f.out,quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
+    fwrite(res.df,f.out,quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
   }
   
   column_to_use="leiden_names"
@@ -107,7 +107,8 @@ for (sampletype in c("Liver","Femur")) {
     fsave=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data_pb_leiden/",sampletype,".pb.",cell_type_filename,".txt")
     fwrite(df.aggre,file=fsave,quote = F,na = "NA",sep = '\t',row.names = T,col.names = T)
     
-    x <- unique(dfcombined@meta.data[,c("patient","environment")]); rownames(x) <- NULL
+    x <- unique(dfcombined@meta.data[,c("patient","environment")]); 
+    rownames(x) <- x$patient
     
     # DESeq2:
     df.aggre <- as.matrix(df.aggre[,match(rownames(x),colnames(df.aggre))])
