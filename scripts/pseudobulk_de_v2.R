@@ -10,7 +10,7 @@ for (sampletype in c("Liver","Femur")) {
   f=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_",disease_status,"_",sampletype,".umap2d.cells_removed")
   fileName=paste0(f,".rds")
   df <- readRDS(file = fileName)
-  df <- NormalizeData(df, normalization.method = "LogNormalize", scale.factor = 10000)
+  # df <- NormalizeData(df, normalization.method = "LogNormalize", scale.factor = 10000)
   colName1 <- paste0("leiden_v",max(as.numeric(substring(colnames(df@meta.data)[grep("leiden_v",colnames(df@meta.data))],nchar("leiden_v")+1)),na.rm=T))
   df@meta.data["leiden_names"] <- df@meta.data[colName1]
   
@@ -18,7 +18,7 @@ for (sampletype in c("Liver","Femur")) {
   f=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_",disease_status,"_",sampletype,".umap2d.cells_removed")
   fileName=paste0(f,".rds")
   df2 <- readRDS(file = fileName)
-  df2 <- NormalizeData(df2, normalization.method = "LogNormalize", scale.factor = 10000)
+  # df2 <- NormalizeData(df2, normalization.method = "LogNormalize", scale.factor = 10000)
   colName2 <- paste0("leiden_v",max(as.numeric(substring(colnames(df2@meta.data)[grep("leiden_v",colnames(df2@meta.data))],nchar("leiden_v")+1)),na.rm=T))
   df2@meta.data["leiden_names"] <- df2@meta.data[colName1]
   
