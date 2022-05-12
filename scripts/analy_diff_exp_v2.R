@@ -42,5 +42,18 @@ ggplot(df,aes(x=`Chromosome/scaffold name`,y=logFC)) + geom_boxplot()
 
 aggregate(df$pvals_adj<0.01,by=list(df$`Chromosome/scaffold name`),mean)
 
+# module load R/4.0
+library(data.table)
+cell_type_filename="Erythroid"
+sampletype="Liver"
+f <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".pb.",cell_type_filename,".txt")
+df.aggre <- fread(f,data.table = F,stringsAsFactors = F)
+f=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".metadata.txt")
+x <- fread(f,data.table = F,stringsAsFactors = F)
+
+library(seurat)
+cell_type_filename="Erythroid"
+sampletype="Liver"
+dfcombined <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".pb.",cell_type_filename,".rds")
 
 
