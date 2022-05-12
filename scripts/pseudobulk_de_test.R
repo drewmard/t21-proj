@@ -39,20 +39,20 @@ P <- length(clusters_for_DE)
 
 cell_type="Erythroid"
 cell_type_filename = gsub("/","_",cell_type)
-
-iter=0
-iter = iter + 1
-print(paste0(iter,"/",P,": ",cell_type))
-dfcombined <- merge(df[,which(df@meta.data[column_to_use][,1]==cell_type)],
-                    df2[,which(df2@meta.data[column_to_use][,1]==cell_type)])
-
-saveRDS(dfcombined,file=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".sc.",cell_type_filename,".rds"))
-
-df.aggre <- AggregateExpression(dfcombined,assays="RNA",group.by="patient")
-df.aggre <- df.aggre[["RNA"]]
-
-fwrite(df.aggre,file=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".pb.",cell_type_filename,".txt"),quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
+# 
+# iter=0
+# iter = iter + 1
+# print(paste0(iter,"/",P,": ",cell_type))
+# dfcombined <- merge(df[,which(df@meta.data[column_to_use][,1]==cell_type)],
+#                     df2[,which(df2@meta.data[column_to_use][,1]==cell_type)])
+# 
+# saveRDS(dfcombined,file=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".sc.",cell_type_filename,".rds"))
+# 
+# df.aggre <- AggregateExpression(dfcombined,assays="RNA",group.by="patient")
+# df.aggre <- df.aggre[["RNA"]]
+# 
+# fwrite(df.aggre,file=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".pb.",cell_type_filename,".txt"),quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
 
 x <- unique(dfcombined@meta.data[,c("patient","environment")]); rownames(x) <- NULL
-fwrite(x,file="/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".metadata.txt",quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
+fwrite(x,file=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/",sampletype,".metadata.txt"),quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
 
