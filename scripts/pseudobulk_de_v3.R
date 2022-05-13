@@ -43,7 +43,7 @@ for (sampletype in c("Liver","Femur")) {
   P <- length(clusters_for_DE)
   
   iter=0; 
-  for (cell_type in clusters_for_DE[2:ncol(clusters_for_DE)]) {
+  for (cell_type in clusters_for_DE[2:length(clusters_for_DE)]) {
     iter = iter + 1
     print(paste0(iter,"/",P,": ",cell_type))
     cell_type_filename = gsub("/","_",cell_type)

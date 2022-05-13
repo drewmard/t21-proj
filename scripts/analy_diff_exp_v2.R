@@ -115,6 +115,8 @@ res <- results(dds)
 res.df <- as.data.frame(res)
 res.df$names <- rownames(res.df)
 
+res.df <- fread("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_cell_type_groups/Liver.Erythroid.txt",data.table = F,stringsAsFactors = F)
+
 library(biomaRt)
 ensembl <- useEnsembl(biomart = "genes", dataset = "hsapiens_gene_ensembl")
 annot <- getBM(attributes = c('hgnc_symbol', 'chromosome_name',
