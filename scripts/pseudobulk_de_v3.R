@@ -43,7 +43,7 @@ for (sampletype in c("Liver","Femur")) {
   P <- length(clusters_for_DE)
   
   iter=0; 
-  for (cell_type in clusters_for_DE[1]) {
+  for (cell_type in clusters_for_DE[2:ncol(clusters_for_DE)]) {
     iter = iter + 1
     print(paste0(iter,"/",P,": ",cell_type))
     cell_type_filename = gsub("/","_",cell_type)
@@ -93,8 +93,10 @@ for (sampletype in c("Liver","Femur")) {
     print(paste0(iter,"/",P,": ",cell_type))
     cell_type_filename = gsub("/","_",cell_type)
     
-    dfcombined <- merge(df[,which(as.character(df@meta.data[column_to_use][,1]==cell_type))],
-                        df2[,which(as.character(df2@meta.data[column_to_use][,1]==cell_type))])
+    i1=which(as.character(df@meta.data[column_to_use][,1])==cell_type)
+    i2=which(as.character(df2@meta.data[column_to_use][,1])==cell_type)
+    dfcombined <- merge(df[,i1],
+                        y=df2[,i2])
     
     df.aggre <- aggregate.Matrix(
       t(
