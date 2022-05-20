@@ -9,8 +9,8 @@ sampletype <- "Liver"
 dir <- '/oak/stanford/groups/smontgom/amarder'
 dir <- '~/Documents/Research'
 
-datadir="DE_pb_cell_type_groups"; lfc.col="log2FoldChange"; p.col="padj"
-# datadir="DE_pb_leiden_names"; lfc.col="log2FoldChange"; p.col="padj"
+# datadir="DE_pb_cell_type_groups"; lfc.col="log2FoldChange"; p.col="padj"
+datadir="DE_pb_leiden_names"; lfc.col="log2FoldChange"; p.col="padj"
 # datadir="DE_cell_type_groups"; lfc.col="logfoldchanges"; p.col="pvals_adj"
 # datadir="DE_leiden_names"; lfc.col="logfoldchanges"; p.col="pvals_adj"
 
@@ -72,8 +72,8 @@ df1.lfc <- df1
 
 #######################################################
 
-aggregate(apply(df1[,cell_type_groups],2,rank)/nrow(df1),by=list(df1$chr21),median,na.rm=T)
-aggregate(df1[,cell_type_groups],by=list(df1$chr21),median,na.rm=T)
+aggregate(apply(df1.lfc[,cell_type_groups],2,rank)/nrow(df1.lfc),by=list(df1.lfc$chr21),median,na.rm=T)
+aggregate(df1.lfc[,cell_type_groups],by=list(df1.lfc$chr21),median,na.rm=T)
 
 df1.p[df1.p$names=="U2AF1",]
 df1.lfc[df1.lfc$names=="U2AF1",]
