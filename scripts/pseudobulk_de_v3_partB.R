@@ -24,7 +24,7 @@ for (sampletype in c("Liver","Femur")) {
   meta2<-fread(f,data.table = F,stringsAsFactors = F)
   cells2 <- unique(meta2[,6])
   meta2 <- unique(meta2[,c("patient","sample")])
-  meta1$environment <- disease_status
+  meta2$environment <- disease_status
   
   # Merge metadata:
   x <- rbind(meta1,meta2)
