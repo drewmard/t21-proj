@@ -10,19 +10,28 @@ for (sampletype in c("Liver","Femur")) {
   
   print(sampletype)
   
-  f = "/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/cellComp/10X_Healthy_Liver.cellComp.csv"
+  # read in metadata1
+  disease_status="Healthy"
+  f = paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/cellComp/10X_",disease_status,"_",sampletype,".cellComp.csv")
   meta1<-fread(f,data.table = F,stringsAsFactors = F)
-  healthy_cells <- unique(meta1[,6])
+  cells1 <- unique(meta1[,6])
   meta1 <- unique(meta1[,c("patient","sample")])
-  meta1$environment <- "Healthy"
-  f = "/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/cellComp/10X_DownSyndrome_Liver.cellComp.csv"
+  meta1$environment <- disease_status
+  
+  # read in metadata2
+  disease_status="DownSyndrome"
+  f = paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/cellComp/10X_",disease_status,"_",sampletype,".cellComp.csv")
   meta2<-fread(f,data.table = F,stringsAsFactors = F)
-  ds_cells <- unique(meta2[,6])
+  cells2 <- unique(meta2[,6])
   meta2 <- unique(meta2[,c("patient","sample")])
-  meta2$environment <- "DownSyndrome"
+  meta1$environment <- disease_status
+  
+  # Merge metadata:
   x <- rbind(meta1,meta2)
   rownames(x) <- x[,subset_column]
-  clusters_for_DE <- healthy_cells[healthy_cells %in% ds_cells]
+  
+  # cell types of interest:
+  clusters_for_DE <- cells1[cells1 %in% cells2]
   P <- length(clusters_for_DE)
   
   iter=0; for (cell_type in clusters_for_DE) {
@@ -57,9 +66,11 @@ for (sampletype in c("Liver","Femur")) {
     # By default, uses the Satterthwaite approximation for the hypothesis test
     fitmm = dream( vobjDream, form, x )
     
+    # reorganize:
     res.df <- as.data.frame(topTable( fitmm, number=Inf ))
     res.df$names <- rownames(res.df)
     
+    # save:
     system("mkdir -p /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_leiden_names")
     f.out <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_leiden_names/",sampletype,".",cell_type_filename,".",subset_column,".txt")
     fwrite(res.df,f.out,quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
