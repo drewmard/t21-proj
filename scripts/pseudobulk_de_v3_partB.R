@@ -10,7 +10,8 @@ for (sampletype in c("Liver","Femur")) {
   
   print(sampletype)
   
-  # read in metadata1
+  # 
+  print("Reading metadata1...")
   disease_status="Healthy"
   f = paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/cellComp/10X_",disease_status,"_",sampletype,".cellComp.csv")
   meta1<-fread(f,data.table = F,stringsAsFactors = F)
@@ -18,7 +19,8 @@ for (sampletype in c("Liver","Femur")) {
   meta1 <- unique(meta1[,c("patient","sample")])
   meta1$environment <- disease_status
   
-  # read in metadata2
+  # 
+  print("Reading metadata2...")
   disease_status="DownSyndrome"
   f = paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/cellComp/10X_",disease_status,"_",sampletype,".cellComp.csv")
   meta2<-fread(f,data.table = F,stringsAsFactors = F)
@@ -26,11 +28,12 @@ for (sampletype in c("Liver","Femur")) {
   meta2 <- unique(meta2[,c("patient","sample")])
   meta2$environment <- disease_status
   
-  # Merge metadata:
+  #
+  print("Merge metadata...")
   x <- rbind(meta1,meta2)
   rownames(x) <- x[,subset_column]
   
-  # cell types of interest:
+  print("cell types of interest...")
   clusters_for_DE <- cells1[cells1 %in% cells2]
   P <- length(clusters_for_DE)
   
