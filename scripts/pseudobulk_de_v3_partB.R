@@ -23,6 +23,7 @@ for (sampletype in c("Liver","Femur")) {
   x <- rbind(meta1,meta2)
   rownames(x) <- x[,subset_column]
   clusters_for_DE <- healthy_cells[healthy_cells %in% ds_cells]
+  P <- length(clusters_for_DE)
   
   iter=0; for (cell_type in clusters_for_DE) {
     iter = iter + 1
