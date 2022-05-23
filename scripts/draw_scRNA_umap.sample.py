@@ -130,8 +130,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
                   plt.close()
                   print("\n * Plot saved.")
 
-                  print("\n * Script complete...")
-                  pdf.close()
+print("\n * Script complete...")
 
 # plt.tight_layout()
 # pdf.savefig()
