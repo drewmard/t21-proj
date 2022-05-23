@@ -41,6 +41,11 @@ os.system("mkdir -p "+headdir + "/out/" + suffixDirec)
 for disease_status in ["DownSyndrome","Healthy"]:
       for sampletype in ["Femur","Liver"]:
 
+            # if disease_status=="Healthy" and sampletype=="Liver":
+            #       colors_to_use = Set3_8.mpl_colors
+            # else:
+            #       colors_to_use = Set3_9.mpl_colors
+
             if suffix=="subset":
                   fout="10X_" + disease_status + "_" + sampletype + ".umap.subset.cells_removed.h5ad"
                   foutpath=headdir + "/out/data/" + fout
@@ -106,7 +111,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
                   f, axs = plt.subplots(1,1,figsize=(26,26))
                   sns.set(font_scale=2)
                   sns.set_style("white")
-                  sc.pl.umap(adata_3d, color="sample", size=150, palette=colors_to_use, components=[components_to_use], ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
+                  sc.pl.umap(adata_3d, color="sample", size=150, palette=myColors, components=[components_to_use], ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
                   plt.tight_layout()
                   plt.savefig(fplotout)
                   plt.show()
@@ -118,7 +123,7 @@ for disease_status in ["DownSyndrome","Healthy"]:
                   f, axs = plt.subplots(1,1,figsize=(26,26))
                   sns.set(font_scale=2)
                   sns.set_style("white")
-                  new_plot=sc.pl.umap(adata_3d, color="sample", size=150, palette=colors_to_use, components=[components_to_use], ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="None")
+                  new_plot=sc.pl.umap(adata_3d, color="sample", size=150, palette=myColors, components=[components_to_use], ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="None")
                   plt.tight_layout()
                   plt.savefig(fplotout)
                   plt.show()
