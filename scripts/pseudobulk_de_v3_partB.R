@@ -3,7 +3,7 @@ library('variancePartition')
 library('edgeR')
 library('BiocParallel')
 
-# sampletype="Liver"
+sampletype="Femur"
 subset_column="sample"
 
 for (sampletype in c("Liver","Femur")) {
@@ -43,8 +43,9 @@ for (sampletype in c("Liver","Femur")) {
   clusters_for_DE <- cells1[cells1 %in% cells2]
   P <- length(clusters_for_DE)
   
-  cell_type=clusters_for_DE[2]
-  iter=0; for (cell_type in clusters_for_DE) {
+  cell_type=clusters_for_DE[1]
+  # iter=0; for (cell_type in clusters_for_DE) {
+  for (cell_type in clusters_for_DE[c(19,25:length(clusters_for_DE))]) {
     iter = iter + 1
     print(paste0(iter,"/",P,": ",cell_type))
     cell_type_filename = gsub("/","_",cell_type)
@@ -63,6 +64,13 @@ for (sampletype in c("Liver","Femur")) {
     df.aggre <- df.aggre[,samples_to_keep]
     metadata_to_use <- metadata_to_use[samples_to_keep,]
     
+    # need to remodel sorting probably:
+    # [1] "19/28: Schwann cells"
+    # Fixed effect model, using limma directly...
+    # Error in `contrasts<-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : 
+    #   contrasts can be applied only to factors with 2 or more levels
+    # Calls: voomWithDreamWeights ... model.matrix -> model.matrix.default -> contrasts<-
+      
     # Standard usage of limma/voom
     geneExpr = DGEList( df.aggre )
     keep <- filterByExpr(geneExpr, group=metadata_to_use$environment)
@@ -75,14 +83,27 @@ for (sampletype in c("Liver","Femur")) {
     param = SnowParam(8, "SOCK", progressbar=TRUE)
     
     # The variable to be tested must be a fixed effect
-    # form <- ~ environment + (1|patient) 
-    form <- ~ environment + patient + sorting
+    form <- ~ environment + sorting + (1|patient)
+    if (length(unique(metadata_to_use$sorting))==1) {
+      form <- ~ environment + (1|patient)
+    }
+    if (median(table(metadata_to_use$patient))<1.5) {
+      form <- ~ environment + patient
+    }
+    if (max(table(metadata_to_use$patient))==1) {
+      form <- ~ environment
+    }
+    
+    # form <- ~ environment + patient + sorting
+    # if (length(unique(metadata_to_use$sorting))==1) {
+    #   form <- ~ environment + patient
+    # } 
+
+    # A positive FC is increased expression in the DS compared to healthy
+    metadata_to_use$environment <- factor(metadata_to_use$environment,levels=c("Healthy","DownSyndrome"))
     
     # estimate weights using linear mixed model of dream
     vobjDream = voomWithDreamWeights( geneExpr, form, metadata_to_use, BPPARAM=param )
-    
-    # A positive FC is increased expression in the DS compared to healthy
-    metadata_to_use$environment <- factor(metadata_to_use$environment,levels=c("Healthy","DownSyndrome"))
     
     # Fit the dream model on each gene
     # By default, uses the Satterthwaite approximation for the hypothesis test
@@ -96,7 +117,8 @@ for (sampletype in c("Liver","Femur")) {
     
     # save:
     system("mkdir -p /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_leiden_names")
-    f.out <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_leiden_names/",sampletype,".",cell_type_filename,".",subset_column,".txt")
+    f.out <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_leiden_names/",sampletype,".",cell_type_filename,".",subset_column,".random.txt")
+    # f.out <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_leiden_names/",sampletype,".",cell_type_filename,".",subset_column,".txt")
     fwrite(res.df,f.out,quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
     
   }

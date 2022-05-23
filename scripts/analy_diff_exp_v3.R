@@ -4,13 +4,15 @@ ensembl <- useEnsembl(biomart = "genes", dataset = "hsapiens_gene_ensembl")
 
 #########33
 
-sampletype <- "Liver"
+sampletype <- "Femur"
 
 dir <- '/oak/stanford/groups/smontgom/amarder'
-dir <- '~/Documents/Research'
+# dir <- '~/Documents/Research'
 
 # datadir="DE_pb_cell_type_groups"; lfc.col="log2FoldChange"; p.col="padj"
-datadir="DE_pb_leiden_names"; lfc.col="log2FoldChange"; p.col="padj"
+# datadir="DE_pb_leiden_names"; lfc.col="log2FoldChange"; p.col="padj"
+datadir="DE_pb_leiden_names"; lfc.col="logFC"; p.col="adj.P.Val"
+
 # datadir="DE_cell_type_groups"; lfc.col="logfoldchanges"; p.col="pvals_adj"
 # datadir="DE_leiden_names"; lfc.col="logfoldchanges"; p.col="pvals_adj"
 
@@ -18,18 +20,20 @@ pathtodir <- paste0(dir,"/t21-proj/out/full/",datadir)
 flist <- list.files(pathtodir)
 flist <- flist[grep(sampletype,flist)]
 cell_type_groups <- substring(flist,nchar(sampletype)+2,nchar(flist)-4)
+cell_type_groups <- cell_type_groups[!grepl("sample",cell_type_groups)]
 # cell_type_groups <- c("Erythroid","B cells","NK_T cells","Myeloid","Megakaryocytes","HSC_Progenitors","Stroma","Mast cells")
 
 for (i in 1:length(cell_type_groups)) {
   cell_type <- cell_type_groups[i]
-  f<- paste0(dir,"/t21-proj/out/full/",datadir,"/",sampletype,".",cell_type,".txt")
+  # f<- paste0(dir,"/t21-proj/out/full/",datadir,"/",sampletype,".",cell_type,".txt")
+  f<- paste0(dir,"/t21-proj/out/full/",datadir,"/",sampletype,".",cell_type,".sample.txt")
   df <- fread(f,data.table = F,stringsAsFactors = F)
   x <- df[,c("names",p.col)]
   colnames(x)[2] <- cell_type
   if (i==1) {
     res.df <- x
   } else {
-    res.df <- merge(res.df,x,by='names')
+    res.df <- merge(res.df,x,by='names',all = TRUE)
   }
 }
 
@@ -49,14 +53,15 @@ aggregate(df1[,cell_type_groups]<0.05,by=list(df1$chr21),mean,na.rm=T)
 
 for (i in 1:length(cell_type_groups)) {
   cell_type <- cell_type_groups[i]
-  f<- paste0(dir,"/t21-proj/out/full/",datadir,"/",sampletype,".",cell_type,".txt")
+  # f<- paste0(dir,"/t21-proj/out/full/",datadir,"/",sampletype,".",cell_type,".txt")
+  f<- paste0(dir,"/t21-proj/out/full/",datadir,"/",sampletype,".",cell_type,".sample.txt")
   df <- fread(f,data.table = F,stringsAsFactors = F)
   x <- df[,c("names",lfc.col)]
   colnames(x)[2] <- cell_type
   if (i==1) {
     res.df <- x
   } else {
-    res.df <- merge(res.df,x,by='names')
+    res.df <- merge(res.df,x,by='names',all = TRUE)
   }
 }
 annot <- getBM(attributes = c('hgnc_symbol', 'chromosome_name',
@@ -69,6 +74,9 @@ df1 <- df1[df1$chromosome_name %in% seq(1,22),]
 df1$chromosome_name <- factor(df1$chromosome_name,levels=seq(1,22))
 df1$chr21 <- factor(ifelse(df1$chromosome_name==21,'Chr 21','Not Chr 21'),levels=c('Not Chr 21','Chr 21'))
 df1.lfc <- df1
+aggregate(apply(df1.lfc[,cell_type_groups],2,rank)/nrow(df1.lfc),by=list(df1.lfc$chr21),median,na.rm=T)
+aggregate(df1.lfc[,cell_type_groups],by=list(df1.lfc$chr21),median,na.rm=T)
+
 
 #######################################################
 
