@@ -129,7 +129,7 @@ saveRDS(res.df.all.lfc,file=f.out)
 
 ##############
 
-sampletype="Femur"
+sampletype="Liver"
 res.df.all.p <- readRDS(paste0("/Users/andrewmarderstein/Documents/Research/t21-proj/out/full/DE_pb_leiden_names/res.",sampletype,".p.rds"))
 res.df.all.lfc <- readRDS(paste0("/Users/andrewmarderstein/Documents/Research/t21-proj/out/full/DE_pb_leiden_names/res.",sampletype,".lfc.rds"))
 cell_type_groups <- colnames(res.df.all.p[[1]])[(which(colnames(res.df.all.p[[1]])=="names")+1):(which(colnames(res.df.all.p[[1]])=="chromosome_name")-1)]
@@ -137,6 +137,8 @@ cell_type_groups <- colnames(res.df.all.p[[1]])[(which(colnames(res.df.all.p[[1]
 tab <- lapply(res.df.all.p,function(x) {aggregate(x[,cell_type_groups]<0.1,by=list(x$chr21),mean,na.rm=T)})
 tab <- lapply(tab,function(x) {rownames(x) <- x[,1]; x <- x[,-1]; x <- as.data.frame(t(x))})
 tab <- do.call(cbind,tab)
+
+apply(tab,2,median)
 
 # fetus pb more similar to per sample pb w/ mixed model than per sample pb w/ fixed effect model
 cor(tab[,c(2,4,6)])
@@ -154,6 +156,9 @@ plot(tab[,c(6,5)])
 # does the random effect model increase power on non chr 21?
 t.test(tab[,5] - tab[,1])
 # no - significantly decreased power!
+# does the fixed effect model increase power on non chr 21?
+t.test(tab[,3] - tab[,1])
+# no sig diff!
 
 # does the random effect model increase power on chr 21?
 t.test(tab[,6] - tab[,2])
@@ -168,6 +173,8 @@ cor(tab[,c(2,4,6)])
 pairs(tab[,c(2,4,6)])
 cor(tab[,c(1,3,5)])
 pairs(tab[,c(1,3,5)])
+
+apply(tab,2,median)
 
 # generally, more upregulation on chr 21 is linked to more downregulation on other chr
 cor(tab)
@@ -186,6 +193,8 @@ pairs(tab[,c(2,4,6)])
 cor(tab[,c(1,3,5)])
 pairs(tab[,c(1,3,5)])
 
+apply(tab,2,median)
+
 # generally, more upregulation on chr 21 is linked to more upregulation on other chr
 # neg corr seen in femur is due to a single outlier
 cor(tab)
@@ -195,7 +204,7 @@ plot(tab[,c(4,3)])
 plot(tab[,c(6,5)])
 par(mfrow=c(1,1))
 
-iter=1
+iter=2
 df.chr21 <- subset(res.df.all.lfc[[iter]],chromosome_name==21)
 df.not_chr21 <- subset(res.df.all.lfc[[iter]],chromosome_name!=21)
 cor.mat <- cor(df.chr21[,cell_type_groups],use='complete.obs')
@@ -212,12 +221,12 @@ t.test(cor.mat,na.rm=TRUE)
 
 ##########
 
-sampletype="Femur"
+sampletype="Liver"
 res.df.all.p <- readRDS(paste0("/Users/andrewmarderstein/Documents/Research/t21-proj/out/full/DE_pb_leiden_names/res.",sampletype,".p.rds"))
 res.df.all.lfc <- readRDS(paste0("/Users/andrewmarderstein/Documents/Research/t21-proj/out/full/DE_pb_leiden_names/res.",sampletype,".lfc.rds"))
 cell_type_groups <- colnames(res.df.all.p[[1]])[(which(colnames(res.df.all.p[[1]])=="names")+1):(which(colnames(res.df.all.p[[1]])=="chromosome_name")-1)]
 
-iter=3
+iter=2
 df1.p <- res.df.all.p[[iter]]
 df1.p.melt <- reshape2::melt(aggregate(df1.p[,cell_type_groups]<0.1,by=list(df1.p$chromosome_name),mean,na.rm=T),id.vars="Group.1")
 ggplot(df1.p.melt,aes(x=Group.1,y=variable,fill=value)) + 
@@ -244,6 +253,8 @@ ggplot(df1.lfc.perc.melt,aes(x=variable,fill=chr21,y=value)) +
 
 
 ##################
+
+# dbs <- listEnrichrDbs()
 
 cell_type <- "Early erythroid cells" # cell_type_groups[1]
 cell_type

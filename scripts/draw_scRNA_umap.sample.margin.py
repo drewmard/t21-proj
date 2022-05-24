@@ -89,47 +89,19 @@ for disease_status in ["DownSyndrome","Healthy"]:
             subDirec="umap_cluster"
             os.system("mkdir -p "+headdir + "/out/" + suffixDirec +"/" + subDirec)
 
-            fplotout=headdir + "/out/" + suffixDirec + "/" + subDirec + "/" + "10X_"+disease_status+"_"+sampletype+".umap"+".sample.pdf"
+            fplotout=headdir + "/out/" + suffixDirec + "/" + subDirec + "/" + "10X_"+disease_status+"_"+sampletype+".umap"+".sample.margin.pdf"
             # os.remove(fplotout)
             print("\n * Plotting & saving UMAP (numerical labels)... " + fplotout)
             f, axs = plt.subplots(1,1,figsize=(26,26))
             sns.set(font_scale=2)
             sns.set_style("white")
-            new_plot=sc.pl.umap(adata, color="sample", size=150, palette=myColors, components='1,2', ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
+            new_plot=sc.pl.umap(adata, color="sample", size=150, palette=myColors, components='1,2', ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="right margin")
             plt.tight_layout()
             plt.savefig(fplotout)
             plt.show()
             plt.close()
             print("\n * Plot saved.")
 
-            ##############################
-
-            for components_to_use in ["1,2","1,3","2,3"]:
-
-                  Name_components_to_use = components_to_use.replace(",",".")
-                  fplotout=headdir + "/out/" + suffixDirec + "/" + subDirec + "/" + "10X_"+disease_status+"_"+sampletype+".umap."+Name_components_to_use+".sample.pdf"
-                  print("\n * Plotting & saving UMAP..." + fplotout)
-                  f, axs = plt.subplots(1,1,figsize=(26,26))
-                  sns.set(font_scale=2)
-                  sns.set_style("white")
-                  sc.pl.umap(adata_3d, color="sample", size=150, palette=myColors, components=[components_to_use], ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
-                  plt.tight_layout()
-                  plt.savefig(fplotout)
-                  plt.show()
-                  plt.close()
-                  print("\n * Plot saved.")
-
-                  fplotout=headdir + "/out/" + suffixDirec + "/" + subDirec + "/" + "10X_"+disease_status+"_"+sampletype+".umap."+Name_components_to_use+".sample.no_legend.pdf"
-                  print("\n * Plotting & saving UMAP (no legend)..." + fplotout)
-                  f, axs = plt.subplots(1,1,figsize=(26,26))
-                  sns.set(font_scale=2)
-                  sns.set_style("white")
-                  new_plot=sc.pl.umap(adata_3d, color="sample", size=150, palette=myColors, components=[components_to_use], ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="None")
-                  plt.tight_layout()
-                  plt.savefig(fplotout)
-                  plt.show()
-                  plt.close()
-                  print("\n * Plot saved.")
 
 print("\n * Script complete...")
 
