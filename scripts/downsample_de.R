@@ -1,10 +1,12 @@
 # module load R/4.1.2
-# module load R/4.0.0
 
 library(Seurat)
 library(data.table)
 library(Matrix.utils)
 library( "DESeq2" )
+library('variancePartition')
+library('edgeR')
+library('BiocParallel')
 
 sampletype="Femur"
 subset_column="sample"
@@ -33,12 +35,6 @@ colnames(meta1.full)[6] <- "leiden_names"
 colnames(meta2.full)[6] <- "leiden_names"
 meta.all.full <- rbind(meta1.full,meta2.full)
 
-#
-print("Merge metadata...")
-x <- rbind(meta1,meta2)
-rownames(x) <- x[,subset_column]
-x$sorting[!(x$sorting %in% c("CD235a-","CD45+"))] <- "Other"
-
 
 print("cell types of interest...")
 clusters_for_DE <- cells1[cells1 %in% cells2]
@@ -66,7 +62,7 @@ f = paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/cellComp/10X
 meta1.full<-fread(f,data.table = F,stringsAsFactors = F)
 meta1.full$environment <- disease_status
 cells1 <- unique(meta1.full[,6])
-meta1 <- unique(meta1.full[,c("patient","sample","sorting")])
+meta1 <- unique(meta1.full[,c("patient","sample","sorting","environment")])
 # 
 print("Reading metadata2...")
 disease_status="DownSyndrome"
@@ -74,11 +70,16 @@ f = paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/cellComp/10X
 meta2.full<-fread(f,data.table = F,stringsAsFactors = F)
 meta2.full$environment <- disease_status
 cells2 <- unique(meta2.full[,6])
-meta2 <- unique(meta2.full[,c("patient","sample","sorting")])
+meta2 <- unique(meta2.full[,c("patient","sample","sorting","environment")])
 
 colnames(meta1.full)[6] <- "leiden_names"
 colnames(meta2.full)[6] <- "leiden_names"
 meta.all.full <- rbind(meta1.full,meta2.full)
+
+print("Merge metadata...")
+x <- rbind(meta1,meta2)
+rownames(x) <- x[,subset_column]
+x$sorting[!(x$sorting %in% c("CD235a-","CD45+"))] <- "Other"
 
 ########################################################################################################
 
@@ -161,6 +162,7 @@ df2 <- readRDS(file = fileName)
 # df2 <- NormalizeData(df2, normalization.method = "LogNormalize", scale.factor = 10000)
 colName2 <- paste0("leiden_v",max(as.numeric(substring(colnames(df2@meta.data)[grep("leiden_v",colnames(df2@meta.data))],nchar("leiden_v")+1)),na.rm=T))
 df2@meta.data["leiden_names"] <- df2@meta.data[colName2]
+df2@assays$RNA@key <- "RNA_"
 
 permNum=1
 print(permNum)
@@ -187,7 +189,7 @@ for (i in 1:nrow(t21_overview)) {
 #                     y=df2[,i2])
 
 #
-
+permNum=1
 for (permNum in 1:10) {
   print(permNum)
   
@@ -234,7 +236,7 @@ for (permNum in 1:10) {
   metadata_to_use <- x[rownames(x) %in% colnames(df.aggre),]
   df.aggre <- as.matrix(df.aggre[,match(rownames(metadata_to_use),colnames(df.aggre))])
   tab <- table(meta.all.full[meta.all.full[,"leiden_names"]==cell_type,'sample'])
-  samples_to_keep <- healthy_overview$sample[healthy_overview$x >= 10]
+  samples_to_keep <- rbind(healthy_overview,t21_overview)$sample[rbind(healthy_overview,t21_overview)$x >= 10]
   samples_to_keep <- samples_to_keep[samples_to_keep %in% rownames(metadata_to_use)]
   df.aggre <- df.aggre[,samples_to_keep,drop=FALSE]
   metadata_to_use <- metadata_to_use[samples_to_keep,]
