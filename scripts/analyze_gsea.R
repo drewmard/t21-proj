@@ -62,10 +62,13 @@ head(sort(table(x),decreasing = T))
 
 table(df.save$iter)
 table(df.save$subset_to_use)
-df.save[df.save$subset_to_use=="chr21_down",]
+table(subset(df.save,iter==2 & gene_set != "c8.all")[,c('subset_to_use','sampletype')])
 sort(table(df.save[df.save$subset_to_use=="chr21_up" & df.save$iter==2 & df.save$gene_set=="c2.all",'pathway']),decreasing = T)[1:5]
 sort(table(df.save[df.save$subset_to_use=="not_chr21_up" & df.save$iter==2 & df.save$gene_set=="c2.all",'pathway']),decreasing = T)[1:10]
 sort(table(df.save[df.save$subset_to_use=="not_chr21_down" & df.save$iter==2 & df.save$gene_set=="c2.all",'pathway']),decreasing = T)[1:10]
+
+y <- df.save[df.save$subset_to_use=="not_chr21_down" & df.save$iter==2 & df.save$gene_set != "c8.all",]
+y[order(y$padj)[1:13],c(1,3,7,9:13)]
 
 df.sub <- df.save[order(df.save$padj),c(1,3,7,9:13)]
 subset(df.sub,gene_set!="c8.all")[1:10,]
@@ -77,8 +80,8 @@ tab <- sort(table(df.save$pathway[df.save$gene_set=="c2.all"]),decreasing = T); 
 
 ####
 
-df.sub <- df.save[df.save$cell_type=="Early erythroid cells" & df.save$gene_set=="c2.all",c(1,3,7,9:13)]
-df.sub[order(df.sub$padj),][1:5,]
+df.sub <- df.save[df.save$cell_type=="Early erythroid cells" & df.save$gene_set!="c8.all" & df.save$iter==1,c(1,3,7,9:13)]
+df.sub[order(df.sub$padj),][1:15,]
 ###
 
 
@@ -90,7 +93,7 @@ iter=2
 subset(res.df.all.lfc[[iter]],names=="NDUFV3")
 
 
-df.save[df.save$pathway=="DIAZ_CHRONIC_MYELOGENOUS_LEUKEMIA_UP",c(1,3,7,9:13)]
+df.save[df.save$pathway=="DIAZ_CHRONIC_MYELOGENOUS_LEUKEMIA_UP" & df.save$iter==2,c(1,3,7,9:13)]
 df.save[df.save$pathway=="JAATINEN_HEMATOPOIETIC_STEM_CELL_DN",c(1,3,7,9:13)]
 df.save[df.save$pathway=="PILON_KLF1_TARGETS_UP",c(1,3,7,9:13)]
 df.save[df.save$pathway=="CAIRO_LIVER_DEVELOPMENT_DN",c(1,3,7,9:13)]
@@ -99,3 +102,5 @@ df.save[df.save$pathway=="HOUNKPE_HOUSEKEEPING_GENES",c(1,3,7,9:13)]
 df.save[df.save$pathway=="FISCHER_DREAM_TARGETS",c(1,3,7,9:13)]
 
 
+df.sub <- df.save[df.save$cell_type=="Late erythroid cells" & df.save$gene_set!="c8.all" & df.save$iter==2,c(1,3,7,9:13)]
+df.sub[order(df.sub$padj)[1:3],c(1,3,7,9:13)]

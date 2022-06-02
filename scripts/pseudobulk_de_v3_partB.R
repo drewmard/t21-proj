@@ -37,13 +37,12 @@ for (sampletype in c("Liver","Femur")) {
   x <- rbind(meta1,meta2)
   rownames(x) <- x[,subset_column]
   x$sorting[!(x$sorting %in% c("CD235a-","CD45+"))] <- "Other"
-  
-  
+
   print("cell types of interest...")
   clusters_for_DE <- cells1[cells1 %in% cells2]
   P <- length(clusters_for_DE)
   
-  cell_type=clusters_for_DE[1]
+  cell_type=clusters_for_DE[26]
   # iter=0; for (cell_type in clusters_for_DE) {
   for (cell_type in clusters_for_DE[c(19,25:length(clusters_for_DE))]) {
     iter = iter + 1
