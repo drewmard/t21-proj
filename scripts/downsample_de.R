@@ -176,15 +176,15 @@ for (i in 1:nrow(t21_overview)) {
   ind2.lst <- c(ind2.lst,sample(ind,t21_overview$x[i]))
 }
 
-dftmp <- df[,ind.lst]
-dfcombined <- merge(df[,ind.lst],
-                    y=df[,ind.lst])
-
-column_to_use="leiden_names"
-i1=which(as.character(df@meta.data[column_to_use][,1])==cell_type)
-i2=which(as.character(df2@meta.data[column_to_use][,1])==cell_type)
-dfcombined <- merge(df[,i1],
-                    y=df2[,i2])
+# dftmp <- df[,ind.lst]
+# dfcombined <- merge(df[,ind.lst],
+#                     y=df[,ind.lst])
+# 
+# column_to_use="leiden_names"
+# i1=which(as.character(df@meta.data[column_to_use][,1])==cell_type)
+# i2=which(as.character(df2@meta.data[column_to_use][,1])==cell_type)
+# dfcombined <- merge(df[,i1],
+#                     y=df2[,i2])
 
 #
 
@@ -203,25 +203,25 @@ for (permNum in 1:10) {
   }
   
   column_to_use="leiden_names"
-  i1=which(as.character(df@meta.data[column_to_use][,1])==cell_type)
-  i2=which(as.character(df2@meta.data[column_to_use][,1])==cell_type)
-  dfcombined <- merge(df[,i1],
-                      y=df2[,i2])
-  
+  # i1=which(as.character(df@meta.data[column_to_use][,1])==cell_type)
+  # i2=which(as.character(df2@meta.data[column_to_use][,1])==cell_type)
+  # dfcombined <- merge(df[,i1],
+  #                     y=df2[,i2])
+  # 
   dfcombined <- merge(df[,ind.lst],
                       y=df2[,ind2.lst])
-  dfcombined <- merge(df[,ind.lst],
-                      y=df[,ind.lst])
+  # dfcombined <- merge(df[,ind.lst],
+  #                     y=df[,ind.lst])
+  # 
+  # dftmp <- df[,ind.lst]
+  # dfcombined <- merge(dftmp,
+  #                     y=dftmp)
+  # 
+  # dfcombined <- merge(df2[,ind2.lst],
+  #                     y=df2[,ind2.lst])
+  # 
   
-  dftmp <- df[,ind.lst]
-  dfcombined <- merge(dftmp,
-                      y=dftmp)
-  
-  dfcombined <- merge(df2[,ind2.lst],
-                      y=df2[,ind2.lst])
-  
-  
-  dfcombined <- df[,ind.lst]
+  # dfcombined <- df[,ind.lst]
   df.aggre <- aggregate.Matrix(
     t(
       GetAssayData(object = dfcombined, slot = "counts", assay="RNA")
