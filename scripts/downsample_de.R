@@ -1,3 +1,6 @@
+# module load R/4.1.2
+# module load R/4.0.0
+
 library(Seurat)
 library(data.table)
 library(Matrix.utils)
@@ -124,7 +127,7 @@ for (patient_of_interest in patient_in_both) {
     healthy_overview <- rbind(healthy_overview,tmp)
   }
 }
-nrow(healthy_overview); nrow(healthy_summary)
+# nrow(healthy_overview); nrow(healthy_summary)
 
 # if (patient_in_both)
 # subset(new_t21_summary,patient%in% t21_summary$patient)
@@ -149,6 +152,7 @@ df <- readRDS(file = fileName)
 # df <- NormalizeData(df, normalization.method = "LogNormalize", scale.factor = 10000)
 colName1 <- paste0("leiden_v",max(as.numeric(substring(colnames(df@meta.data)[grep("leiden_v",colnames(df@meta.data))],nchar("leiden_v")+1)),na.rm=T))
 df@meta.data["leiden_names"] <- df@meta.data[colName1]
+df@assays$RNA@key <- "RNA_"
 
 disease_status="DownSyndrome"
 f=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_",disease_status,"_",sampletype,".umap2d.cells_removed")
@@ -157,6 +161,30 @@ df2 <- readRDS(file = fileName)
 # df2 <- NormalizeData(df2, normalization.method = "LogNormalize", scale.factor = 10000)
 colName2 <- paste0("leiden_v",max(as.numeric(substring(colnames(df2@meta.data)[grep("leiden_v",colnames(df2@meta.data))],nchar("leiden_v")+1)),na.rm=T))
 df2@meta.data["leiden_names"] <- df2@meta.data[colName2]
+
+permNum=1
+print(permNum)
+
+ind.lst <- c()
+for (i in 1:nrow(healthy_overview)) {
+  ind <- unname(which(df$sample==healthy_overview$sample[i] & df$patient==healthy_overview$patient[i] & df$leiden_names==cell_type))
+  ind.lst <- c(ind.lst,sample(ind,healthy_overview$x[i]))
+}
+ind2.lst <- c()
+for (i in 1:nrow(t21_overview)) {
+  ind <- unname(which(df2$sample==t21_overview$sample[i] & df2$patient==t21_overview$patient[i] & df2$leiden_names==cell_type))
+  ind2.lst <- c(ind2.lst,sample(ind,t21_overview$x[i]))
+}
+
+dftmp <- df[,ind.lst]
+dfcombined <- merge(df[,ind.lst],
+                    y=df[,ind.lst])
+
+column_to_use="leiden_names"
+i1=which(as.character(df@meta.data[column_to_use][,1])==cell_type)
+i2=which(as.character(df2@meta.data[column_to_use][,1])==cell_type)
+dfcombined <- merge(df[,i1],
+                    y=df2[,i2])
 
 #
 
@@ -174,8 +202,24 @@ for (permNum in 1:10) {
     ind2.lst <- c(ind2.lst,sample(ind,t21_overview$x[i]))
   }
   
+  column_to_use="leiden_names"
+  i1=which(as.character(df@meta.data[column_to_use][,1])==cell_type)
+  i2=which(as.character(df2@meta.data[column_to_use][,1])==cell_type)
+  dfcombined <- merge(df[,i1],
+                      y=df2[,i2])
+  
   dfcombined <- merge(df[,ind.lst],
                       y=df2[,ind2.lst])
+  dfcombined <- merge(df[,ind.lst],
+                      y=df[,ind.lst])
+  
+  dftmp <- df[,ind.lst]
+  dfcombined <- merge(dftmp,
+                      y=dftmp)
+  
+  dfcombined <- merge(df2[,ind2.lst],
+                      y=df2[,ind2.lst])
+  
   
   dfcombined <- df[,ind.lst]
   df.aggre <- aggregate.Matrix(
