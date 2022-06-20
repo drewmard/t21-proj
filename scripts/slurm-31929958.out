@@ -1,0 +1,24 @@
+Start
+Beginning script draw_scRNA_umap.sample.py
+Beginning script...
+Module loading completed.
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/data/t21/ScanpyObjects/10X_DownSyndrome_Femur.h5ad
+
+ * Saving 3d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_DownSyndrome_Femur.umap3d.cells_removed.h5ad
+Done.
+
+ * Saving 2d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_DownSyndrome_Femur.umap2d.cells_removed.h5ad
+Done.
+
+ * Script completed.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_DownSyndrome_Femur.umap.sample.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Femur.umap.1.2.sample.pdf
+Traceback (most recent call last):
+  File "draw_scRNA_umap.sample.py", line 109, in <module>
+    sc.pl.umap(adata_3d, color="sample", size=150, palette=colors_to_use, components=[components_to_use], ax=axs, show=False, use_raw=False, title=disease_status + ' ' + sampletype,legend_loc="on data")
+NameError: name 'colors_to_use' is not defined

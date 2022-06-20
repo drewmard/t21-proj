@@ -1,0 +1,32 @@
+Start
+Beginning script draw_scRNA_umap.sample.py
+Beginning script...
+Module loading completed.
+
+ * Reading in data.../oak/stanford/groups/smontgom/amarder/data/t21/ScanpyObjects/10X_DownSyndrome_Femur.h5ad
+
+ * Saving 3d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_DownSyndrome_Femur.umap3d.cells_removed.h5ad
+Done.
+
+ * Saving 2d data to file.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_DownSyndrome_Femur.umap2d.cells_removed.h5ad
+Done.
+
+ * Script completed.
+
+ * Plotting & saving UMAP (numerical labels)... /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_DownSyndrome_Femur.umap.sample.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP.../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Femur.umap.1.2.sample.pdf
+
+ * Plot saved.
+
+ * Plotting & saving UMAP (no legend).../oak/stanford/groups/smontgom/amarder/t21-proj/out/full/umap_cluster/10X_DownSyndrome_Femur.umap.1.2.sample.no_legend.pdf
+
+ * Plot saved.
+
+ * Script complete...
+Traceback (most recent call last):
+  File "draw_scRNA_umap.sample.py", line 134, in <module>
+    pdf.close()
+NameError: name 'pdf' is not defined
