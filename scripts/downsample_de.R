@@ -8,11 +8,12 @@ library('variancePartition')
 library('edgeR')
 library('BiocParallel')
 
+# first, we are going to read in 
+
 sampletype="Femur"
 subset_column="sample"
 
 print(sampletype)
-
 # 
 print("Reading metadata1...")
 disease_status="Healthy"
@@ -41,12 +42,6 @@ clusters_for_DE <- cells1[cells1 %in% cells2]
 P <- length(clusters_for_DE)
 
 cell_type="HSCs/MPPs"
-
-# mean(df$nCounts_RNA[df$patient_sample=="15633 F15633C"])
-# aggregate(df$nCounts_RNA,by=list(df$patient_sample),mean)
-# 
-# subset(df@meta.data,sample=="F15633S" & leiden_v9==cell_type)
-# subset(df@meta.data,sample=="F15657F" & leiden_v9==cell_type)
 
 tmp <- subset(meta.all.full,leiden_names==cell_type & environment=="Healthy"); 
 healthy_summary <- aggregate(tmp$patient,by=list(patient=tmp$patient,sample=tmp$sample),length)
@@ -142,7 +137,7 @@ for (patient_of_interest in patient_in_both) {
 
 ###########
 
-# cell_type_filename = gsub("/","_",cell_type)
+cell_type_filename = gsub("/","_",cell_type)
 
 sampletype="Liver"
 
@@ -164,19 +159,19 @@ colName2 <- paste0("leiden_v",max(as.numeric(substring(colnames(df2@meta.data)[g
 df2@meta.data["leiden_names"] <- df2@meta.data[colName2]
 df2@assays$RNA@key <- "RNA_"
 
-permNum=1
-print(permNum)
+# permNum=1
+# print(permNum)
 
-ind.lst <- c()
-for (i in 1:nrow(healthy_overview)) {
-  ind <- unname(which(df$sample==healthy_overview$sample[i] & df$patient==healthy_overview$patient[i] & df$leiden_names==cell_type))
-  ind.lst <- c(ind.lst,sample(ind,healthy_overview$x[i]))
-}
-ind2.lst <- c()
-for (i in 1:nrow(t21_overview)) {
-  ind <- unname(which(df2$sample==t21_overview$sample[i] & df2$patient==t21_overview$patient[i] & df2$leiden_names==cell_type))
-  ind2.lst <- c(ind2.lst,sample(ind,t21_overview$x[i]))
-}
+# ind.lst <- c()
+# for (i in 1:nrow(healthy_overview)) {
+#   ind <- unname(which(df$sample==healthy_overview$sample[i] & df$patient==healthy_overview$patient[i] & df$leiden_names==cell_type))
+#   ind.lst <- c(ind.lst,sample(ind,healthy_overview$x[i]))
+# }
+# ind2.lst <- c()
+# for (i in 1:nrow(t21_overview)) {
+#   ind <- unname(which(df2$sample==t21_overview$sample[i] & df2$patient==t21_overview$patient[i] & df2$leiden_names==cell_type))
+#   ind2.lst <- c(ind2.lst,sample(ind,t21_overview$x[i]))
+# }
 
 # dftmp <- df[,ind.lst]
 # dfcombined <- merge(df[,ind.lst],
@@ -190,20 +185,24 @@ for (i in 1:nrow(t21_overview)) {
 
 #
 permNum=1
-for (permNum in 1:10) {
+for (permNum in 1:50) {
   print(permNum)
-  
+  set.seed(permNum)
   ind.lst <- c()
   for (i in 1:nrow(healthy_overview)) {
     ind <- unname(which(df$sample==healthy_overview$sample[i] & df$patient==healthy_overview$patient[i] & df$leiden_names==cell_type))
-    ind.lst <- c(ind.lst,sample(ind,healthy_overview$x[i]))
+    ind.lst <- c(ind.lst,sample(ind,healthy_overview$x[i],replace = FALSE))
+    # ind.tmp <- ind[sample.int(length(ind),healthy_overview$x[i])]
+    # ind.lst <- c(ind.lst,ind.tmp)
   }
   ind2.lst <- c()
   for (i in 1:nrow(t21_overview)) {
     ind <- unname(which(df2$sample==t21_overview$sample[i] & df2$patient==t21_overview$patient[i] & df2$leiden_names==cell_type))
-    ind2.lst <- c(ind2.lst,sample(ind,t21_overview$x[i]))
+    ind2.lst <- c(ind2.lst,sample(ind,t21_overview$x[i],replace = FALSE))
+    # ind.tmp <- ind[sample.int(length(ind),t21_overview$x[i])]
+    # ind2.lst <- c(ind2.lst,ind.tmp)
   }
-  
+
   column_to_use="leiden_names"
   # i1=which(as.character(df@meta.data[column_to_use][,1])==cell_type)
   # i2=which(as.character(df2@meta.data[column_to_use][,1])==cell_type)
@@ -240,7 +239,7 @@ for (permNum in 1:10) {
   samples_to_keep <- samples_to_keep[samples_to_keep %in% rownames(metadata_to_use)]
   df.aggre <- df.aggre[,samples_to_keep,drop=FALSE]
   metadata_to_use <- metadata_to_use[samples_to_keep,]
-  
+
   # Standard usage of limma/voom
   geneExpr = DGEList( df.aggre )
   keep <- filterByExpr(geneExpr, group=metadata_to_use$environment)
@@ -253,15 +252,15 @@ for (permNum in 1:10) {
   param = SnowParam(8, "SOCK", progressbar=TRUE)
   
   # The variable to be tested must be a fixed effect
-  form <- ~ sampletype + patient + sorting
+  form <- ~ environment + patient + sorting
   if (length(unique(metadata_to_use$sorting))==1) {
-    form <- ~ sampletype + patient
+    form <- ~ environment + patient
   } 
   if (max(table(metadata_to_use$patient))<1.5) {
-    form <- ~ sampletype + sorting
+    form <- ~ environment + sorting
   }
   if (max(table(metadata_to_use$patient))<1.5 & length(unique(metadata_to_use$sorting))==1) {
-    form <- ~ sampletype
+    form <- ~ environment
   }
   
   # A positive FC is increased expression in the DS compared to healthy
@@ -282,6 +281,7 @@ for (permNum in 1:10) {
   
   # save:
   system("mkdir -p /oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_leiden_names_downsamp")
+  cell_type_filename = gsub("/","_",cell_type)
   f.out <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_leiden_names_downsamp/",sampletype,".",cell_type_filename,".",subset_column,".perm",permNum,".txt")
   fwrite(res.df,f.out,quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
   

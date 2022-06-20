@@ -72,6 +72,8 @@ lfc_for_gene_across_cell_types("SOD1","Liver")
 
 #####################
 
+library(cowplot)
+library(ggplot2)
 DEG_comparison <- function(sampletype) {
   
   res.df.all.p <- readRDS(paste0("/Users/andrewmarderstein/Documents/Research/t21-proj/out/full/DE_pb_leiden_names/res.",sampletype,".p.rds"))
@@ -143,7 +145,7 @@ DEG_comparison_chr21_v_notchr21 <- function(sampletype) {
     theme(panel.grid = element_blank(),
           plot.title=element_text(hjust=0.5)) +
     geom_smooth(method='loess',span=3,se=F,col='purple') + 
-    labs(x="% DEG per cell type (chr 21)",y="% DEG per cell type (not chr 21)",title="PB per-sample")
+    labs(x="% DEG per cell type (chr 21)",y="% DEG per cell type (not chr 21)",title=paste0(sampletype))
 }
 
 DEG_comparison_chr21_v_notchr21("Liver")

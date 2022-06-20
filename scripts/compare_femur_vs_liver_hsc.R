@@ -1,3 +1,5 @@
+library(tls)
+
 sampletype="Liver"
 res.df.all.p <- readRDS(paste0("/Users/andrewmarderstein/Documents/Research/t21-proj/out/full/DE_pb_leiden_names/res.",sampletype,".p.rds"))
 res.df.all.lfc <- readRDS(paste0("/Users/andrewmarderstein/Documents/Research/t21-proj/out/full/DE_pb_leiden_names/res.",sampletype,".lfc.rds"))
@@ -9,6 +11,7 @@ for (cell_type in cell_type_groups) {
   res.df.all.lfc[[1]][!(res.df.all.lfc[[1]][,'names']%in%keep_genes),cell_type] <- NA
 }
 
+res.df.all.lfc.liver <- res.df.all.lfc[[2]]
 df1 <- res.df.all.lfc[[2]][,c("names","HSCs_MPPs")]
 colnames(df1)[2] <- sampletype
 
@@ -33,6 +36,8 @@ ggplot(subset(df.mg,chromosome_name==21),aes(x=Femur,y=Liver)) +
   geom_abline(slope=1,intercept = 0) + 
   geom_smooth(method='lm') + 
   theme_bw()
+
+tls(y1~x1 - 1,data=data.frame(x1,y1))
 
 summary(lm(Femur~Liver,data=df.mg))
 summary(lm(Femur~Liver,data=subset(df.mg,chromosome_name==21)))

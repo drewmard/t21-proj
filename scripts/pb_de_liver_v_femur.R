@@ -46,8 +46,8 @@ for (sampletype in c("Liver","Femur")) {
   clusters_for_DE <- cells1[cells1 %in% cells2]
   P <- length(clusters_for_DE)
   
-  # cell_type="HSCs/MPPs"
-  cell_type="Megakaryocytes"
+  cell_type="HSCs/MPPs"
+  # cell_type="Megakaryocytes"
   # cell_type="Late erythroid cells"
   
   #
@@ -139,12 +139,12 @@ for (disease_status in c("Healthy","DownSyndrome")) {
                  values = res.df.all$names, 
                  mart = ensembl)
   df1 <- merge(res.df.all,annot[,c("hgnc_symbol","chromosome_name","start_position")],by.x="names",by.y="hgnc_symbol")
-  df1 <- df1[df1$chromosome_name %in% seq(1,22),]
-  df1$chromosome_name <- factor(df1$chromosome_name,levels=seq(1,22))
+  df1 <- df1[df1$chromosome_name %in% c(as.character(seq(1,22)),"X","Y"),]
+  # df1$chromosome_name <- as.factor(df1$chromosome_name)
   df1$chr21 <- factor(ifelse(df1$chromosome_name==21,'Chr 21','Not Chr 21'),levels=c('Not Chr 21','Chr 21'))
   res.df.all <- df1
-  # res.df.all[order(res.df.all$adj.P.Val)[1:2],]
-  # subset(res.df.all,names=="GATA1")
+  res.df.all[order(res.df.all$P.Value)[1:5],]
+  subset(res.df.all,names=="GATA1")
   # head(res.df.all)
   
   print(aggregate(res.df.all$adj.P.Val < 0.1,by=list(res.df.all$chromosome_name==21),mean))
