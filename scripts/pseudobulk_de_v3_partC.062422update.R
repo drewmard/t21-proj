@@ -12,7 +12,7 @@ for (disease_status in c("Healthy","DownSyndrome")) {
   
   # 
   print("Reading metadata1...")
-  sample_type="Liver"
+  sampletype="Liver"
   f = paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/cellComp/10X_",disease_status,"_",sampletype,".cellComp.csv")
   meta1<-fread(f,data.table = F,stringsAsFactors = F)
   cells1 <- unique(meta1[,6])
@@ -21,7 +21,7 @@ for (disease_status in c("Healthy","DownSyndrome")) {
   
   # 
   print("Reading metadata2...")
-  sample_type="Femur"
+  sampletype="Femur"
   f = paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/cellComp/10X_",disease_status,"_",sampletype,".cellComp.csv")
   meta2<-fread(f,data.table = F,stringsAsFactors = F)
   cells2 <- unique(meta2[,6])
@@ -57,9 +57,12 @@ for (disease_status in c("Healthy","DownSyndrome")) {
     param = SnowParam(8, "SOCK", progressbar=TRUE)
     
     # The variable to be tested must be a fixed effect
-    form <- ~ organ + sorting #+ patient
+    form <- ~ environment + (1|patient) 
+    
+    # The variable to be tested must be a fixed effect
+    form <- ~ environment + sorting #+ patient
     if (length(unique(metadata_to_use$sorting))==1 | length(unique(metadata_to_use$sorting)) > nrow(metadata_to_use)/2) {
-      form <- ~ organ
+      form <- ~ environment
     }
     
     # estimate weights using linear mixed model of dream

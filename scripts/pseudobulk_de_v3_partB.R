@@ -42,7 +42,7 @@ for (sampletype in c("Liver","Femur")) {
   clusters_for_DE <- cells1[cells1 %in% cells2]
   P <- length(clusters_for_DE)
   
-  cell_type=clusters_for_DE[26]
+  cell_type="HSCs/MPPs"
   # iter=0; for (cell_type in clusters_for_DE) {
   for (cell_type in clusters_for_DE[c(19,25:length(clusters_for_DE))]) {
     iter = iter + 1

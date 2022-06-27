@@ -56,13 +56,13 @@ df1.full.lfc[is.na(df1.full.lfc)] <- 0
 df1.full.p[is.na(df1.full.p)] <- 1
 df1.full.fdr[is.na(df1.full.fdr)] <- 1
 
-df1.full.fdr[order(df1.full.fdr$adj.P.Val),][1,]
-df1.full.p[order(df1.full.p$P.Value),][1,]
-df1.full.lfc[order(df1.full.p$P.Value),][1,]
-
-cor(df1.full.lfc$logFC[df1.full.p$P.Value < 0.05],df1.full.lfc$sim1[df1.full.p$P.Value < 0.05])
-t.test(abs(df1.full.lfc$logFC[df1.full.p$P.Value < 0.05]),abs(df1.full.lfc$sim1[df1.full.p$P.Value < 0.05]),paired=T)
-t.test(abs(df1.full.lfc$logFC[df1.full.fdr$adj.P.Val < 0.1]),abs(df1.full.lfc$sim1[df1.full.fdr$adj.P.Val < 0.1]),paired=T)
+# df1.full.fdr[order(df1.full.fdr$adj.P.Val),][1,]
+# df1.full.p[order(df1.full.p$P.Value),][1,]
+# df1.full.lfc[order(df1.full.p$P.Value),][1,]
+# 
+# cor(df1.full.lfc$logFC[df1.full.p$P.Value < 0.05],df1.full.lfc$sim1[df1.full.p$P.Value < 0.05])
+# t.test(abs(df1.full.lfc$logFC[df1.full.p$P.Value < 0.05]),abs(df1.full.lfc$sim1[df1.full.p$P.Value < 0.05]),paired=T)
+# t.test(abs(df1.full.lfc$logFC[df1.full.fdr$adj.P.Val < 0.1]),abs(df1.full.lfc$sim1[df1.full.fdr$adj.P.Val < 0.1]),paired=T)
 
 df1.full.fdr$med <- apply(df1.full.fdr[,3:ncol(df1.full.fdr)],1,median)
 df1.full.p$med <- apply(df1.full.p[,3:ncol(df1.full.p)],1,median)

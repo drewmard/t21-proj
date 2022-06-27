@@ -9,6 +9,7 @@ library('edgeR')
 library('BiocParallel')
 
 cell_type="HSCs/MPPs"
+cell_type="Cycling HSCs/MPPs"
 cell_type_filename = gsub("/","_",cell_type)
 
 for (sampletype in c("Liver","Femur")) {

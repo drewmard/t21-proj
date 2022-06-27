@@ -1,3 +1,5 @@
+# module load R/4.1.2
+
 library(data.table)
 library('variancePartition')
 library('edgeR')
@@ -145,13 +147,12 @@ for (disease_status in c("Healthy","DownSyndrome")) {
     res.df1$disease_status <- disease_status
 
     # print(head(res.df1))
-    # print(subset(res.df1,names%in%c("GATA1","APOC1","MYL4")))
-    # mean(res.df1$adj.P.Val < 0.1)
+    print(subset(res.df1,names%in%c("GATA1","APOC1","MYL4")))
+    mean(res.df1$adj.P.Val < 0.1)
     
     # print(subset(res.df1,names=="GATA1"))
     
     df1 <- merge(res.df1,geneAnnot[,c("hgnc_symbol","chromosome_name","start_position")],by.x="names",by.y="hgnc_symbol")
-    # df1$chromosome_name <- factor(df1$chromosome_name,levels=seq(1,22))
     df1$chr21 <- factor(ifelse(df1$chromosome_name=='21','Chr 21','Not Chr 21'),levels=c('Not Chr 21','Chr 21'))
     
     f.out=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_liver_v_femur/",cell_type_filename,'.',disease_status,'.txt')
