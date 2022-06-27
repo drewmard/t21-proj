@@ -16,7 +16,7 @@ for (sampletype in c("Liver","Femur")) {
   # disease_status="Healthy"
   for (disease_status in c("Healthy","DownSyndrome")) {
     print(paste(sampletype,disease_status))
-    if (toggle) {if (sampletype!="Liver" | disease_status!="DownSyndrome") {next}
+    if (toggle) {if (sampletype!="Liver" | disease_status!="DownSyndrome") {next}}
     f=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_",disease_status,"_",sampletype,".umap2d.cells_removed")
     fileName=paste0(f,".rds")
     df <- readRDS(file = fileName)
