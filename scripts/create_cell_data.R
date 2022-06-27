@@ -8,13 +8,14 @@ library('variancePartition')
 library('edgeR')
 library('BiocParallel')
 
-cell_type="HSCs/MPPs"
-cell_type="Cycling HSCs/MPPs"
+cell_type="HSCs/MPPs"; toggle=FALSE
+cell_type="Cycling HSCs/MPPs"; toggle=TRUE
 cell_type_filename = gsub("/","_",cell_type)
 
 for (sampletype in c("Liver","Femur")) {
   # disease_status="Healthy"
   for (disease_status in c("Healthy","DownSyndrome")) {
+    if (toggle) {if (sampletype!="Liver" | disease_status!="DownSyndrome") {next}
     f=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_",disease_status,"_",sampletype,".umap2d.cells_removed")
     fileName=paste0(f,".rds")
     df <- readRDS(file = fileName)
