@@ -4,7 +4,6 @@ library(cowplot)
 library(reshape2)
 df1.full.p <- fread("/Users/andrewmarderstein/Documents/Research/t21-proj/out/full/DE_pb_leiden_names_downsamp/DownSyndrome.HSCs_MPPs.sample.permALL.p.txt",data.table = F,stringsAsFactors = F)
 df1.full.fdr <- fread("/Users/andrewmarderstein/Documents/Research/t21-proj/out/full/DE_pb_leiden_names_downsamp/DownSyndrome.HSCs_MPPs.sample.permALL.fdr.txt",data.table = F,stringsAsFactors = F)
-df1.full.p$sim1[df1.full.p$names=="KLF1"] <- 0.04323491
 df1.full.lfc <- fread("/Users/andrewmarderstein/Documents/Research/t21-proj/out/full/DE_pb_leiden_names_downsamp/DownSyndrome.HSCs_MPPs.sample.permALL.lfc.txt",data.table = F,stringsAsFactors = F)
 
 
@@ -115,20 +114,21 @@ library("enrichR")
 df1.full.mg <- merge(df1.full.p,df1.full.lfc[,c("names","logFC.t21","logFC.h")],by='names')
 dbs <- c("GO_Molecular_Function_2021", "GO_Biological_Process_2021","ENCODE_and_ChEA_Consensus_TFs_from_ChIP-X")
 # gene_lst <- subset(df1.full.p,class=="environment-driven")$names# 
-gene_lst <- subset(df1.full.mg,class=="t21-induced" & logFC.t21 > 0)$names
-# gene_lst <- subset(df1.full.mg,class=="t21-induced" & logFC.t21 < 0)$names
+# gene_lst <- subset(df1.full.mg,class=="t21-induced" & logFC.t21 > 0)$names
+gene_lst <- subset(df1.full.mg,class=="t21-induced" & logFC.t21 < 0)$names
 # gene_lst <- subset(df1.full.p,class=="t21-induced")$names
 # gene_lst <- subset(df1.full.p,class=="t21-induced" & chromosome_name != 21)$names
 # subset(df1.full.p,class=="t21-reverted")$names
 enriched <- enrichr(gene_lst, dbs)
-y <- enriched[[dbs[1]]]; y$geneCt <- as.numeric(gsub("\\/[0-9]*","",y[,'Overlap'],fixed=F)); (subset(y,geneCt>3 & Adjusted.P.value<0.1))$Term
-y <- enriched[[dbs[2]]]; y$geneCt <- as.numeric(gsub("\\/[0-9]*","",y[,'Overlap'],fixed=F)); (subset(y,geneCt>3 & Adjusted.P.value<0.1))$Term
-y <- enriched[[dbs[3]]]; y$geneCt <- as.numeric(gsub("\\/[0-9]*","",y[,'Overlap'],fixed=F)); (subset(y,geneCt>3 & Adjusted.P.value<0.1))$Term
+y <- enriched[[dbs[1]]]; y$geneCt <- as.numeric(gsub("\\/[0-9]*","",y[,'Overlap'],fixed=F)); (subset(y,geneCt>=3 & Adjusted.P.value<0.1))$Term
+y <- enriched[[dbs[2]]]; y$geneCt <- as.numeric(gsub("\\/[0-9]*","",y[,'Overlap'],fixed=F)); (subset(y,geneCt>=3 & Adjusted.P.value<0.1))$Term
+y <- enriched[[dbs[3]]]; y$geneCt <- as.numeric(gsub("\\/[0-9]*","",y[,'Overlap'],fixed=F)); (subset(y,geneCt>=3 & Adjusted.P.value<0.1))$Term
 
 subset(y,Term=="myeloid cell differentiation (GO:0030099)")
 
-subset(df1.full.p,names=="BTG3")
+subset(df1.full.mg,names=="BTG3")
 subset(df1.full.p,names=="NFE2L2")
+
 
 subset(df1.full.lfc,names=="BTG3")
 
