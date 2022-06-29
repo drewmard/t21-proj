@@ -2,9 +2,10 @@ library(Seurat)
 library(data.table)
 
 for (sampletype in c("Femur","Liver")) {
-  for (disease_status in c("Healthy","DownSyndrome")) {
-    
-  disease_status="Healthy"
+  # for (disease_status in c("Healthy","DownSyndrome")) {
+  for (disease_status in c("DownSyndrome")) {
+  
+  # disease_status="DownSyndrome"
   f=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/10X_",disease_status,"_",sampletype,".umap2d.cells_removed")
   fileName=paste0(f,".rds")
   df <- readRDS(file = fileName)
