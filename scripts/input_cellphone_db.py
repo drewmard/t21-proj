@@ -17,7 +17,7 @@ disease_status = "Healthy"
 env = "Femur"
 
 for disease_status in ["DownSyndrome","Healthy"]:
-    for env in ["Liver","Femur"]:
+	for env in ["Liver","Femur"]:
 
 		savepath_counts = outdir + "/10X_" + disease_status + "_" + env + ".norm_count.txt"
 		savepath_meta = outdir + "/10X_" + disease_status + "_" + env + ".meta.txt"
