@@ -1,13 +1,15 @@
 library(Seurat)
+library(stringr)
+source("~/Documents/Research/Useful_scripts/rntransform.R")
+
 cell_type_filename="HSCs_MPPs"
 f.out=paste0("~/Documents/Research/t21-proj/out/full/data/cell_subset/",cell_type_filename,".all_sig_genes.rds")
 res <- fread("~/Documents/Research/t21-proj/out/full/DEG_list/liver_v_femur.txt",data.table = F,stringsAsFactors = F)
 dfcombined=readRDS(f.out)
 
-res <- fread("~/Documents/Research/t21-proj/out/full/DEG_list/t21_v_healthy.txt",data.table = F,stringsAsFactors = F)
-f.out=paste0("~/Documents/Research/t21-proj/out/full/data/cell_subset/",cell_type_filename,".all_sig_genes.t21.rds")
-dfcombined=readRDS(f.out)
-
+# res <- fread("~/Documents/Research/t21-proj/out/full/DEG_list/t21_v_healthy.txt",data.table = F,stringsAsFactors = F)
+# f.out=paste0("~/Documents/Research/t21-proj/out/full/data/cell_subset/",cell_type_filename,".all_sig_genes.t21.rds")
+# dfcombined=readRDS(f.out)
 
 upreg_t21_induced <- apply(apply(dfcombined[["RNA"]][subset(res,class=="t21-induced" & logFC.t21 > 0)$names,],1,scale),1,mean)
 aggregate(upreg_t21_induced,by=list(dfcombined$environment,dfcombined$organ),mean)
@@ -43,7 +45,6 @@ for (class_to_use in c("environment-driven","t21-induced")) {
   y <- rntransform(y)
   summary(lm(y~env*organ,dftmp <- data.frame(y=y,env=env,organ=dfcombined$organ)))
   
-  source("~/Documents/Research/Useful_scripts/rntransform.R")
   # ggplot(dftmp,aes(x=env,y=rntransform(y),col=organ)) + geom_boxplot()
   # 
   df.mg[[class_to_use]] = merge(aggregate(y,by=list(dfcombined$environment,dfcombined$organ),function(x) sd(x)/sqrt(length(input))),
@@ -63,7 +64,8 @@ for (class_to_use in c("environment-driven","t21-induced")) {
     geom_errorbar(aes(ymin=x.y-2*x.x,ymax=x.y+2*x.x),width=.2) + #,position=position_dodge(0.05)) +
     theme_bw() + theme(panel.grid = element_blank(),plot.title = element_text(hjust=0.5)) +
       labs(x="Environment",y="Average normalized expression (+/- 2 SE)",col="Disease status",title=str_to_title(class_to_use)) +
-    scale_x_continuous(labels=c("Femur","Liver"),breaks=c(1,2))
+    scale_x_continuous(labels=c("Femur","Liver"),breaks=c(1,2)) +
+    scale_color_brewer(palette = "Set1")
 
   # glst[[class_to_use]] <- ggplot(dftmp,aes(x=organ,y=rntransform(y),col=env)) + geom_boxplot() +
   #   theme_bw() + theme(panel.grid = element_blank()) +

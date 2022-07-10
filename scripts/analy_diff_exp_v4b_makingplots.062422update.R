@@ -204,12 +204,12 @@ DEG_comparison_chr21_v_notchr21("Femur")
 
 DEG_comparison_chrX_v_notchrX <- function(sampletype,chrNum) { 
   res.df.all.p <- fread(paste0("/Users/andrewmarderstein/Documents/Research/t21-proj/out/full/DE_pb_leiden_names/res.",sampletype,".FE.fdr.txt"),data.table = F,stringsAsFactors=F)
-  res.df.all.lfc <- fread(paste0("/Users/andrewmarderstein/Documents/Research/t21-proj/out/full/DE_pb_leiden_names/res.",sampletype,".FE.lfc.txt"),data.table = F,stringsAsFactors = F)
+  # res.df.all.lfc <- fread(paste0("/Users/andrewmarderstein/Documents/Research/t21-proj/out/full/DE_pb_leiden_names/res.",sampletype,".FE.lfc.txt"),data.table = F,stringsAsFactors = F)
   cell_type_groups <- colnames(res.df.all.p)[(which(colnames(res.df.all.p)=="names")+1):(which(colnames(res.df.all.p)=="chromosome_name")-1)]
   
-  x <- res.df.all.p
+  # if (chrNum!=21) {res.df.all.p <- subset(res.df.all.p,chromosome_name != 21)}
   # x <- aggregate(res.df.all.p[,cell_type_groups]<0.1,by=list(chr21=res.df.all.lfc$chromosome_name==21),mean,na.rm=T)
-  x <- aggregate(res.df.all.p[,cell_type_groups]<0.05,by=list(chr21=res.df.all.lfc$chromosome_name==chrNum),mean,na.rm=T)
+  x <- aggregate(res.df.all.p[,cell_type_groups]<0.05,by=list(chr21=res.df.all.p$chromosome_name==chrNum),mean,na.rm=T)
   rownames(x) <- x[,1]; x <- x[,-1]; x <- as.data.frame(t(x))
   colnames(x) <- c("Not Chr 21","Chr 21")
   
@@ -219,7 +219,8 @@ DEG_comparison_chrX_v_notchrX <- function(sampletype,chrNum) {
            theme(panel.grid = element_blank(),
                  plot.title=element_text(hjust=0.5)) +
            geom_smooth(method='loess',span=3,se=F,col='purple') + 
-           labs(x=paste0("% DEG per cell type (chr ",chrNum,")"),y=paste0("% DEG per cell type (not chr ",chrNum,")"),title=paste0(sampletype)))
+           # labs(x=paste0("% DEG per cell type (chr ",chrNum,")"),y=paste0("% DEG per cell type (not chr ",chrNum,")"),title=paste0(sampletype," chr",chrNum)))
+           labs(x=paste0("chr",chrNum),y=paste0("non-chr",chrNum,""),title=paste0(sampletype," chr",chrNum)))
 }
 
 glst <- list()

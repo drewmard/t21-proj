@@ -53,8 +53,8 @@ for disease_status in ["DownSyndrome","Healthy"]:
                   fout="10X_" + disease_status + "_" + sampletype + ".h5ad"
                   foutpath="/oak/stanford/groups/smontgom/amarder/data/t21/ScanpyObjects" + "/" + fout
 
-            print("\n * Reading in data..." + foutpath)
-            adata=sc.read_h5ad(foutpath)
+            # print("\n * Reading in data..." + foutpath)
+            # adata=sc.read_h5ad(foutpath)
 
             subDirec="data"
             os.system("mkdir -p "+headdir + "/out/" + suffixDirec +"/" + subDirec)
