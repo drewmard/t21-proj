@@ -3,9 +3,9 @@ env=Femur
 
 disease_status=$1
 envir=$2
+toSubsample=$3
 
-toSubsample=false
-numCells=10000
+numCells=108922 # Healthy Liver cell count
 
 headDir=/oak/stanford/groups/smontgom/amarder/t21-proj
 
@@ -24,10 +24,12 @@ count=${dir}/10X_${disease_status}_${envir}.norm_count.txt
 mkdir -p $outDir
 if [ "$toSubsample" = true ]; then
 
+echo "Running with subsampling..."
 cellphonedb method statistical_analysis $meta $count --counts-data hgnc_symbol --output-path $outDir --project-name ${disease_status}_${envir} --threshold 0.1 --threads 64 --subsampling --subsampling-log false --subsampling-num-cells $numCells
 
 else
 
+echo "Running with absolutely no subsampling whatsoever..."
 cellphonedb method statistical_analysis $meta $count --counts-data hgnc_symbol --output-path $outDir --project-name ${disease_status}_${envir} --threshold 0.1 --threads 64
 
 fi
