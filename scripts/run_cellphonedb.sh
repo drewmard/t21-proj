@@ -1,3 +1,5 @@
+#!/usr/bin/bash
+
 disease_status=Healthy
 env=Femur
 
