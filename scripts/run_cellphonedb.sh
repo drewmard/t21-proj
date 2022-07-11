@@ -1,5 +1,11 @@
 #!/usr/bin/bash
 
+# sbatch --account=smontgom --partition=batch --time=24:00:00 --mem=256G --nodes=1 --ntasks=1 --cpus-per-task=1 run_cellphonedb.sh DownSyndrome Liver true
+
+echo "Start"
+source /oak/stanford/groups/smontgom/amarder/bin/conda_init.sh
+conda activate cpdb
+
 disease_status=Healthy
 env=Femur
 
