@@ -76,6 +76,27 @@ x=1.3; pdf("~/Documents/Research/t21-proj/out/full/figures/deg_chrX.femur.pdf",w
 plot_grid(plotlist=glst[c(21,1)],nrow=1)
 dev.off()
 
+sampletype="Liver"
+chrNum=1
+
+for (sampletype in c("Liver","Femur")) {
+  for (chrNum in c(1,21)) {
+    
+    res.df.all.p <- fread(paste0("/Users/andrewmarderstein/Documents/Research/t21-proj/out/full/DE_pb_leiden_names/res.",sampletype,".FE.fdr.txt"),data.table = F,stringsAsFactors=F)
+    # res.df.all.lfc <- fread(paste0("/Users/andrewmarderstein/Documents/Research/t21-proj/out/full/DE_pb_leiden_names/res.",sampletype,".FE.lfc.txt"),data.table = F,stringsAsFactors = F)
+    cell_type_groups <- colnames(res.df.all.p)[(which(colnames(res.df.all.p)=="names")+1):(which(colnames(res.df.all.p)=="chromosome_name")-1)]
+    
+    # if (chrNum!=21) {res.df.all.p <- subset(res.df.all.p,chromosome_name != 21)}
+    # x <- aggregate(res.df.all.p[,cell_type_groups]<0.1,by=list(chr21=res.df.all.lfc$chromosome_name==21),mean,na.rm=T)
+    x <- aggregate(res.df.all.p[,cell_type_groups]<0.05,by=list(chr21=res.df.all.p$chromosome_name==chrNum),mean,na.rm=T)
+    rownames(x) <- x[,1]; x <- x[,-1]; x <- as.data.frame(t(x))
+    colnames(x) <- c("Not Chr 21","Chr 21")
+    
+    fwrite(x,file=paste0("/Users/andrewmarderstein/Documents/Research/t21-proj/out/full/DEG_comp_chrX_vs_notchrX/",sampletype,".chr",chrNum,".txt"),quote = F,na = "NA",sep = "\t",row.names = T,col.names = T)
+    
+  }
+}
+
 #########
 
 df <- fread("~/Documents/Research/t21-proj/out/full/data/CellCycle.stats.txt",data.table = F,stringsAsFactors = F)
@@ -190,4 +211,8 @@ print(g)
 dev.off()
 
 fwrite(ykeep,"~/Documents/Research/t21-proj/out/full/figures/t21_induced_gxe.csv",row.names = F)
+
+tmp=ykeep[,c("Set","Term","Adjusted.P.value")]
+tmp$neglog10FDR <- -log10(tmp$Adjusted.P.value)
+fwrite(tmp,"~/Documents/Research/t21-proj/out/full/figures/t21_induced_gxe.sub.csv",row.names = F)
 
