@@ -1,8 +1,14 @@
 #!/usr/bin/bash
 
 # sbatch --account=smontgom --partition=batch --time=48:00:00 --mem=256G --nodes=1 --ntasks=1 --cpus-per-task=64 run_cellphonedb.sh Healthy Liver false
+# sbatch --account=smontgom --partition=batch --time=7-1:00:00 --mem=500G --nodes=1 --ntasks=1 --cpus-per-task=5 run_cellphonedb.sh DownSyndrome Liver true
+# --nodes=1 --ntasks=1 --cpus-per-task=1
 
-echo "Start"
+echo "Amount of memory used: ${SLURM_MEM_PER_NODE}"
+echo "Amount of CPUs/cores requested: ${SLURM_CPUS_PER_TASK}"
+
+echo "Start:"
+
 source /oak/stanford/groups/smontgom/amarder/bin/conda_init.sh
 conda activate cpdb
 
@@ -33,7 +39,7 @@ mkdir -p $outDir
 if [ "$toSubsample" = true ]; then
 
 echo "Running with subsampling..."
-cellphonedb method statistical_analysis $meta $count --counts-data hgnc_symbol --output-path $outDir --project-name ${disease_status}_${envir} --threshold 0.1 --threads 64 --subsampling --subsampling-log false --subsampling-num-cells $numCells
+cellphonedb method statistical_analysis $meta $count --counts-data hgnc_symbol --output-path $outDir --project-name ${disease_status}_${envir} --threshold 0.1 --threads ${SLURM_CPUS_PER_TASK} --subsampling --subsampling-log false --subsampling-num-cells $numCells
 
 else
 
