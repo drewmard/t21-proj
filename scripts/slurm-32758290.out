@@ -1,0 +1,9 @@
+Start
+Running with subsampling...
+[ ][CORE][12/07/22-08:22:37][INFO] Initializing SqlAlchemy CellPhoneDB Core
+[ ][CORE][12/07/22-08:22:37][INFO] Using custom database at /home/amarder/.cpdb/releases/v4.0.0/cellphone.db
+[ ][APP][12/07/22-08:22:37][INFO] Launching Method cpdb_statistical_analysis_local_method_launcher
+[ ][APP][12/07/22-08:22:37][INFO] Launching Method _set_paths
+[ ][APP][12/07/22-08:22:37][INFO] Launching Method _load_meta_counts
+/var/spool/slurm/slurmd/job32758290/slurm_script: line 43: 60477 Killed                  cellphonedb method statistical_analysis $meta $count --counts-data hgnc_symbol --output-path $outDir --project-name ${disease_status}_${envir} --threshold 0.1 --threads 64 --subsampling --subsampling-log false --subsampling-num-cells $numCells
+slurmstepd: error: Detected 1 oom-kill event(s) in StepId=32758290.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.

@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-# sbatch --account=smontgom --partition=batch --time=24:00:00 --mem=256G --nodes=1 --ntasks=1 --cpus-per-task=1 run_cellphonedb.sh DownSyndrome Liver true
+# sbatch --account=smontgom --partition=batch --time=48:00:00 --mem=256G --nodes=1 --ntasks=1 --cpus-per-task=64 run_cellphonedb.sh Healthy Liver false
 
 echo "Start"
 source /oak/stanford/groups/smontgom/amarder/bin/conda_init.sh
@@ -38,7 +38,7 @@ cellphonedb method statistical_analysis $meta $count --counts-data hgnc_symbol -
 else
 
 echo "Running with absolutely no subsampling whatsoever..."
-cellphonedb method statistical_analysis $meta $count --counts-data hgnc_symbol --output-path $outDir --project-name ${disease_status}_${envir} --threshold 0.1 --threads 64
+cellphonedb method statistical_analysis $meta $count --counts-data hgnc_symbol --output-path $outDir --project-name ${disease_status}_${envir} --threshold 0.1 --threads ${SLURM_CPUS_PER_TASK}
 
 fi
 
