@@ -40,7 +40,7 @@ envir=Liver
 disease_status=DownSyndrome
 if [[ "$envir" == "Liver" && "$disease_status" == "DownSyndrome" ]]; then
 meta=${dir}/10X_${disease_status}_${envir}.meta.sub.txt
-count=${dir}/10X_${disease_status}_${envir}.norm_count.sub.txt
+count=${dir}/10X_${disease_status}_${envir}.norm_count.sub.csv
 fi
 
 mkdir -p $outDir
