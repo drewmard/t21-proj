@@ -47,10 +47,11 @@ mkdir -p $outDir
 if [ "$toSubsample" = true ]; then
 
 echo "Running with subsampling..."
-echo "Count file: $count"
 cellphonedb method statistical_analysis $meta $count --counts-data hgnc_symbol --output-path $outDir --project-name ${disease_status}_${envir} --threshold 0.1 --threads ${SLURM_CPUS_PER_TASK} --subsampling --subsampling-log false --subsampling-num-cells $numCells
 
 else
+
+echo "Count file: $count"
 
 echo "Running with absolutely no subsampling whatsoever..."
 cellphonedb method statistical_analysis $meta $count --counts-data hgnc_symbol --output-path $outDir --project-name ${disease_status}_${envir} --threshold 0.1 --threads ${SLURM_CPUS_PER_TASK}
