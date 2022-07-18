@@ -36,7 +36,9 @@ outDir=$headDir/$outmiddleDir
 meta=${dir}/10X_${disease_status}_${envir}.meta.txt
 count=${dir}/10X_${disease_status}_${envir}.norm_count.txt
 
-if [ "$envir" == "Liver" & "$disease_status" == "DownSyndrome" ]; then
+envir=Liver
+disease_status=DownSyndrome
+if [[ "$envir" == "Liver" && "$disease_status" == "DownSyndrome" ]]; then
 meta=${dir}/10X_${disease_status}_${envir}.meta.sub.txt
 count=${dir}/10X_${disease_status}_${envir}.norm_count.sub.txt
 fi
