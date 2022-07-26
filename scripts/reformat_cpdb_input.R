@@ -33,7 +33,7 @@ library(Seurat)
 library(Signac)
 library(data.table)
 
-source("~/Documents/Research/Useful_scripts/write_dgCMatrix_csv.R")
+source("/oak/stanford/groups/smontgom/amarder/etc/write_dgCMatrix_csv.R")
 
 headDir="/oak/stanford/groups/smontgom/amarder/t21-proj"
 subDirec="data"
@@ -44,7 +44,7 @@ outdir = paste0(headDir,"/out/full/cpdb_Data")
 disease_status = "DownSyndrome"
 env = "Liver"
 
-savepath_counts = paste0(outdir , "/10X_", disease_status ,"_" , env,".norm_count.sub.txt")
+savepath_counts = paste0(outdir , "/10X_", disease_status ,"_" , env,".norm_count.sub.csv")
 savepath_meta = paste0(outdir , "/10X_" , disease_status , "_" , env , ".meta.sub.txt")
 savepath_keep = paste0(outdir , "/10X_" , disease_status , "_" , env , ".keep.sub.txt")
 # data after filtering and normalising
@@ -72,25 +72,7 @@ df_meta = data.frame(Cell=rownames(adata@meta.data),cell_type=adata@meta.data[,"
 # fwrite(as.data.frame(adata@assays$RNA@counts),savepath_counts,quote = F,na = "NA",sep = '\t',row.names = T,col.names = T)
 # writeMM(adata@assays$RNA@counts,file=savepath_counts)
 # fwrite(as.matrix(adata@assays$RNA@counts),paste0(savepath_counts,".v2.txt"),quote = F,na = "NA",sep = '\t',row.names = T,col.names = T)
-write_dgCMatrix_csv(adata@assays$RNA@counts,savepath_counts)
+# write_dgCMatrix_csv(adata@assays$RNA@counts,savepath_counts)
+write_dgCMatrix_csv(adata[["RNA"]],savepath_counts)
 fwrite(df_meta,savepath_meta,quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
 fwrite(as.data.frame(keep),savepath_keep,quote = F,na = "NA",sep = '\t',row.names = F,col.names = F)
-
-df_expr_matrix = adata.norm.T
-# np.savetxt(savepath_counts, df_expr_matrix, delimiter='\t')
-
-df_expr_matrix = pd.DataFrame(df_expr_matrix.toarray())
-# Set cell ids as columns
-df_expr_matrix.columns = adata.obs.index
-# Genes should be either Ensembl IDs or gene names
-df_expr_matrix.set_index(adata.raw.var.index, inplace=True) 
-df_expr_matrix.to_csv(savepath_counts,sep='\t')
-
-# generating meta file
-a=[columnName[8:] for columnName in adata.obs.columns if 'leiden_v' in columnName]
-colName="leiden_v" , str(max([int(x) for x in a if x.isdigit()]))
-
-df_meta = pd.DataFrame(data={'Cell': list(adata.obs.index), 
-  'cell_type': list(adata.obs[colName])})
-df_meta.set_index('Cell',inplace=True)
-df_meta.to_csv(savepath_meta, sep='\t')
