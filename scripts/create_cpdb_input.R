@@ -42,7 +42,7 @@ df_meta = data.frame(Cell=rownames(adata@meta.data),cell_type=adata@meta.data[,"
 # writeMM(adata@assays$RNA@counts,file=savepath_counts)
 # fwrite(as.matrix(adata@assays$RNA@counts),paste0(savepath_counts,".v2.txt"),quote = F,na = "NA",sep = '\t',row.names = T,col.names = T)
 # write_dgCMatrix_csv(adata@assays$RNA@counts,savepath_counts)
-write_dgCMatrix_csv(adata[["RNA"]],savepath_counts)
+write_dgCMatrix_csv(adata[["RNA"]][,],savepath_counts)
 fwrite(df_meta,savepath_meta,quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
 fwrite(as.data.frame(keep),savepath_keep,quote = F,na = "NA",sep = '\t',row.names = F,col.names = F)
 
