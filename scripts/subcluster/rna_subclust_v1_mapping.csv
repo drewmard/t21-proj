@@ -1,0 +1,66 @@
+﻿Number,Name,Mclust
+0,Megakaryocytes,1
+1,Megakaryocytes,2
+2,Megakaryocytes,3
+3,Megakaryocytes,4
+4,Megakaryocytes,5
+5,Megakaryocytes,6
+6,Megakaryocytes,7
+7,Megakaryocytes,8
+8,B cells,1
+9,B cells,2
+10,B cells,3
+11,B cells,4
+12,B cells,5
+13,B cells,6
+14,B cells,7
+15,B cells,8
+16,Mast cells,1
+17,Mast cells,2
+18,Mast cells,3
+19,Mast cells,4
+20,Macrophages,1
+21,Macrophages,2
+22,Macrophages,3
+23,Macrophages,4
+24,Erythroid cells,1
+25,Erythroid cells,2
+26,Erythroid cells,3
+27,Erythroid cells,4
+28,Erythroid cells,5
+29,Erythroid cells,6
+30,Erythroid cells,7
+31,Erythroid cells,8
+32,Erythroid cells,9
+33,Erythroid cells,10
+34,HSCs/MPPs,1
+35,HSCs/MPPs,2
+36,HSCs/MPPs,3
+37,HSCs/MPPs,4
+38,HSCs/MPPs,5
+39,4,1
+40,4,2
+41,4,3
+42,4,4
+43,7,1
+44,7,2
+45,7,3
+46,7,4
+47,10,1
+48,10,2
+49,10,3
+50,10,4
+51,Neutrophils,1
+52,Neutrophils,2
+53,Neutrophils,3
+54,pDC,1
+55,pDC,2
+56,T cells,1
+57,T cells,2
+58,T cells,3
+59,0,1
+60,0,2
+61,0,3
+62,0,4
+63,LSECs,1
+64,Hepatocytes,1
