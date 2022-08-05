@@ -90,10 +90,10 @@ bigRNA.res <- NormalizeData(bigRNA.res,
 leidenNames = colnames(bigRNA.res@meta.data)[max(grep("leiden_v",colnames(bigRNA.res@meta.data)))]
 
 # dfcombined <- subset(dfcombined, subset = RNA_clusters %in% c(1,2,3,5,6,8,9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,27))
-smallRNA.res <- subset(smallRNA.res, subset = RNA_clusters %in% c(1,2,3,5,6,8,9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,27))
+smallRNA.res <- subset(smallRNA.res, subset = seurat_clusters %in% c(1,2,3,5,6,8,9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,27))
 # 0  4  7 10 25 26
 bigRNA.res@meta.data$leidenNames <- leidenNames
-bigRNA.res <- subset(bigRNA.res,leidenNames %in% subset(bigRNA.res@meta.data,!(cell_type_groups %in% c("Stroma")))$leidenNames)
+bigRNA.res <- subset(bigRNA.res,subset = leidenNames %in% subset(bigRNA.res@meta.data,!(cell_type_groups %in% c("Stroma")))$leidenNames)
 
 dim(bigRNA.res)
 dim(smallRNA.res)

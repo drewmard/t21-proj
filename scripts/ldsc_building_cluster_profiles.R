@@ -70,4 +70,29 @@ cluster_peaks <- CallPeaks(
 f.out = paste0(dir,"/output/data/",DATASET,"/celltype_peak_set.rds")
 saveRDS(cluster_peaks,f.out)
 
+library(rtracklayer)
+path = system.file(package="liftOver", "extdata", "hg38ToHg19.over.chain")
+ch = import.chain(path)
+
+# cluster_peaks = readRDS("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_h/celltype_peak_set.rds")
+dir.create(paste0(dir,"/output/data/",DATASET,"/ATAC_peaks"))
+for (ind in 1:length(cluster_peaks)) {
+  x <- cluster_peaks[[ind]]
+  x <- x[x@seqnames %in% paste0("chr",1:22),]
+  bed <- data.frame(chr=x@seqnames,start=x@ranges@start,end=end(x@ranges))
+  clustNum <- x$ident[1]
+  f.out <- paste0(dir,"/output/data/",DATASET,"/ATAC_peaks/RNA_",clustNum,".ATAC_peaks.hg38.bed")
+  fwrite(bed,file=f.out,quote = F,na = "NA",sep = "\t",row.names = F,col.names = F)
+  
+  seqlevelsStyle(x) = "UCSC"  # necessary
+  x19 = liftOver(x, ch)
+  x19 = unlist(x19)
+  genome(x19) = "hg19"
+  bed19 <- data.frame(chr=x19@seqnames,start=x19@ranges@start,end=end(x19@ranges))
+  f.out <- paste0(dir,"/output/data/",DATASET,"/ATAC_peaks/RNA_",clustNum,".ATAC_peaks.hg19.bed")
+  fwrite(bed19,file=f.out,quote = F,na = "NA",sep = "\t",row.names = F,col.names = F)
+}
+
+class(x19)
+
 
