@@ -37,7 +37,7 @@ multiomePath="/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/D
 smallRNA.path=paste0(multiomePath,"RNA_FindClusters.rds")
 smallRNA_meta.path=paste0(multiomePath,"RNA_meta_v1b.txt")
 smallATAC.path=paste0(multiomePath,"round2_FindClusters.GeneActivity_ChromVAR.rds")
-output.prefix <- paste0(multiomePath,"multiome_transfer")
+output.prefix <- paste0(multiomePath,"multiome_transfer.v2")
 output.seurat <- paste0(output.prefix, ".RNA.rds")
 output.anndata <- paste0(output.prefix, ".RNA.h5ad")
 
