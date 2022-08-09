@@ -87,16 +87,18 @@ bigRNA.res <- NormalizeData(bigRNA.res,
   RunPCA()
 
 # Harmonise big & small scRNA-seq data
-leidenNames = colnames(bigRNA.res@meta.data)[max(grep("leiden_v",colnames(bigRNA.res@meta.data)))]
 
 # dfcombined <- subset(dfcombined, subset = RNA_clusters %in% c(1,2,3,5,6,8,9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,27))
-smallRNA.res <- subset(smallRNA.res, subset = seurat_clusters %in% c(1,2,3,5,6,8,9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,27))
+smallRNA.res <- subset(smallRNA.res, subset = 
+                         seurat_clusters %in% c(1,2,3,5,6,8,9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,27,4,7,10))
 # 0  4  7 10 25 26
-bigRNA.res@meta.data$leidenNames <- leidenNames
+leidenNames = colnames(bigRNA.res@meta.data)[max(grep("leiden_v",colnames(bigRNA.res@meta.data)))]
+bigRNA.res@meta.data$leidenNames <- bigRNA.res@meta.data[,leidenNames]
 bigRNA.res <- subset(bigRNA.res,subset = leidenNames %in% subset(bigRNA.res@meta.data,!(cell_type_groups %in% c("Stroma")))$leidenNames)
 
 dim(bigRNA.res)
 dim(smallRNA.res)
+table(bigRNA.res@meta.data$leidenNames)
 
 anchors <- FindTransferAnchors(reference = bigRNA.res, query = smallRNA.res,scale = FALSE)
 predictions <- TransferData(anchorset = anchors, 
