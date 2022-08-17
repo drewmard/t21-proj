@@ -1,0 +1,74 @@
+Registered S3 method overwritten by 'spatstat.core':
+  method          from
+  formula.glmmPQL MASS
+Attaching SeuratObject
+Attaching sp
+[1] "Initial Multiome scATAC-seq dimension: 343860, 43504"
+[1] "Multiome scATAC-seq dimension after cell exclusion: 343860, 39555"
+[1] "Initial Multiome scRNA-seq dimension: 36601, 47377"
+[1] "Multiome scRNA-seq dimension after aligning with ATAC-seq: 36601, 39555"
+[1] "NormalizeData + FindVariableFeatures + ScaleData + RunPCA..."
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Centering and scaling data matrix
+  |                                                                              |                                                                      |   0%  |                                                                              |===================================                                   |  50%  |                                                                              |======================================================================| 100%
+PC_ 1 
+Positive:  MT1G, ALB, AFP, APOA1, MT1H, APOA2, AHSG, FABP1, TTR, MT2A 
+	   APOE, SERPINA1, MT1E, AMBP, APOB, APOC3, FGB, APOC1, TF, VTN 
+	   FGG, RBP4, APOH, GPC3, FGA, MT1X, CLU, MT1F, PEG10, AGT 
+Negative:  CORO1A, LSP1, SRGN, CD48, RPS20, HIST1H1E, FCER1G, PLAC8, EVI2B, MNDA 
+	   ARPC1B, CD52, HLA-DRA, RPS4Y1, TYROBP, SPI1, GLIPR1, SELL, HLA-DRB1, CSTA 
+	   NFKBIA, ATP2B1-AS1, LY86, CD74, HIST1H1D, SERPINB1, CAPG, BTG2, ALOX5AP, POU2F2 
+PC_ 2 
+Positive:  TMSB4X, MNDA, TYROBP, S100A11, CSTA, FCN1, NCF2, IGSF6, CTSS, S100A9 
+	   CEBPD, FGL2, ANXA1, CLEC7A, ATP2B1-AS1, PLBD1, LYZ, FCER1G, S100A8, CYBB 
+	   LGALS1, FOS, PILRA, C1orf162, JAML, S100A12, SAMHD1, FPR1, PLAUR, C19orf38 
+Negative:  KLF1, MYL4, HMGA1, HIST1H4C, CENPF, TYMS, PRDX2, FAM178B, HIST1H1B, RHAG 
+	   NME4, REXO2, DNAJC9, UROD, GATA1, TUBA1B, CNRIP1, KCNH2, GYPC, EPCAM 
+	   TPX2, BIRC5, SYNGR1, DHFR, UBE2T, NME1, CCNB2, HSPD1, GYPA, TMEM14B 
+PC_ 3 
+Positive:  TSPO, S100A6, MNDA, CSTA, VCAN, FCN1, LGALS1, LYZ, PLBD1, CST3 
+	   NCF2, RETN, IGSF6, S100A9, ANXA1, AC020656.1, VIM, PLAUR, S100A8, S100A12 
+	   FGL2, PAK1, C19orf38, CDA, S100A11, FPR1, CXCL8, PILRA, PADI4, CYBB 
+Negative:  GZMA, KLRB1, CST7, GZMM, NKG7, KLRC1, XCL2, CD247, IL2RB, TRBC1 
+	   KLRD1, GZMK, CCL5, TRDC, IFITM1, PRF1, CD3E, XCL1, PYHIN1, KLRF1 
+	   CD7, CTSW, CD160, CD3D, LCK, SAMD3, STK17A, RARRES3, TRBC2, CLIC3 
+PC_ 4 
+Positive:  APOC1, RBP4, MT1X, APOH, APOM, APOC3, TTR, FGG, GSTA1, AMBP 
+	   MT1F, MT1E, FGB, APOB, SERPINA1, FABP1, AHSG, APOE, MT1M, ITIH2 
+	   TF, ANGPTL3, FGA, AFP, VTN, MT1H, CYP3A7, APOA2, APOA1, AGT 
+Negative:  COL4A2, COL4A1, IGFBP7, NR2F2, COL14A1, COL6A3, COL6A2, SPARC, C11orf96, PTN 
+	   FBN1, FSTL1, COL1A2, COL5A1, BGN, NFIB, NR2F1, ASPN, SFRP1, LTBP4 
+	   DCN, PLAC9, ANK3, PDGFRB, LRRC17, SRPX, LIFR, POSTN, COL3A1, EDNRA 
+PC_ 5 
+Positive:  IGHM, CD79A, TCL1A, VPREB3, CD79B, MZB1, SPIB, FAM129C, CD24, IGLC2 
+	   FCRLA, IGKC, IGLL5, AFF3, CD72, MS4A1, LINC01781, IGLC3, IGHD, CCDC191 
+	   VPREB1, DTX1, BACH2, PAX5, CD19, PCDH9, POU2AF1, MME, SIT1, HLA-DRA 
+Negative:  SRGN, GZMA, KLRB1, NKG7, CST7, S100A6, GZMM, CCL4, CCL3, XCL2 
+	   IL2RB, TYROBP, KLRC1, BLVRB, CCL5, KLRD1, FCER1G, CD247, GZMK, TRDC 
+	   TRBC1, CTSW, HBG2, IFITM1, XCL1, KLRF1, CD160, PRF1, GIMAP7, GIMAP4 
+[1]  24578 108921
+[1] 36601 16892
+Performing PCA on the provided reference using 1977 features as input.
+Projecting cell embeddings
+Finding neighborhoods
+Finding anchors
+	Found 2006 anchors
+Filtering anchors
+	Retained 1024 anchors
+Finding integration vectors
+Finding integration vector weights
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Predicting cell labels
