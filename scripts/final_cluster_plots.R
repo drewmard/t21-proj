@@ -1,6 +1,6 @@
 # module load R/4.1.2
 library(Seurat)
-library(Signac)
+# library(Signac)
 library(data.table)
 library(ggplot2)
 
