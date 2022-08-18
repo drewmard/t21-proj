@@ -1,0 +1,66 @@
+Number,Name,Mclust,Final
+1,Megakaryocytes,1,Megakaryocytes
+2,Megakaryocytes,2,Megakaryocytes
+3,Megakaryocytes,3,Megakaryocytes
+4,Megakaryocytes,4,Megakaryocytes
+5,Megakaryocytes,5,MEMPs
+6,Megakaryocytes,6,Megakaryocytes
+7,Megakaryocytes,7,Megakaryocytes
+8,Megakaryocytes,8,Megakaryocytes
+9,B cells,1,B cells
+10,B cells,2,Pro B cells
+11,B cells,3,Pre pro B cells
+12,B cells,4,Pro B cells
+13,B cells,5,Pro B cells
+14,B cells,6,B cells
+15,B cells,7,B cells
+16,B cells,8,B cells
+17,Mast cells,1,Mast cells
+18,Mast cells,2,Mast cells
+19,Mast cells,3,Mast cells
+20,Mast cells,4,Mast cells
+21,Macrophages,1,Kupffer cells
+22,Macrophages,2,Inflammatory macrophages
+23,Macrophages,3,Kupffer cells
+24,Macrophages,4,Inflammatory macrophages
+25,Erythroid cells,1,MEMPs
+26,Erythroid cells,2,MEMPs
+27,Erythroid cells,3,MEMPs
+28,Erythroid cells,4,Early erythroid
+29,Erythroid cells,5,Early erythroid
+30,Erythroid cells,6,Late erythroid
+31,Erythroid cells,7,Late erythroid
+32,Erythroid cells,8,MEMPs
+33,Erythroid cells,9,MEMPs
+34,Erythroid cells,10,MEMPs
+35,HSCs/MPPs,1,HSC/MPPs
+36,HSCs/MPPs,2,HSC/MPPs
+37,HSCs/MPPs,3,HSC/MPPs
+38,HSCs/MPPs,4,HSC/MPPs
+39,HSCs/MPPs,5,HSC/MPPs
+40,4,1,NK cells
+41,4,2,NK cells
+42,4,3,NK cells
+43,4,4,NK cells
+44,7,1,Progenitors
+45,7,2,Monocyte progenitors
+46,7,3,cDCs
+47,7,4,Progenitors
+48,10,1,Lymphoid progenitors
+49,10,2,Lymphoid progenitors
+50,10,3,Lymphoid progenitors
+51,10,4,Granulocyte progenitors
+52,Neutrophils,1,Neutrophils
+53,Neutrophils,2,Neutrophils
+54,Neutrophils,3,Neutrophils
+55,pDC,1,pDCs
+56,pDC,2,pDCs
+57,T cells,1,NA
+58,T cells,2,NA
+59,T cells,3,NA
+60,0,1,NA
+61,0,2,NA
+62,0,3,NA
+63,0,4,NA
+64,LSECs,1,LSECs
+65,Hepatocytes,1,Hepatocytes
