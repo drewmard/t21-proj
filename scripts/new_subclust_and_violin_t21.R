@@ -73,7 +73,7 @@ meta = merge(meta,mapping,by.x="seurat_clusters",by.y="ClustNum")
 meta <- meta[order(meta$i),]
 rownames(meta) <- cellNames
 meta[is.na(meta$Name),"Name"] <- "No markers"
-y=as.character(unique(meta$Name))
+# y=as.character(unique(meta$Name))
 # meta$Name <- factor(meta$Name,levels=c(cellOrder[cellOrder %in% y],y[!(y %in% cellOrder)]))
 dfrna@meta.data <- meta
 
@@ -105,12 +105,48 @@ system(paste0("rm -r ",dir,"/output/data/",DATASET,"/clust_v3"))
 system(paste0("mkdir -p ",dir,"/output/data/",DATASET,"/clust_v3"))
 rng = seq(1,length(geneOrder));
 for (k in rng) {
-  f.out <- paste0(dir,"/output/data/",DATASET,"/clust/Violin.",geneOrder[k],".pdf")
+  f.out <- paste0(dir,"/output/data/",DATASET,"/clust_v3/Violin.",geneOrder[k],".pdf")
   print(paste0(k,": ",f.out))
   pdf(f.out,width=17,height=9)
   print(VlnPlot(dfrna,features=geneOrder[k],sort=TRUE) + NoLegend())
   dev.off()
 }
 
+f.out = paste0("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/",DATASET,"/RNA.meta.clust_v3.txt")
+fwrite(dfrna@meta.data,
+       f.out,
+       quote=F,na = "NA",sep = "\t",row.names = T,col.names = T)
+
+dfrna@meta.data$Name[dfrna@meta.data$Name=="Neutrophils,2"] <- "Granulocyte progenitors"
+dfrna@meta.data$Name[dfrna@meta.data$Name=="Neutrophils,1"] <- "Neutrophils"
+dfrna@meta.data$Name[dfrna@meta.data$Name=="Pro B cells,1"] <- "pre pro B cells"
+dfrna@meta.data$Name[dfrna@meta.data$Name=="Pro B cells,2"] <- "pro B cells"
+
+s="HSCs, MEMPs, Early erythroid, Cycling erythroid cells, Late erythroid cells, Mast cells, Megakaryocytes, Granulocyte progenitors, Neutrophils, Inflammatory macrophages, Kupffer cells, NK cells, T cells, pre pro B cells, pro B cells, pDCs, cDCs"
+cellOrder = unlist(strsplit(s,", "))
+unique(dfrna@meta.data$Name)[!unique(dfrna@meta.data$Name) %in% cellOrder]
+
+meta <- dfrna@meta.data
+y=as.character(unique(meta$Name))
+meta$Name <- factor(meta$Name,levels=rev(c(cellOrder[cellOrder %in% y],y[!(y %in% cellOrder)])))
+dfrna@meta.data <- meta
+
+Idents(dfrna) <- "Name"
+s="CD34, SPINK2, MLLT3, TESPA1, GATA2, GATA1, ALAS2, HBA1, HDC, ITGA2B, MPO, AZU1, SPI1, FCN1, IL1B, VCAN, CTSB, NKG7, PRF1, IL7R, RORC, PAX5, IGHM, IRF8, CLEC4C, CLEC10A, MKI67"
+geneOrder = unlist(strsplit(s,", "))
+
+f.out <- paste0(dir,"/output/data/",DATASET,"/RNA_dotplot.final.clust_v3.pdf")
+pdf(f.out,width = 17,height=5)
+print(
+  DotPlot(
+    dfrna[,!(dfrna@meta.data$Name %in% c("No markers","Unknown"))],
+    features=geneOrder,
+    col.min	= 0,
+    col.max = 1,
+    cluster.idents = FALSE
+  ) + 
+    theme(axis.text.x = element_text(angle = 90,vjust = 0.5, hjust=1))
+)
+dev.off()
 
 

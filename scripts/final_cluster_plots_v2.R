@@ -11,7 +11,7 @@ dfrna <- readRDS("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/da
 
 f <- "/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_h/RNA_meta_v1.txt"
 meta <- read.table(f,stringsAsFactors = F,header=T,sep='\t',row.names=1)
-f=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/subcluster/rna_subclust_v1_mapping_v2.csv")
+f=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/subcluster/rna_h_subclust_v1_mapping_v2.csv")
 mapping <- fread(f,stringsAsFactors = F,data.table = F)
 mapping$ClustName <- paste0(mapping$Number,":",mapping$Name,",",mapping$Mclust)
 meta2 <- meta
@@ -66,11 +66,29 @@ geneOrder=unlist(strsplit(gsub("\\ ","",geneOrder[,1]),","))
 genes.sub <- unique(geneOrder[geneOrder %in% rownames(dfrna)])
 y=as.character(unique(meta2$Final))
 cellLevels=c(cellOrder[cellOrder %in% y],y[!(y %in% cellOrder)])
+cellLevels <- rev(cellLevels)
 meta2$Final <- factor(as.character(meta2$Final),levels=cellLevels)
+
+meta2$FinalMg <- paste0(meta2$subclust_v1," (",meta2$Final,")")
 
 dfrna@meta.data <- meta2; #rm(meta); rm(meta2)
 
-Idents(dfrna) <- "Final"
+# Idents(dfrna) <- "Final"
+Idents(dfrna) <- "FinalMg"
+s <- "CD5L, IL3RA, SPIB, IL2RB, GZMM, KLRB1, TRBC1, IRF7, BLVRB, STAB1"
+geneOrder <- unlist(strsplit(s,", "))
+geneOrder <- geneOrder[geneOrder %in% rownames(dfrna)]
+
+system(paste0("rm -r ",dir,"/output/data/",DATASET,"/081722_clust"))
+system(paste0("mkdir -p ",dir,"/output/data/",DATASET,"/081722_clust"))
+rng = seq(1,length(geneOrder));
+for (k in rng) {
+  f.out <- paste0(dir,"/output/data/",DATASET,"/081722_clust/Violin.",geneOrder[k],".pdf")
+  print(paste0(k,": ",f.out))
+  pdf(f.out,width=17,height=9)
+  print(VlnPlot(dfrna,features=geneOrder[k],sort=TRUE) + NoLegend() + theme(axis.text.x=element_text(angle=90)))
+  dev.off()
+}
 
 
 print("Creating dotplot with clusters...")
