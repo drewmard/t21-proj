@@ -68,7 +68,7 @@ if (start <= 0 & end > 0) {
   cluster_peaks <- CallPeaks(
     object = dfatac,
     macs2.path = macs2_path,
-    group.by = "rna"
+    group.by = "rnacluster"
   )
   
   grange.use <- seqnames(cluster_peaks) %in% standardChromosomes(cluster_peaks)
