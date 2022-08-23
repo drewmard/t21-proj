@@ -13,6 +13,8 @@ library(pbmcapply)
 dir="/oak/stanford/groups/smontgom/amarder/neuro-variants"
 DATASET="DS_Multiome_h"
 
+dir.create(paste0(dir,"/output/data/",DATASET,"/FigR/"))
+
 dfrna <- readRDS(paste0("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/",DATASET,"/RNA_FindClusters.rds"))
 meta2 = fread(paste0("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/",DATASET,"/RNA_meta_v3.txt"),data.table = F,stringsAsFactors = F)
 rownames(meta2) <- meta2[,1]; meta2 <- meta2[,-1]
@@ -53,6 +55,7 @@ source("/oak/stanford/groups/smontgom/amarder/bin/FigR/R/cellPairing.R")
 
 source("/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/FigR/runGenePeakcorr.R")
 source("/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/FigR/PeakGeneCor.R")
+source("/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/FigR/getDORCScores.R")
 
 hg38TSSRanges = readRDS("/oak/stanford/groups/smontgom/amarder/bin/FigR/data/hg38TSSRanges.RDS")
 
@@ -62,31 +65,41 @@ cisCorr <- runGenePeakcorr(ATACdf = ATAC.tmp,
                                  genome = "hg38", # One of hg19, mm10 or hg38 
                                  nCores = 8,
                                  p.cut = NULL, # Set this to NULL and we can filter later
-                                 n_bg = 10)
-saveRDS(cisCorr,file="/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_h/HSC_MPPs.runGenePeakcorr.rds")
-# head(cisCorr)
-# 
-# cisCorr.filt <- cisCorr %>% filter(pvalZ <= 0.05)
-# 
-# dorcGenes <- dorcJPlot(dorcTab = cisCorr.filt,
-#                        cutoff = 10, # No. sig peaks needed to be called a DORC
-#                        labelTop = 20,
-#                        returnGeneList = TRUE, # Set this to FALSE for just the plot
-#                        force=2)
-# 
-# # Unfiltered
-# numDorcs <- cisCorr.filt %>% group_by(Gene) %>% tally() %>% arrange(desc(n))
-# numDorcs
-# 
-# 
-# dorcMat <- getDORCScores(ATAC.se = ATAC.se, # Has to be same SE as used in previous step
-#                          dorcTab = cisCorr.filt,
-#                          geneList = dorcGenes,
-#                          nCores = 4)
-# 
-# 
-# 
-# 
-# 
-# 
-# 
+                                 n_bg = 4)
+
+f.out=paste0(dir,"/output/data/",DATASET,"/FigR/HSC_MPPs.runGenePeakcorr.rds")
+saveRDS(cisCorr,file=f.out)
+head(cisCorr)
+
+cisCorr.filt <- cisCorr %>% filter(pvalZ <= 0.05)
+
+f.out=paste0(dir,"/output/data/",DATASET,"/FigR/HSC_MPPs.dorcJPlot.pdf")
+pdf(f.out,width = 6,height=6)
+print(dorcGenes <- dorcJPlot(dorcTab = cisCorr.filt,
+                       cutoff = 10, # No. sig peaks needed to be called a DORC
+                       labelTop = 20,
+                       returnGeneList = TRUE, # Set this to FALSE for just the plot
+                       force=2))
+dev.off()
+print(f.out)
+
+# Unfiltered
+numDorcs <- cisCorr.filt %>% group_by(Gene) %>% tally() %>% arrange(desc(n))
+numDorcs
+
+dorcMat <- getDORCScores(ATAC.se = ATAC.tmp, # Has to be same SE as used in previous step
+                         dorcTab = cisCorr.filt,
+                         geneList = dorcGenes,
+                         nCores = 4)
+
+dorcGenes <- dorcJPlot(dorcTab = cisCorr.filt,
+                       cutoff = 10, # No. sig peaks needed to be called a DORC
+                       labelTop = 20,
+                       returnGeneList = TRUE, # Set this to FALSE for just the plot
+                       force=2)
+
+
+
+
+
+
