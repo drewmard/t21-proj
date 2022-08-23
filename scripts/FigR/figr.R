@@ -2,6 +2,12 @@ library(Seurat)
 library(Signac)
 library(data.table)
 library(ggplot2)
+library(dplyr)
+library(FNN)
+library(chromVAR)
+library(doParallel)
+library(BuenColors)
+
 
 dir="/oak/stanford/groups/smontgom/amarder/neuro-variants"
 DATASET="DS_Multiome_h"
@@ -39,20 +45,22 @@ RNAmat <- dfrna[,cellsToKeep]
 RNAmat <- RNAmat[Matrix::rowSums(RNAmat)!=0,]
 
 # source("/oak/stanford/groups/smontgom/amarder/bin/FigR/R/")
-# source("/oak/stanford/groups/smontgom/amarder/bin/FigR/R/utils.R")
-# source("/oak/stanford/groups/smontgom/amarder/bin/FigR/R/FigR.R")
-# source("/oak/stanford/groups/smontgom/amarder/bin/FigR/R/DORCs.R")
-# source("/oak/stanford/groups/smontgom/amarder/bin/FigR/R/cellPairing.R")
+source("/oak/stanford/groups/smontgom/amarder/bin/FigR/R/utils.R")
+source("/oak/stanford/groups/smontgom/amarder/bin/FigR/R/FigR.R")
+source("/oak/stanford/groups/smontgom/amarder/bin/FigR/R/DORCs.R")
+source("/oak/stanford/groups/smontgom/amarder/bin/FigR/R/cellPairing.R")
 
-source("/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/bin/runGenePeakcorr.R")
+source("/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/FigR/runGenePeakcorr.R")
+source("/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/FigR/PeakGeneCor.R")
+
 hg38TSSRanges = readRDS("/oak/stanford/groups/smontgom/amarder/bin/FigR/data/hg38TSSRanges.RDS")
 
-cisCorr <- runGenePeakcorr(ATAC.se = ATAC.se,
-                                 RNAmat = RNAmat@assays$RNA@data,
+cisCorr <- runGenePeakcorr(ATACdf = ATAC.se,
+                                 RNAdf = RNAmat@assays$RNA@data,
                                  genome = "hg38", # One of hg19, mm10 or hg38 
                                  nCores = 8,
                                  p.cut = NULL, # Set this to NULL and we can filter later
-                                 n_bg = 100)
+                                 n_bg = 10)
 saveRDS(cisCorr,file="/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_h/HSC_MPPs.runGenePeakcorr.rds")
 # head(cisCorr)
 # 
