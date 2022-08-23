@@ -52,8 +52,7 @@ PeakGeneCor <- function(ATAC, # Normalized reads in peaks counts (rownames shoul
     
     time_elapsed <- Sys.time()
     
-    bgCor <- foreach(i=1:n_iter,.combine = 'cbind',
-                     .export = c("chunkCore","t"),.packages = c("pbmcapply","FigR","Matrix")) %do% {
+    bgCor <- foreach(i=1:n_iter,.combine = 'cbind') %do% {
                        OVdBg <- OVd[,1:2] # Initialize gene-peak pairing to observed
                        OVdBg$Peak <- bg[OVdBg$Peak,i] # Swap actual peaks with bg peaks for given iteration in pairing
                        bgCorList <- pbmcapply::pbmclapply(X=chunkList,

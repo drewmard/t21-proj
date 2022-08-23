@@ -7,7 +7,8 @@ library(FNN)
 library(chromVAR)
 library(doParallel)
 library(BuenColors)
-
+library(Matrix)
+library(pbmcapply)
 
 dir="/oak/stanford/groups/smontgom/amarder/neuro-variants"
 DATASET="DS_Multiome_h"
@@ -55,7 +56,8 @@ source("/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/FigR/PeakGeneCor.
 
 hg38TSSRanges = readRDS("/oak/stanford/groups/smontgom/amarder/bin/FigR/data/hg38TSSRanges.RDS")
 
-cisCorr <- runGenePeakcorr(ATACdf = ATAC.se,
+ATAC.tmp <- ATAC.se[1:10000,]
+cisCorr <- runGenePeakcorr(ATACdf = ATAC.tmp,
                                  RNAdf = RNAmat@assays$RNA@data,
                                  genome = "hg38", # One of hg19, mm10 or hg38 
                                  nCores = 8,
