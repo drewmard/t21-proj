@@ -4,8 +4,8 @@
 
 module load R/4.1.2
 dir=/oak/stanford/groups/smontgom/amarder/neuro-variants
-dataset=$1
-start=$2
-end=$3
+start=$1
+end=$2
+dataset=$3
 echo "Rscript /oak/stanford/groups/smontgom/amarder/t21-proj/scripts/RNA_cluster.peaks.R $dir $start $end $dataset"
 Rscript /oak/stanford/groups/smontgom/amarder/t21-proj/scripts/RNA_cluster.peaks.R $dir $start $end $dataset
