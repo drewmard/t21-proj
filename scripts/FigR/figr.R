@@ -11,6 +11,7 @@ library(Matrix)
 library(pbmcapply)
 library(SummarizedExperiment)
 
+NumBGPerm = 4
 dir="/oak/stanford/groups/smontgom/amarder/neuro-variants"
 DATASET="DS_Multiome_h"
 
@@ -73,7 +74,7 @@ cisCorr <- runGenePeakcorr(ATACdf = ATAC.tmp,
                                  genome = "hg38", # One of hg19, mm10 or hg38 
                                  nCores = 8,
                                  p.cut = NULL, # Set this to NULL and we can filter later
-                                 n_bg = 4)
+                                 n_bg = NumBGPerm)
 
 f.out=paste0(dir,"/output/data/",DATASET,"/FigR/HSC_MPPs.runGenePeakcorr.rds")
 saveRDS(cisCorr,file=f.out)
@@ -126,10 +127,23 @@ figR.d <- runFigRGRN(ATAC.se = ATAC.tmp, # Must be the same input as used in run
                      genome = "hg38",
                      dorcMat = dorcMat.s,
                      rnaMat = RNAmat.s, 
-                     nCores = numCores_to_use)
+                     nCores = numCores_to_use,
+                     n_bg = NumBGPerm)
 
-t(scale(Matrix::t(dorcMat.s)))
-FNN::get.knn(data = t(scale(Matrix::t(dorcMat))),k = 1)
+f.out=paste0(dir,"/output/data/",DATASET,"/FigR/HSC_MPPs.TF_DORC_scatter.pdf")
+pdf(f.out,width = 6,height=6)
+figR.d %>% 
+  ggplot(aes(Corr.log10P,Enrichment.log10P,color=Score)) + 
+  ggrastr::geom_point_rast(size=0.01,shape=16) + 
+  theme_classic() + 
+  scale_color_gradientn(colours = jdb_palette("solar_extra"),limits=c(-3,3),oob = scales::squish,breaks=scales::breaks_pretty(n=3))
+dev.off()
+
+f.out=paste0(dir,"/output/data/",DATASET,"/FigR/HSC_MPPs.TF_DORC_rank.pdf")
+pdf(f.out,width = 6,height=6)
+rankDrivers(figR.d,rankBy = "meanScore",interactive = FALSE)
+dev.off()
+
 
 
 
