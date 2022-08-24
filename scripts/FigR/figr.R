@@ -47,6 +47,12 @@ RNAmat <- dfrna[,cellsToKeep]
 # Remove genes with zero expression across all cells
 RNAmat <- RNAmat[Matrix::rowSums(RNAmat)!=0,]
 
+# Derive cell kNN using this
+set.seed(123)
+cellkNN <- get.knn(reducedDim(ATAC.tmp,"HARMONY"),k = 30)$nn.index
+rownames(cellkNN) <- cellsToKeep
+
+
 # source("/oak/stanford/groups/smontgom/amarder/bin/FigR/R/")
 source("/oak/stanford/groups/smontgom/amarder/bin/FigR/R/utils.R")
 source("/oak/stanford/groups/smontgom/amarder/bin/FigR/R/FigR.R")
@@ -55,6 +61,7 @@ source("/oak/stanford/groups/smontgom/amarder/bin/FigR/R/cellPairing.R")
 
 source("/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/FigR/runGenePeakcorr.R")
 source("/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/FigR/PeakGeneCor.R")
+source("/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/FigR/getDORCScores.R")
 source("/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/FigR/getDORCScores.R")
 
 hg38TSSRanges = readRDS("/oak/stanford/groups/smontgom/amarder/bin/FigR/data/hg38TSSRanges.RDS")
@@ -92,14 +99,36 @@ dorcMat <- getDORCScores(ATAC.se = ATAC.tmp, # Has to be same SE as used in prev
                          geneList = dorcGenes,
                          nCores = 4)
 
-dorcGenes <- dorcJPlot(dorcTab = cisCorr.filt,
-                       cutoff = 10, # No. sig peaks needed to be called a DORC
-                       labelTop = 20,
-                       returnGeneList = TRUE, # Set this to FALSE for just the plot
-                       force=2)
 
+# Smooth dorc scores using cell KNNs (k=30)
+dorcMat.s <- smoothScoresNN(NNmat = cellkNN[,1:30],mat = dorcMat,nCores = 4)
 
+# Smooth RNA using cell KNNs
+# This takes longer since it's all genes
+RNAmat.s <- smoothScoresNN(NNmat = cellkNN[,1:30],mat = RNAmat@assays$RNA@data,nCores = 16)
+# # Visualize on pre-computed UMAP
+# umap.d <- as.data.frame(colData(ATAC.se)[,c("UMAP1","UMAP2")])
+# 
+# # DORC score for Dlx3
+# dorcg <- plotMarker2D(umap.d,dorcMat.s,markers = c("Dlx3"),maxCutoff = "q0.99",colorPalette = "brewer_heat") + ggtitle("Dlx3 DORC")
+# 
+# # RNA for Dlx3
+# rnag <- plotMarker2D(umap.d,RNAmat.s,markers = c("Dlx3"),maxCutoff = "q0.99",colorPalette = "brewer_purple") + ggtitle("Dlx3 RNA")
+# 
+# library(patchwork)
+# dorcg + rnag
 
+numCores_to_use <- parallel::detectCores()
+figR.d <- runFigRGRN(ATAC.se = ATAC.tmp, # Must be the same input as used in runGenePeakcorr()
+                     dorcTab = cisCorr.filt, # Filtered peak-gene associations
+                     dorcK=min(30,nrow(dorcMat.s)-1),
+                     genome = "hg38",
+                     dorcMat = dorcMat.s,
+                     rnaMat = RNAmat.s, 
+                     nCores = numCores_to_use)
+
+t(scale(Matrix::t(dorcMat.s)))
+FNN::get.knn(data = t(scale(Matrix::t(dorcMat))),k = 1)
 
 
 
