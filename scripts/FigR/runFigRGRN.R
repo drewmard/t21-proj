@@ -70,7 +70,7 @@ runFigRGRN <- function(ATAC.se, # SE of scATAC peak counts. Needed for chromVAR 
   
   # Old motif naming convention
   if(all(grepl("_",names(pwm),fixed = TRUE)))
-    names(pwm) <- FigR::extractTFNames(names(pwm))
+    names(pwm) <- extractTFNames(names(pwm))
   
   message("Removing genes with 0 expression across cells ..\n")
   rnaMat <- rnaMat[Matrix::rowSums(rnaMat)!=0,]
@@ -124,7 +124,7 @@ runFigRGRN <- function(ATAC.se, # SE of scATAC peak counts. Needed for chromVAR 
                            if(usePeakNames)
                              DORCNNpeaks <- which(rownames(ATAC.se) %in% DORCNNpeaks) # Convert to index relative to input
                            
-                           mZ <- FigR::motifPeakZtest(peakSet = DORCNNpeaks,
+                           mZ <- motifPeakZtest(peakSet = DORCNNpeaks,
                                                       bgPeaks = bg,
                                                       tfMat = assay(motif_ix))
                            

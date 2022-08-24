@@ -62,7 +62,7 @@ source("/oak/stanford/groups/smontgom/amarder/bin/FigR/R/cellPairing.R")
 source("/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/FigR/runGenePeakcorr.R")
 source("/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/FigR/PeakGeneCor.R")
 source("/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/FigR/getDORCScores.R")
-source("/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/FigR/getDORCScores.R")
+source("/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/FigR/runFigRGRN.R")
 
 hg38TSSRanges = readRDS("/oak/stanford/groups/smontgom/amarder/bin/FigR/data/hg38TSSRanges.RDS")
 
