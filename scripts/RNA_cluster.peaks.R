@@ -11,6 +11,7 @@ library("TFBSTools")
 library(BSgenome.Hsapiens.UCSC.hg38)
 library(EnsDb.Hsapiens.v86)
 library(dplyr)
+library(harmony)
 
 dir="/oak/stanford/groups/smontgom/amarder/neuro-variants"
 DATASET="DS_Multiome_h"

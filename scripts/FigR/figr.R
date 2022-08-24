@@ -9,6 +9,7 @@ library(doParallel)
 library(BuenColors)
 library(Matrix)
 library(pbmcapply)
+library(SummarizedExperiment)
 
 dir="/oak/stanford/groups/smontgom/amarder/neuro-variants"
 DATASET="DS_Multiome_h"

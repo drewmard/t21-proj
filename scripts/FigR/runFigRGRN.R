@@ -115,35 +115,50 @@ runFigRGRN <- function(ATAC.se, # SE of scATAC peak counts. Needed for chromVAR 
   cl <- parallel::makeCluster(nCores)
   doSNOW::registerDoSNOW(cl)
   mZtest.list <- foreach(g=dorcGenes,
-                         .options.snow = opts,
-                         .packages = c("FigR", "dplyr","Matrix","Rmpfr")) %dopar%   {
-                           # Take peaks associated with gene and its k neighbors
-                           # Pool and use union for motif enrichment
-                           DORCNNpeaks <- unique(dorcTab$Peak[dorcTab$Gene %in% c(g,rownames(dorcMat)[DORC.knn[g,]])])
-                           
-                           if(usePeakNames)
-                             DORCNNpeaks <- which(rownames(ATAC.se) %in% DORCNNpeaks) # Convert to index relative to input
-                           
-                           mZ <- motifPeakZtest(peakSet = DORCNNpeaks,
-                                                      bgPeaks = bg,
-                                                      tfMat = assay(motif_ix))
-                           
-                           mZ <- mZ[,c("gene","z_test")]
-                           colnames(mZ)[1] <- "Motif"
-                           colnames(mZ)[2] <- "Enrichment.Z"
-                           mZ$Enrichment.P <- 2*pnorm(abs(mZ$Enrichment.Z),lower.tail = FALSE) # One-tailed
-                           mZ$Enrichment.log10P <- sign(mZ$Enrichment.Z) * -log10(mZ$Enrichment.P)
-                           mZ <- cbind("DORC"=g,mZ)
-                           # Correlate smoothed dorc with smoothed expression, with spearman
-                           corr.r <- cor(dorcMat[g,],t(as.matrix(rnaMat[mZ$Motif,])),method = "spearman")
-                           stopifnot(all.equal(colnames(corr.r),mZ$Motif))
-                           
-                           mZ$Corr <- corr.r[1,] # Correlation coefficient
-                           mZ$Corr.Z <- scale(mZ$Corr,center = TRUE,scale = TRUE)[,1] # Z-score among all TF correlations
-                           mZ$Corr.P <- 2*pnorm(abs(mZ$Corr.Z),lower.tail = FALSE) # One-tailed
-                           mZ$Corr.log10P <- sign(mZ$Corr.Z)*-log10(mZ$Corr.P)
-                           return(mZ)
-                         }
+                         .options.snow = opts ,
+                         .packages = c(
+                           "Seurat",
+                           "Signac",
+                           "data.table",
+                           "ggplot2",
+                           "dplyr",
+                           "FNN",
+                           "chromVAR",
+                           "doParallel",
+                           "BuenColors",
+                           "Matrix",
+                           "pbmcapply",
+                           "SummarizedExperiment"
+                         )
+  ) %dopar%   {
+    # Take peaks associated with gene and its k neighbors
+    # Pool and use union for motif enrichment
+    DORCNNpeaks <- unique(dorcTab$Peak[dorcTab$Gene %in% c(g,rownames(dorcMat)[DORC.knn[g,]])])
+    
+    if(usePeakNames)
+      DORCNNpeaks <- which(rownames(ATAC.se) %in% DORCNNpeaks) # Convert to index relative to input
+    
+    source("/oak/stanford/groups/smontgom/amarder/bin/FigR/R/utils.R")
+    mZ <- motifPeakZtest(peakSet = DORCNNpeaks,
+                         bgPeaks = bg,
+                         tfMat = assay(motif_ix))
+    
+    mZ <- mZ[,c("gene","z_test")]
+    colnames(mZ)[1] <- "Motif"
+    colnames(mZ)[2] <- "Enrichment.Z"
+    mZ$Enrichment.P <- 2*pnorm(abs(mZ$Enrichment.Z),lower.tail = FALSE) # One-tailed
+    mZ$Enrichment.log10P <- sign(mZ$Enrichment.Z) * -log10(mZ$Enrichment.P)
+    mZ <- cbind("DORC"=g,mZ)
+    # Correlate smoothed dorc with smoothed expression, with spearman
+    corr.r <- cor(dorcMat[g,],t(as.matrix(rnaMat[mZ$Motif,])),method = "spearman")
+    stopifnot(all.equal(colnames(corr.r),mZ$Motif))
+    
+    mZ$Corr <- corr.r[1,] # Correlation coefficient
+    mZ$Corr.Z <- scale(mZ$Corr,center = TRUE,scale = TRUE)[,1] # Z-score among all TF correlations
+    mZ$Corr.P <- 2*pnorm(abs(mZ$Corr.Z),lower.tail = FALSE) # One-tailed
+    mZ$Corr.log10P <- sign(mZ$Corr.Z)*-log10(mZ$Corr.P)
+    return(mZ)
+  }
   cat("Finished!\n")
   cat("Merging results ..\n")
   # Merge and save table for downstream filtering and plotting (network)
@@ -155,7 +170,8 @@ runFigRGRN <- function(ATAC.se, # SE of scATAC peak counts. Needed for chromVAR 
   # Here, we only sign by corr
   # Since sometimes we lose digit precision (1 - v small number is 1, instead of 0.9999999..)
   # Use Rmpfr, increase precision limits above default (100 here)
-  TFenrich.d <- TFenrich.d %>% dplyr::mutate("Score"=sign(Corr)*as.numeric(-log10(1-(1-Rmpfr::mpfr(Enrichment.P,100))*(1-Rmpfr::mpfr(Corr.P,100)))))
+  TFenrich.d <- TFenrich.d %>% dplyr::mutate("Score"=sign(Corr)*as.numeric(-log10(1-(1-(Enrichment.P))*(1-(Corr.P)))))
+  # TFenrich.d <- TFenrich.d %>% dplyr::mutate("Score"=sign(Corr)*as.numeric(-log10(1-(1-Rmpfr::mpfr(Enrichment.P,100))*(1-Rmpfr::mpfr(Corr.P,100)))))
   TFenrich.d$Score[TFenrich.d$Enrichment.Z < 0] <- 0
   TFenrich.d
 }
