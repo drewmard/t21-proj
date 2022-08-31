@@ -1,0 +1,4 @@
+DS_Multiome_h
+Rscript /oak/stanford/groups/smontgom/amarder/t21-proj/scripts/FigR/figr.R
+WARNING: ignoring environment value of R_HOME
+Fatal error: cannot open file '/oak/stanford/groups/smontgom/amarder/t21-proj/FigR/figr.R': No such file or directory
