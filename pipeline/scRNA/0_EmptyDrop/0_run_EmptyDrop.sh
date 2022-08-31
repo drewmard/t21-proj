@@ -5,5 +5,5 @@
 i=$1
 
 module load R/4.1.2
-echo "Rscript /Users/andrewmarderstein/Documents/Research/t21-proj/pipeline/scRNA/0_EmptyDrop/0_run_EmptyDrop.R $i"
-Rscript /Users/andrewmarderstein/Documents/Research/t21-proj/pipeline/scRNA/0_EmptyDrop/0_run_EmptyDrop.R $i
+echo "Rscript /oak/stanford/groups/smontgom/amarder/t21-proj/pipeline/scRNA/0_EmptyDrop/0_run_EmptyDrop.R $i"
+Rscript /oak/stanford/groups/smontgom/amarder/t21-proj/pipeline/scRNA/0_EmptyDrop/0_run_EmptyDrop.R $i
