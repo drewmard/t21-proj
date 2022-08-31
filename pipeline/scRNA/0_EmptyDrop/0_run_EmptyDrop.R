@@ -20,9 +20,10 @@ dir.create(file.path(pltPath))
 
 flist <- list.files(globalPath)
 args <- commandArgs(TRUE)
-i=args[1]
+i=(args[1])
+i=as.numeric(i)
 print("running...")
-sampleName = flist[args[1]]
+sampleName = flist[i]
 print(i)
 print(sampleName)
 # for (sampleName in flist[1]) { 
