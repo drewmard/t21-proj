@@ -26,10 +26,12 @@ samplePath <- paste(sampleName, "/raw_feature_bc_matrix/", sep="")
 fname <- paste(globalPath, samplePath, sep="")
 
 # Read from the 10X counts matrix
+print("Read from the 10X counts matrix")
 sce   <- read10xCounts(fname, col.names=TRUE)
 set.seed(100)
 
 # Cell barcode ranking
+print("Cell barcode ranking")
 bcrank = NULL
 # Alternative ranking if a lower bound is specified
 if (grepl("LowerBound", sampleName, fixed=TRUE)) {
@@ -40,10 +42,12 @@ if (grepl("LowerBound", sampleName, fixed=TRUE)) {
 }
 
 # Running EmptyDrops
+print("Running EmptyDrops")
 e.out  <- emptyDrops(counts(sce))
 # Keep cell rows of the matix with low false discovery rate
 is.cell = (e.out$FDR <= 0.001)
 
+print("Plotting...")
 # Only showing unique points for plotting speed.
 uniq <- duplicated(bcrank$rank)
 plt1 <- paste(pltPath, "Rank_vs_UMI_", sampleName, ".png", sep="")
@@ -65,6 +69,7 @@ abline(v = metadata(bcrank)$knee, col="dodgerblue")
 legend("bottomright", legend=c("Inflection", "Knee"), bty="n", col=c("darkgreen", "dodgerblue"), lty=1, cex=1.2)
 dev.off()
 
+print("Subset...")
 w2kp = which(is.cell & e.out$Total >= metadata(bcrank)$inflection)
 sce = sce[,w2kp]
 
@@ -78,6 +83,7 @@ if (dir.exists(fname2)) {
   dir.create(file.path(fname2)) 
 }
 
+print("Saving...")
 write10xCounts(fname2,
                sce@assays@data$counts,
                barcodes    = colData(sce)$Barcode,
