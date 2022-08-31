@@ -20,7 +20,11 @@ dir.create(file.path(pltPath))
 
 flist <- list.files(globalPath)
 args <- commandArgs(TRUE)
+i=args[1]
+print("running...")
 sampleName = flist[args[1]]
+print(i)
+print(sampleName)
 # for (sampleName in flist[1]) { 
 samplePath <- paste(sampleName, "/raw_feature_bc_matrix/", sep="")
 fname <- paste(globalPath, samplePath, sep="")
