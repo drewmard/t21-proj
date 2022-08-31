@@ -7,4 +7,4 @@ dir=/oak/stanford/groups/smontgom/amarder/neuro-variants
 dataset=$1
 echo $dataset
 echo "Rscript /oak/stanford/groups/smontgom/amarder/t21-proj/scripts/FigR/figr.R"
-Rscript /oak/stanford/groups/smontgom/amarder/t21-proj/FigR/figr.R 
+Rscript /oak/stanford/groups/smontgom/amarder/t21-proj/scripts/FigR/figr.R 
