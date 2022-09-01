@@ -949,9 +949,9 @@ patientMetadata = {
 
 import csv
 import os
+fpath="/Users/andrewmarderstein/Downloads/patientMetadata"
 fout=fpath+"/metadata.csv"
 os.remove(fout)
-w="/Users/andrewmarderstein/Downloads/patientMetadata"
 for keys in patientMetadata:
    for subkeys in patientMetadata[keys]:
       fout=fpath+"/metadata.csv"
@@ -961,9 +961,9 @@ for keys in patientMetadata:
       fout=fpath+"/"+str(keys)+"_"+str(subkeys)+"_metadata.csv"
       print(fout)
       with open(fout, 'w',newline='') as f:  # You will need 'wb' mode in Python 2.x
-          w = csv.DictWriter(f, patientMetadata[15657]['F15657G'].keys())
+          w = csv.DictWriter(f, patientMetadata[keys][subkeys].keys())
           w.writeheader()
-          w.writerow(patientMetadata[15657]['F15657G'])
+          w.writerow(patientMetadata[keys][subkeys])
 
 
 
