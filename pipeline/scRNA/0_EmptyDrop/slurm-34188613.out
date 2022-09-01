@@ -1,4 +1,4 @@
-Rscript /oak/stanford/groups/smontgom/amarder/t21-proj/pipeline/scRNA/0_EmptyDrop/0_run_EmptyDrop.R 2
+Rscript /oak/stanford/groups/smontgom/amarder/t21-proj/pipeline/scRNA/0_EmptyDrop/0_run_EmptyDrop.R 16
 WARNING: ignoring environment value of R_HOME
 Loading required package: SingleCellExperiment
 Loading required package: SummarizedExperiment
@@ -91,8 +91,17 @@ The following objects are masked from ‘package:S4Vectors’:
 
     first, second
 
-Error: BiocParallel errors
-  1 remote errors, element index: 1
-  0 unevaluated and other errors
-  first remote error: cannot find '/oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/NA/raw_feature_bc_matrix//barcodes.tsv' or its gzip-compressed form
-Execution halted
+[1] "running..."
+[1] 16
+[1] "cellranger310_count_H2NVKDSX2_L15636_B_GRCh38-3_0_0"
+[1] "Read from the 10X counts matrix"
+[1] "Cell barcode ranking"
+[1] "Running EmptyDrops"
+[1] "Plotting..."
+null device 
+          1 
+null device 
+          1 
+[1] "Subset..."
+[1] "Creating folder /outputEmptyDrops..."
+[1] "Saving..."
