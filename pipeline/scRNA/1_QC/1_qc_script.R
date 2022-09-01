@@ -37,8 +37,8 @@ for (i in c(1:length(samp_lst))) {
   if (!file.exists(f.out)) {print(i)}
 }
 
-# for (i in c(1:length(samp_lst))) {
-for (i in c(85,86,88)) {
+for (i in c(1:length(samp_lst))) {
+# for (i in c(85,86,88)) {
   tryCatch({
   samp <- samp_lst[[i]]
   print(paste0("Reading data from ",i,"/",length(samp_lst),": ",samp," ..."))
