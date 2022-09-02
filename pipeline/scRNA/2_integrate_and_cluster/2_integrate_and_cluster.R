@@ -1,13 +1,17 @@
+##########
+
+library(Seurat)
+library(harmony)
+library(ggplot2)
+library(data.table)
+
+###########
+
 # PARAM:
 
 NUM_HVG=10000
 
-##########
-
-library(ggplot2)
-library(Seurat)
-library(data.table)
-library(harmony)
+#############
 
 # dir=args[1]
 # start=args[2]
@@ -41,12 +45,12 @@ metadata <- metadata[ind,]
 
 #################
 
-# for (i in 1:length(samp_lst)) {
-#   samp <- samp_lst[[i]]
-#   print(paste0("Reading data from ",i,"/",length(samp_lst),": ",samp," ..."))
-#   f=paste0(samp,"/seurat_obj.rds")
-#   if (!dir.exists(samp)) {print(paste0(i,": ",samp))}
-# }
+for (i in 1:length(samp_lst)) {
+  samp <- samp_lst[[i]]
+  # print(paste0("Reading data from ",i,"/",length(samp_lst),": ",samp," ..."))
+  f=paste0(samp,"/seurat_obj.rds")
+  if (!dir.exists(samp)) {print(paste0(i,": ",samp))}
+}
 
 if (start==1) {
   
