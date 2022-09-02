@@ -38,19 +38,18 @@ metadata <- fread(f.metadata,data.table = F,stringsAsFactors = F,header=T,sep='\
 #################
 
 # Subset:
-ind <- which(metadata$ID1 %in% c(15633,15593))
-samp_lst <- samp_lst[ind]
-samp_ids <- samp_ids[ind]
-metadata <- metadata[ind,]
+# ind <- which(metadata$ID1 %in% c(15633,15593))
+# samp_lst <- samp_lst[ind]
+# samp_ids <- samp_ids[ind]
+# metadata <- metadata[ind,]
 
 #################
 
-for (i in 1:length(samp_lst)) {
-  samp <- samp_lst[[i]]
-  # print(paste0("Reading data from ",i,"/",length(samp_lst),": ",samp," ..."))
-  f=paste0(samp,"/seurat_obj.rds")
-  if (!dir.exists(samp)) {print(paste0(i,": ",samp))}
-}
+# for (i in 1:length(samp_lst)) {
+#   samp <- samp_lst[[i]]
+#   f=paste0(samp,"/seurat_obj.rds")
+#   if (!file.exists(samp)) {print(paste0(i,": ",samp))}
+# }
 
 if (start==1) {
   
