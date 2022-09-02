@@ -16,8 +16,34 @@ print("read_10X_and_saveRNAcounts...")
 
 fpath <- "/oak/stanford/groups/smontgom/amarder/data/t21/Cellranger"
 flist <- list.files(fpath)
-samp_lst <- paste0(fpath,"/",flist)
+flist=read.table(text="cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_L15593_E_GRCh38-3_0_0
+cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_L15593_F_GRCh38-3_0_0
+cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_L15633_A_GRCh38-3_0_0
+cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_L15636_B_GRCh38-3_0_0
+cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_L15636_C_GRCh38-3_0_0
+cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_L15636_D_GRCh38-3_0_0
+cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_T21_15619_A_GRCh38-3_0_0
+cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_T21_15619_B_GRCh38-3_0_0
+cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_T21_15619_C_GRCh38-3_0_0
+cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_T21_15619_E_GRCh38-3_0_0
+cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_15646A_GRCh38-3_0_0
+cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_15646B_GRCh38-3_0_0
+cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_15656D_GRCh38-3_0_0
+cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_15667E_GRCh38-3_0_0
+cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_15667F_GRCh38-3_0_0
+cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_15669G_GRCh38-3_0_0
+cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_15669H_GRCh38-3_0_0
+cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_15712_A_GRCh38-3_0_0
+cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_15712_B_GRCh38-3_0_0
+cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_F15633_C_GRCh38-3_0_0
+cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_F15669F_GRCh38-3_0_0
+cellranger310_count_H5KT2DSX2_and_HJJ3FDRXY_F15657G_GRCh38-3_0_0
+cellranger310_count_HCCVYDSX2_and_HJJ3FDRXY_F15781B_GRCh38-3_0_0
+cellranger310_count_HFVYKDSX2_and_37323_T21_15582_E_GRCh38-3_0_0
+cellranger310_count_HFVYKDSX2_and_37323_T21_15582_F_GRCh38-3_0_0
+")[,1]
 
+samp_lst <- paste0(fpath,"/",flist)
 
 if (seqDataType=="scRNA-seq") {
   topDir="outputEmptyDrops"
@@ -27,13 +53,9 @@ if (seqDataType=="scRNA-seq") {
 
 # need to do 40, 45, 52, 53
 
-
-fpath <- "/oak/stanford/groups/smontgom/amarder/data/t21/Cellranger"
-flist <- list.files(fpath)
-samp_lst <- paste0(fpath,"/",flist)
 for (i in c(1:length(samp_lst))) {
   samp <- samp_lst[[i]]
-  f.out=paste0(samp,"/seurat_obj.rds")
+  f.out=paste0(samp,"/",topDir,"/barcodes.tsv.gz")
   if (!file.exists(f.out)) {print(i)}
 }
 
