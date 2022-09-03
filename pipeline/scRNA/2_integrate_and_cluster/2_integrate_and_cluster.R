@@ -62,7 +62,7 @@ if (start==1) {
     f=paste0(samp,"/seurat_obj.rds")
     dfseurat[[i]] <- readRDS(file = f)
     
-    dfseurat[[i]] <- dfseurat[[i]][,1:min(ncol(dfseurat[[i]]),2000)]
+    # dfseurat[[i]] <- dfseurat[[i]][,1:min(ncol(dfseurat[[i]]),2000)]
 
     dfseurat[[i]]$i <- i
     dfseurat[[i]]$cell <- rownames(dfseurat[[i]]@meta.data)
