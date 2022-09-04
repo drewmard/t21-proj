@@ -73,6 +73,11 @@ if (start==1) {
   
   print("Merging...")
   for (i in 1:length(dfseurat)) { dfseurat[[i]]$dataset <- samp_ids[i]}
+  
+  f.out <- paste0(dir,"/out/combined/2_integrate_and_cluster/",DATASET,"/RNA_SeparateData.rds")
+  print(paste0("Saving data: ",f.out,"..."))
+  saveRDS(dfseurat,file = f.out)
+  
   dfcombined <- merge(dfseurat[[1]],
                       dfseurat[2:length(dfseurat)])#, # cell_names <- unlist(lapply(1:length(dfseurat),function(i) paste0("data",i,'_',rownames(dfseurat[[i]]@meta.data))))
   
