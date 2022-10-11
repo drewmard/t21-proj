@@ -135,6 +135,8 @@ for (permNum in 1:100) {
   }
   
   column_to_use="leiden_names"
+  
+  # here, dfsub is a *downsampled* scRNA-seq Seurat object containing only femur HSCs (both Healthy and T21) 
   dfsub <- dfcombined[,c(ind.lst,ind2.lst)]
   
   df.aggre <- aggregate.Matrix(
