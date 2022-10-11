@@ -40,5 +40,5 @@ dfcombined1 <- RunChromVAR(
 
 print("Saving round 2 results + GeneActivity + ChromVAR...")
 f.out <- paste0(dir,"/output/data/",DATASET,"/Multiome.RNA_ATAC.h.GeneActivity_ChromVAR.rds")
-saveRDS(dfcombined,file = f.out)
+saveRDS(dfcombined1,file = f.out)
 
