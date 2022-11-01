@@ -1,4 +1,11 @@
+RETICULATE_PYTHON="/home/amarder/anaconda3/envs/minimal_env/bin/python"
+module load R/4.1.2
+R
+RETICULATE_PYTHON.path="/home/amarder/anaconda3/envs/minimal_env/bin/python"
+Sys.setenv(RETICULATE_PYTHON = RETICULATE_PYTHON.path)
+
 library(Seurat)
+library(Signac)
 
 dir="/oak/stanford/groups/smontgom/amarder/neuro-variants"
 DATASET="DS_Multiome_h"
@@ -25,19 +32,23 @@ DefaultAssay(dfcombined1.atac) <- "ATAC"
 dfcombined1.atac[["RNA"]] <- NULL
 dfcombined1.atac = RenameAssays(dfcombined1.atac,ATAC="RNA")
 
-f.out <- paste0(dir,"/output/data/",DATASET,"_v2","/Multiome.RNA_only.h.h5ad")
+# f.out <- paste0(dir,"/output/data/",DATASET,"_v2","/Multiome.RNA_only2.h.h5ad")
+# sceasy::convertFormat(
+#   dfcombined1.rna, 
+#   from = "seurat", 
+#   to = "anndata", 
+#   outFile = f.out,
+#   main_layer = "data",
+#   transfer_layer = "counts"
+# )
+f.out <- paste0(dir,"/output/data/",DATASET,"_v2","/Multiome.ATAC_only2.h.h5ad")
 sceasy::convertFormat(
-  dfcombined1.rna, 
-  from = "seurat", 
-  to = "anndata", 
-  outFile = f.out
-)
-f.out <- paste0(dir,"/output/data/",DATASET,"_v2","/Multiome.ATAC_only.h.h5ad")
-sceasy::convertFormat(
-  dfcombined1.atac, 
-  from = "seurat", 
-  to = "anndata", 
-  outFile = f.out
+  dfcombined1.atac,
+  from = "seurat",
+  to = "anndata",
+  outFile = f.out,
+  main_layer = "data",
+  transfer_layer = "counts"
 )
 
 ##############################
@@ -69,19 +80,23 @@ DefaultAssay(dfcombined1.atac) <- "ATAC"
 dfcombined1.atac[["RNA"]] <- NULL
 dfcombined1.atac = RenameAssays(dfcombined1.atac,ATAC="RNA")
 
-f.out <- paste0(dir,"/output/data/",DATASET,"_v2","/Multiome.RNA_only.ds.h5ad")
+f.out <- paste0(dir,"/output/data/",DATASET,"_v2","/Multiome.RNA_only2.ds.h5ad")
 sceasy::convertFormat(
   dfcombined1.rna, 
   from = "seurat", 
   to = "anndata", 
-  outFile = f.out
+  outFile = f.out,
+  main_layer = "data",
+  transfer_layer = "counts"
 )
-f.out <- paste0(dir,"/output/data/",DATASET,"_v2","/Multiome.ATAC_only.ds.h5ad")
+f.out <- paste0(dir,"/output/data/",DATASET,"_v2","/Multiome.ATAC_only2.ds.h5ad")
 sceasy::convertFormat(
   dfcombined1.atac, 
   from = "seurat", 
   to = "anndata", 
-  outFile = f.out
+  outFile = f.out,
+  main_layer = "data",
+  transfer_layer = "counts"
 )
 
 ##############################

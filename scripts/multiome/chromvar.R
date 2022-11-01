@@ -13,10 +13,13 @@ library("TFBSTools")
 library(parallel)
 
 dir="/oak/stanford/groups/smontgom/amarder/neuro-variants"
-DATASET="DS_Multiome_h"
+
 print("Reading GeneActivity Multiome...")
-f.out <- paste0(dir,"/output/data/",DATASET,"_v2","/Multiome.RNA_ATAC.h.GeneActivity.rds")
-dfcombined1 <- readRDS(file = f.out)
+
+f = paste0("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_ds_v2/Multiome.RNA_ATAC.ds.rds")
+f.out = paste0("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_ds_v2/Multiome.RNA_ATAC.ds.ChromVAR.rds")
+
+dfcombined1 <- readRDS(file = f)
 
 DefaultAssay(dfcombined1) <- 'ATAC'
 
@@ -39,6 +42,11 @@ dfcombined1 <- RunChromVAR(
 )
 
 print("Saving round 2 results + GeneActivity + ChromVAR...")
-f.out <- paste0(dir,"/output/data/",DATASET,"/Multiome.RNA_ATAC.h.GeneActivity_ChromVAR.rds")
 saveRDS(dfcombined1,file = f.out)
 
+chromvar_data = df@assays$chromvar@data
+chromvar_data = as.data.frame(chromvar_data)
+chromvar_data[1:5,1:5]
+
+f.out2 = paste0("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_ds_v2/ds.ChromVAR.txt")
+fwrite(chromvar_data,f.out2,quote = F,na = "NA",sep = '\t',row.names = T,col.names = T)

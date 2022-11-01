@@ -16,7 +16,6 @@ library(EnsDb.Hsapiens.v86)
 # # end=args[3]
 # DATASET=args[4]
 
-dir="/oak/stanford/groups/smontgom/amarder/neuro-variants"
 
 ####################################################################
 
@@ -91,12 +90,21 @@ f.out <- paste0(dir,"/output/data/",DATASET,"_v2","/Multiome.RNA_ATAC.h.rds")
 dfcombined1 <- readRDS(file = f.out)
 # reticulate::use_condaenv("sceasy", required = TRUE)
 f.out <- paste0(dir,"/output/data/",DATASET,"_v2","/Multiome.RNA_ATAC.h.h5ad")
+# sceasy::convertFormat(
+#   dfcombined1, 
+#   from = "seurat", 
+#   to = "anndata", 
+#   outFile = f.out
+# )
 sceasy::convertFormat(
   dfcombined1, 
   from = "seurat", 
   to = "anndata", 
-  outFile = f.out
+  outFile = f.out,
+  main_layer = "data",
+  transfer_layer = "counts"
 )
+
 
 dir="/oak/stanford/groups/smontgom/amarder/neuro-variants"
 DATASET="DS_Multiome_ds"
