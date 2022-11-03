@@ -16,7 +16,7 @@ dir="/oak/stanford/groups/smontgom/amarder/neuro-variants"
 
 print("Reading GeneActivity Multiome...")
 
-for (i in 1:2) { 
+for (i in 2:2) { 
   
   if (i==1) {
     f = paste0("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_ds_v2/Multiome.RNA_ATAC.ds.rds")
@@ -53,7 +53,7 @@ for (i in 1:2) {
   print("Saving round 2 results + GeneActivity + ChromVAR...")
   saveRDS(dfcombined1,file = f.out)
   
-  chromvar_data = df@assays$chromvar@data
+  chromvar_data = dfcombined1@assays$chromvar@data
   chromvar_data = as.data.frame(chromvar_data)
   chromvar_data[1:5,1:5]
   
