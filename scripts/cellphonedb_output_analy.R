@@ -36,7 +36,10 @@ colnames(dfmu.melt)[5] <- "MeanExpr"
 # subset(dfmu.melt,Ligand %in% c("CCL4","SLC7A1") & Receptor %in% c("CCL4","SLC7A1") &
 #          Sender%in%c("Activated stellate cells","B cells") & Receiver%in%c("Activated stellate cells","B cells") )
 
+# subset(dfp,gene_a=="CCL3L1" & gene_b=="CCR1")
 dfp.melt <- reshape2::melt(dfp[,c(5,6,8,9,rng)],id.vars=c("gene_a","gene_b","receptor_a","receptor_b"))
+# subset(dfp.melt,gene_a=="CCL3L1" & gene_b=="CCR1" & variable=="Inflammatory macrophages|Kupffer cells")
+# subset(dfp.melt,gene_a=="CCR1" & gene_b=="CCL3L1" & variable=="Inflammatory macrophages|Kupffer cells")
 x = strsplit(as.character(dfp.melt$variable),"\\|")
 dfp.melt$cell1 = as.character(unlist(lapply(x,function(y){y[1]})))
 dfp.melt$cell2 = as.character(unlist(lapply(x,function(y){y[2]})))
@@ -48,9 +51,16 @@ dfp.melt$Receiver = ifelse(dfp.melt$receptor_b,dfp.melt$cell2,dfp.melt$cell1)
 dfp.melt = dfp.melt[,c("Ligand","Receptor","Sender","Receiver","value")]
 colnames(dfp.melt)[5] <- "P"
 
+# subset(dfp.melt,Ligand=="CCL3L1" & Receptor=="CCR1" & Sender=="Inflammatory macrophages" & Receiver=="Kupffer cells")
+
 df.mg <- merge(dfmu.melt,dfp.melt,by=c("Ligand","Receptor","Sender","Receiver"))
 df.mg <- df.mg[order(df.mg$P,-1*df.mg$MeanExpr),]
 df.mg <- subset(df.mg,P < 0.05)
+
+# there are duplicated interactions due to curation from multiple annotation strategies. 
+# for example, "annotation_strategy" is "curated" and "I2D,InnateDB-All"
+# it got duplicated into 4 in the final df.mg output because i needed to merge a mean expr and p value table which each had 2 rows, and merges on all possibilities so 2x2 = 4 rows
+df.mg = df.mg[!duplicated(df.mg),] # 
 
 f.out = paste0(dir,"/",disease_status,"_",envir,"/",disease_status,"_",envir,".processed_output.txt")
 fwrite(df.mg,f.out,quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
