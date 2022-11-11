@@ -49,8 +49,8 @@ SE_data_bg <- getBackgroundPeaks(SE_data, niterations=200)
 # use monocytes from example file:
 library(SCAVENGE)
 # trait_file <- paste0(system.file('extdata', package='SCAVENGE'), "/mono.PP001.bed") # this is hg19
-# trait_file = "/home/amarder/R/x86_64-pc-linux-gnu-library/4.1/SCAVENGE/extdata/mono.PP001.hg38.bed"
-trait_file = "/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/ALL_finemap.hg38.bed"
+trait_file = "/home/amarder/R/x86_64-pc-linux-gnu-library/4.1/SCAVENGE/extdata/mono.PP001.hg38.bed"
+# trait_file = "/oak/stanford/groups/smontgom/amarder/t21-proj/scripts/ALL_finemap.hg38.bed"
 
 trait_import <- importBedScore(rowRanges(SE_data), trait_file, colidx=5)
 SE_data_DEV <- computeWeightedDeviations(SE_data, trait_import, background_peaks =
@@ -102,6 +102,10 @@ trait_mat2 %>%
 trait_mat2 %>%
   group_by(clust,disease) %>%
   summarise(enriched_cell=mean(true_cell_top_idx)) %>% print(n=Inf)
+
+trait_mat2 %>%
+  group_by(clust,disease) %>%
+  summarise(enriched_cell=mean(true_cell_top_idx),TRS=median(TRS)) %>% print(n=Inf)
 
 
 

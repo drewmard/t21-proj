@@ -16,7 +16,7 @@ dir="/oak/stanford/groups/smontgom/amarder/neuro-variants"
 
 print("Reading GeneActivity Multiome...")
 
-for (i in 3:3) { 
+for (i in 4:4) { 
   
   if (i==1) {
     f = paste0("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_ds_v2/Multiome.RNA_ATAC.ds.rds")
@@ -26,13 +26,25 @@ for (i in 3:3) {
     f = paste0("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_h_v2/Multiome.RNA_ATAC.h.rds")
     f.out = paste0("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_h_v2/Multiome.RNA_ATAC.h.ChromVAR.rds")
     f.out2 = paste0("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_h_v2/h.ChromVAR.txt")
-  } else {
+  } else if (i==3) {
     f = paste0("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_all/round2_FindClusters.GeneActivity.rds")
     f.out = paste0("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_all/round2_FindClusters.GeneActivity.ChromVAR.rds")
     f.out2 = paste0("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_all/all.ChromVAR.txt")
-  }
+  } else if (i==4) {
+    f.t21 = paste0("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_ds_v2/Multiome.RNA_ATAC.ds.rds")
+    f.h = paste0("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_h_v2/Multiome.RNA_ATAC.h.rds")
+    f.out = paste0("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_ds_v2/Multiome.RNA_ATAC.h_and_t21.ChromVAR.rds")
+    f.out2 = paste0("/oak/stanford/groups/smontgom/amarder/neuro-variants/output/data/DS_Multiome_ds_v2/h_and_t21.ChromVAR.txt")
+  } 
   
-  dfcombined1 <- readRDS(file = f)
+  if (i != 4) {
+    dfcombined1 <- readRDS(file = f)
+  } else {
+    dfcombined1 <- readRDS(file = f.t21)
+    dfcombined2 <- readRDS(file = f.h)
+    dfcombined1 = merge(dfcombined1,dfcombined2)
+    
+  }
   
   DefaultAssay(dfcombined1) <- 'ATAC'
   
