@@ -1,0 +1,222 @@
+WARNING: ignoring environment value of R_HOME
+Registered S3 method overwritten by 'spatstat.core':
+  method          from
+  formula.glmmPQL MASS
+Attaching SeuratObject
+Attaching sp
+Loading required package: Rcpp
+Warning message:
+In dir.create(dir.out) :
+  '/oak/stanford/groups/smontgom/amarder/t21-proj/out/combined/2_integrate_and_cluster/DS_Multiome_combined' already exists
+[1] "read_10X_and_saveRNAcounts..."
+[1] "Reading data from 1/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HVJYLDMXX_SIGAA2_GRCh38-3_0_0 ..."
+[1] "Reading data from 2/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HVJYLDMXX_SIGAB2_GRCh38-3_0_0 ..."
+[1] "Reading data from 3/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HVJYLDMXX_SIGAC2_GRCh38-3_0_0 ..."
+[1] "Reading data from 4/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HVJYLDMXX_SIGAD2_GRCh38-3_0_0 ..."
+[1] "Reading data from 5/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HVJYLDMXX_SIGAE2_GRCh38-3_0_0 ..."
+[1] "Reading data from 6/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_L15532_M_GRCh38-3_0_0 ..."
+[1] "Reading data from 7/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_35975_OT10xRNA9469345_GRCh38-3_0_0 ..."
+[1] "Reading data from 8/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_35975_OT10xRNA9469346_GRCh38-3_0_0 ..."
+[1] "Reading data from 9/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_35975_OT10xRNA9469347_GRCh38-3_0_0 ..."
+[1] "Reading data from 10/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_35975_OT10xRNA9469362_GRCh38-3_0_0 ..."
+[1] "Reading data from 11/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_35975_OT10xRNA9469363_GRCh38-3_0_0 ..."
+[1] "Reading data from 12/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_36610_OT10xRNA9505062_GRCh38-3_0_0 ..."
+[1] "Reading data from 13/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_36610_OT10xRNA9505063_GRCh38-3_0_0 ..."
+[1] "Reading data from 14/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HFVYKDSX2_and_37323_T21_15582_E_GRCh38-3_0_0 ..."
+[1] "Reading data from 15/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HFVYKDSX2_and_37323_T21_15582_F_GRCh38-3_0_0 ..."
+[1] "Reading data from 16/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_37328_OT10xRNA9505162_GRCh38-3_0_0 ..."
+[1] "Reading data from 17/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HCCVYDSX2_15582A_GRCh38-3_0_0 ..."
+[1] "Reading data from 18/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HCCVYDSX2_F15582C_GRCh38-3_0_0 ..."
+[1] "Reading data from 19/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_L15593_E_GRCh38-3_0_0 ..."
+[1] "Reading data from 20/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_L15593_F_GRCh38-3_0_0 ..."
+[1] "Reading data from 21/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_L15593_N_GRCh38-3_0_0 ..."
+[1] "Reading data from 22/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H3FGTDSX2_F15593A_GRCh38-3_0_0 ..."
+[1] "Reading data from 23/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_F15593_P_GRCh38-3_0_0 ..."
+[1] "Reading data from 24/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_T21_15619_A_GRCh38-3_0_0 ..."
+[1] "Reading data from 25/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_T21_15619_B_GRCh38-3_0_0 ..."
+[1] "Reading data from 26/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_T21_15619_C_GRCh38-3_0_0 ..."
+[1] "Reading data from 27/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H2NVKDSX2_T21_15619_D_GRCh38-3_0_0 ..."
+[1] "Reading data from 28/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_T21_15619_E_GRCh38-3_0_0 ..."
+[1] "Reading data from 29/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H2NVKDSX2_F15619F_GRCh38-3_0_0 ..."
+[1] "Reading data from 30/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_L15636_B_GRCh38-3_0_0 ..."
+[1] "Reading data from 31/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_L15636_C_GRCh38-3_0_0 ..."
+[1] "Reading data from 32/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_L15636_D_GRCh38-3_0_0 ..."
+[1] "Reading data from 33/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_L15636_Q_GRCh38-3_0_0 ..."
+[1] "Reading data from 34/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_F15636_R_GRCh38-3_0_0 ..."
+[1] "Reading data from 35/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H3FGTDSX2_F15636B_GRCh38-3_0_0 ..."
+[1] "Reading data from 36/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_15646A_GRCh38-3_0_0 ..."
+[1] "Reading data from 37/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_15646B_GRCh38-3_0_0 ..."
+[1] "Reading data from 38/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5NFWDSX2_L15646_H_GRCh38-3_0_0 ..."
+[1] "Reading data from 39/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_F15646J_GRCh38-3_0_0 ..."
+[1] "Reading data from 40/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H3FGTDSX2_15656C_GRCh38-3_0_0 ..."
+[1] "Reading data from 41/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_15656D_GRCh38-3_0_0 ..."
+[1] "Reading data from 42/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5NFWDSX2_L15656_I_GRCh38-3_0_0 ..."
+[1] "Reading data from 43/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5NFWDSX2_F15656E_GRCh38-3_0_0 ..."
+[1] "Reading data from 44/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_15667E_GRCh38-3_0_0 ..."
+[1] "Reading data from 45/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_15667F_GRCh38-3_0_0 ..."
+[1] "Reading data from 46/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5NFWDSX2_L15667_L_GRCh38-3_0_0 ..."
+[1] "Reading data from 47/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H3FGTDSX2_F15667C_GRCh38-3_0_0 ..."
+[1] "Reading data from 48/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H3FGTDSX2_F15667D_GRCh38-3_0_0 ..."
+[1] "Reading data from 49/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HCCVYDSX2_15667M_GRCh38-3_0_0 ..."
+[1] "Reading data from 50/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_15669G_GRCh38-3_0_0 ..."
+[1] "Reading data from 51/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_15669H_GRCh38-3_0_0 ..."
+[1] "Reading data from 52/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5NFWDSX2_L15669_N_GRCh38-3_0_0 ..."
+[1] "Reading data from 53/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_F15669F_GRCh38-3_0_0 ..."
+[1] "Reading data from 54/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5NFWDSX2_F15669_P_GRCh38-3_0_0 ..."
+[1] "Reading data from 55/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_15712_A_GRCh38-3_0_0 ..."
+[1] "Reading data from 56/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_15712_B_GRCh38-3_0_0 ..."
+[1] "Reading data from 57/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5NFWDSX2_L15712_Q_GRCh38-3_0_0 ..."
+[1] "Reading data from 58/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HCCVYDSX2_15712D_GRCh38-3_0_0 ..."
+[1] "Reading data from 59/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_15724_C_GRCh38-3_0_0 ..."
+[1] "Reading data from 60/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_15724_D_GRCh38-3_0_0 ..."
+[1] "Reading data from 61/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5NFWDSX2_L15724_T_GRCh38-3_0_0 ..."
+[1] "Reading data from 62/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_F15724H_GRCh38-3_0_0 ..."
+[1] "Reading data from 63/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_L15734_A_GRCh38-3_0_0 ..."
+[1] "Reading data from 64/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_L15734_B_GRCh38-3_0_0 ..."
+[1] "Reading data from 65/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HCCVYDSX2_15734U_GRCh38-3_0_0 ..."
+[1] "Reading data from 66/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_F15734_L_GRCh38-3_0_0 ..."
+[1] "Reading data from 67/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_F15734_M_GRCh38-3_0_0 ..."
+[1] "Reading data from 68/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HCCVYDSX2_15734V_GRCh38-3_0_0 ..."
+[1] "Reading data from 69/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_L15744_C_GRCh38-3_0_0 ..."
+[1] "Reading data from 70/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_L15744_D_GRCh38-3_0_0 ..."
+[1] "Reading data from 71/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HCCVYDSX2_15744W_GRCh38-3_0_0 ..."
+[1] "Reading data from 72/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_F15744_P_GRCh38-3_0_0 ..."
+[1] "Reading data from 73/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_F15744_N_GRCh38-3_0_0 ..."
+[1] "Reading data from 74/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HCCVYDSX2_15744Z_GRCh38-3_0_0 ..."
+[1] "Reading data from 75/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H2NVKDSX2_and_HFVYKDSX2_L15633_A_GRCh38-3_0_0 ..."
+[1] "Reading data from 76/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H2NVKDSX2_L15633_B_GRCh38-3_0_0 ..."
+[1] "Reading data from 77/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5NFWDSX2_L15633_R_GRCh38-3_0_0 ..."
+[1] "Reading data from 78/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H3FGTDSX2_and_HFYGWDSX2_F15633_C_GRCh38-3_0_0 ..."
+[1] "Reading data from 79/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5NFWDSX2_F15633_S_GRCh38-3_0_0 ..."
+[1] "Reading data from 80/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_and_HJJ3FDRXY_F15657G_GRCh38-3_0_0 ..."
+[1] "Reading data from 81/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_L15657A_GRCh38-3_0_0 ..."
+[1] "Reading data from 82/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_H5KT2DSX2_F15657F_GRCh38-3_0_0 ..."
+[1] "Reading data from 83/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HCCVYDSX2_L15781A_GRCh38-3_0_0 ..."
+[1] "Reading data from 84/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HCCVYDSX2_L15781C_GRCh38-3_0_0 ..."
+[1] "Reading data from 85/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HCCVYDSX2_L15781D_GRCh38-3_0_0 ..."
+[1] "Reading data from 86/86: /oak/stanford/groups/smontgom/amarder/data/t21/Cellranger/cellranger310_count_HCCVYDSX2_and_HJJ3FDRXY_F15781B_GRCh38-3_0_0 ..."
+[1] "Merging..."
+[1] "157192 cells total..."
+[1] "NormalizeData + FindVariableFeatures + ScaleData + RunPCA..."
+Performing log-normalization
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating gene variances
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Calculating feature variances of standardized and clipped values
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Centering and scaling data matrix
+  |                                                                              |                                                                      |   0%  |                                                                              |=======                                                               |  10%  |                                                                              |==============                                                        |  20%  |                                                                              |=====================                                                 |  30%  |                                                                              |============================                                          |  40%  |                                                                              |===================================                                   |  50%  |                                                                              |==========================================                            |  60%  |                                                                              |=================================================                     |  70%  |                                                                              |========================================================              |  80%  |                                                                              |===============================================================       |  90%  |                                                                              |======================================================================| 100%
+PC_ 1 
+Positive:  HMGA1, PA2G4, HMGB1, LDHB, HSPD1, EEF1B2, RAN, PCLAF, NPM1, C1QBP 
+	   AC084033.3, YBX1, KLF1, RPL22L1, HNRNPAB, NME1, RPS5, DUT, RANBP1, TYMS 
+	   UROD, PRSS57, EIF5A, NCL, FKBP4, H2AFZ, NME4, PSMG1, PAICS, MYL4 
+Negative:  MARCKS, S100A11, COL1A2, LGALS1, S100A10, AHNAK, COL1A1, COL6A2, ANXA2, SPARC 
+	   COL3A1, VCAN, COL5A2, COL6A1, COL4A1, VIM, COL4A2, TMSB4X, FN1, KCTD12 
+	   FSTL1, LAMA4, CALD1, DCN, COL5A1, TIMP2, IGFBP4, LAMB1, LRP1, PLAC9 
+PC_ 2 
+Positive:  FN1, COL5A2, MEG3, DLK1, CALD1, COL3A1, COL6A2, COL6A1, SPARC, IGF2.1 
+	   COL4A2, COL4A1, FSTL1, DCN, NFIB, NFIA, SERPINH1, PEG10, LAMA4, GPC3 
+	   PLAC9, COL1A2, COL5A1, LAMB1, PTMS, COL1A1, MEST, FBN1, SPARCL1, OGN 
+Negative:  CORO1A, TYROBP, ITGB2, LSP1, FCER1G, LCP1, MNDA, PTPRC, HCST, CTSS 
+	   LYZ, CYBA, LST1, HLA-B, FCN1, SH3BGRL3, CYBB, CD37, CSTA, SRGN 
+	   S100A9, MYO1F, RETN, C1orf162, PYCARD, EVI2B, CD48, SPI1, S100A8, HLA-C 
+PC_ 3 
+Positive:  AFP, AHSG, APOA2, TTR, MT1H, APOB, APOC3, FGB, MT1G, FABP1 
+	   AMBP, ALB, SERPINA1, APOA1, TF, VTN, FGA, MT1E, APOH, FGG 
+	   RBP4, MT1F, AGT, MT2A, ITIH1, MT1X, CPS1, ITIH2, ALDOB, MT1M 
+Negative:  VIM, ITM2A, ACTG1, COL12A1, COL5A1, OGN, SPARCL1, MMP2, NFIB, LGALS1 
+	   LAMA4, COL1A2, MEST, FSTL1, POSTN, TUBA1A, COL1A1, LUM, PLAC9, SPARC 
+	   COL6A2, PLAGL1, ISLR, CAPN6, COL3A1, NRK, MAP1B, FBN1, IGFBP5, THY1 
+PC_ 4 
+Positive:  KLRB1, GZMA, GZMM, CD247, IL2RB, CST7, KLRD1, CCL5, KLRC1, TRBC1 
+	   CD3D, XCL2, PRF1, IFITM1, CD3E, NKG7, TRDC, RARRES3, GZMK, CD160 
+	   PYHIN1, CD7, CTSW, IKZF3, STK17A, SAMD3, XCL1, KLRF1, LCK, SKAP1 
+Negative:  S100A6, TSPO, FTL, MNDA, CST3, FCN1, LYZ, CSTA, S100A9, RETN 
+	   S100A4, CYBB, S100A8, PLBD1, NCF2, LRRK2, FGL2, IGSF6, S100A12, GCA 
+	   MS4A6A, CFP, CDA, PADI4, AC020656.1, SPI1, CFD, MPEG1, CTSH, CD68 
+PC_ 5 
+Positive:  CDH5, KDR, FLT1, PTPRB, CLDN5, PLVAP, APLNR, ADGRF5, EMCN, ADGRL4 
+	   ROBO4, MMRN2, MYCT1, SOX18, TIE1, VWF, ESAM, PRCP, TM4SF1, RAPGEF5 
+	   NOTCH4, CXorf36, PECAM1, ARHGAP29, SHANK3, RAMP2, IL33, EFNB2, PODXL, CAV1 
+Negative:  OGN, DCN, LUM, CAPN6, ISLR, NRK, NOV, EGFL6, COL6A6, PDGFRA 
+	   ANGPTL1, PTN, SCN7A, FNDC1, COL3A1, PCOLCE, FAP, SMOC2, COL12A1, MEST 
+	   POSTN, PLAC9, ZFHX4, IGFBP6, SGCD, IGF1, COL6A3, COL1A1, ASPN, MFAP5 
+[1] "RunHarmony..."
+Harmony 1/10
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Harmony 2/10
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Harmony 3/10
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Harmony 4/10
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Harmony 5/10
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Harmony 6/10
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Harmony 7/10
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+Harmony converged after 7 iterations
+Warning: Invalid name supplied, making object name syntactically valid. New object name is Seurat..ProjectDim.RNA.harmony; see ?make.names for more details on syntax validity
+[1] "RunUMAP..."
+Warning: The default method for RunUMAP has changed from calling Python UMAP via reticulate to the R-native UWOT using the cosine metric
+To use Python UMAP via reticulate, set umap.method to 'umap-learn' and metric to 'correlation'
+This message will be shown once per session
+12:45:03 UMAP embedding parameters a = 0.9922 b = 1.112
+12:45:03 Read 157192 rows and found 30 numeric columns
+12:45:03 Using Annoy for neighbor search, n_neighbors = 30
+12:45:03 Building Annoy index with metric = cosine, n_trees = 50
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+12:46:27 Writing NN index file to temp file /local/scratch/amarder/slrmtmp.34201376/Rtmps1aYxg/file35d57f88f7f9
+12:46:27 Searching Annoy index using 1 thread, search_k = 3000
+12:54:46 Annoy recall = 100%
+12:54:48 Commencing smooth kNN distance calibration using 1 thread with target n_neighbors = 30
+12:55:00 Initializing from normalized Laplacian + noise (using irlba)
+12:55:38 Commencing optimization for 200 epochs, with 6941838 positive edges
+Using method 'umap'
+0%   10   20   30   40   50   60   70   80   90   100%
+[----|----|----|----|----|----|----|----|----|----|
+**************************************************|
+13:01:41 Optimization finished
+[1] "FindNeighbors..."
+Computing nearest neighbor graph
+Computing SNN
+[1] "Saving data: /oak/stanford/groups/smontgom/amarder/t21-proj/out/combined/2_integrate_and_cluster/DS_Multiome_combined/RNA_FindNeighbors.rds..."
+[1] "Creating UMAP with dataset-based coloring (round 2)..."
+Rasterizing points since number of points exceeds 100,000.
+To disable this behavior set `raster=FALSE`
+[1] "Creating split-UMAP with dataset-based coloring (round 2)..."
+Rasterizing points since number of points exceeds 100,000.
+To disable this behavior set `raster=FALSE`
+null device 
+          1 
+Warning message:
+In dir.create(paste0(dir, "/out/combined/2_integrate_and_cluster/",  :
+  '/oak/stanford/groups/smontgom/amarder/t21-proj/out/combined/2_integrate_and_cluster/DS_Multiome_combined' already exists
+[1] "FindClusters..."
+[1] "Creating UMAP with seurat clusters..."
+Rasterizing points since number of points exceeds 100,000.
+To disable this behavior set `raster=FALSE`
+[1] "Saving data: /oak/stanford/groups/smontgom/amarder/t21-proj/out/combined/2_integrate_and_cluster/DS_Multiome_combined/RNA_FindClusters.rds..."

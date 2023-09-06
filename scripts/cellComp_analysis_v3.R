@@ -90,7 +90,8 @@ for (sampletype in c("Femur","Liver")) {
       
       colnames(cluster_counts[[sampletype]][[disease_status]][[sorting_strategy]])[2] <- 'cluster'
       cluster_counts[[sampletype]][[disease_status]][[sorting_strategy]] <- merge(cluster_counts[[sampletype]][[disease_status]][[sorting_strategy]],cluster_to_label_mapping[[sampletype]][[disease_status]],by="cluster")
-      cluster_percentages[[sampletype]][[disease_status]][[sorting_strategy]] <- convert_to_cluster_percentages(cluster_counts[[sampletype]][[disease_status]][[sorting_strategy]],group_counts[[sampletype]][[disease_status]][[sorting_strategy]])
+      # cluster_percentages[[sampletype]][[disease_status]][[sorting_strategy]] <- convert_to_cluster_percentages(cluster_counts[[sampletype]][[disease_status]][[sorting_strategy]],group_counts[[sampletype]][[disease_status]][[sorting_strategy]])
+      cluster_percentages[[sampletype]][[disease_status]][[sorting_strategy]] <- convert_to_percentages(cluster_counts[[sampletype]][[disease_status]][[sorting_strategy]],total_counts[[sampletype]][[disease_status]][[sorting_strategy]])
       cluster_matrix[[sampletype]][[disease_status]][[sorting_strategy]] <- reshape2::dcast(cluster_percentages[[sampletype]][[disease_status]][[sorting_strategy]],Patient_ID~cluster,value.var="Freq",drop=FALSE)
       
       group_percentages[[sampletype]][[disease_status]][[sorting_strategy]] <- convert_to_percentages(group_counts[[sampletype]][[disease_status]][[sorting_strategy]],total_counts[[sampletype]][[disease_status]][[sorting_strategy]])
@@ -277,17 +278,22 @@ for (sampletype in c("Liver","Femur")) {
           y=subset(cluster_percentages_all[[sampletype]][[sorting_strategy]][[cell_type]],cluster==clustertype)
           tres <- t.test(y$Freq~y$disease_status)
           ures <- wilcox.test(y$Freq~y$disease_status)
-          res.lst[[iter]] <- data.frame(sampletype,sorting_strategy,cell_type,clustertype,cases=as.numeric(tres$estimate[1]),controls=as.numeric(tres$estimate[2]),t_pval=as.numeric(tres$p.value),mwu_pval=ures$p.value)
+          aggre = aggregate(Freq~disease_status,y,median)
+          res.lst[[iter]] <- data.frame(sampletype,sorting_strategy,cell_type,clustertype,cases=as.numeric(aggre[1,2]),controls=as.numeric(aggre[2,2]),mwu_pval=ures$p.value)
+          # res.lst[[iter]] <- data.frame(sampletype,sorting_strategy,cell_type,clustertype,cases=as.numeric(tres$estimate[1]),controls=as.numeric(tres$estimate[2]),t_pval=as.numeric(tres$p.value),mwu_pval=ures$p.value)
         },error=function(e) {print(paste(sampletype,sorting_strategy,cell_type,clustertype))})
       }
     }
     res <- as.data.frame(do.call(rbind,res.lst))
-    res$t_fdr.adj <- p.adjust(res$t_pval,method='fdr')
+    # res$t_fdr.adj <- p.adjust(res$t_pval,method='fdr')
     res$mwu_fdr.adj <- p.adjust(res$mwu_pval,method='fdr')
     f.out=paste0('~/Documents/Research/t21-proj/out/full/cellComp_res/cellComp.cluster.',sampletype,'.',sorting_strategy,'.','cluster','.txt')
     fwrite(res,f.out,quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
   }
 }
+
+
+
 
 sampletype="Liver"
 sorting_strategy="CD45+"

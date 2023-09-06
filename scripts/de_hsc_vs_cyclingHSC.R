@@ -50,7 +50,28 @@ metadata_to_use1$leiden_names=cell_type
 colnames(df.aggre1) <- paste0(colnames(df.aggre1),".cyc")
 rownames(metadata_to_use1) <- paste0(rownames(metadata_to_use1),".cyc")
 
+df.aggre1 = as.data.frame(df.aggre1)
+f.out=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data_pb_leiden/Liver.pb.",cell_type_filename,".txt")
+fwrite(df.aggre1,f.out,quote = F,na = "NA",sep = '\t',row.names = T,col.names = T)
+
+f.out=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data_pb_leiden/Liver.pb.",cell_type_filename,".meta.txt")
+fwrite(metadata_to_use1,f.out,quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
+
 ##### 
+
+cell_type="Cycling HSCs/MPPs";
+cell_type_filename = gsub("/","_",cell_type)
+disease_status="DownSyndrome"
+sampletype="Liver"
+f.out=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data_pb_leiden/Liver.pb.",cell_type_filename,".txt")
+df.aggre1=fread(f.out,data.table = F,stringsAsFactors = F)
+rownames(df.aggre1) = df.aggre1[,1]; df.aggre1 = df.aggre1[,-1]
+f.out=paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data_pb_leiden/Liver.pb.",cell_type_filename,".meta.txt")
+metadata_to_use1=fread(f.out,data.table = F,stringsAsFactors = F)
+rownames(metadata_to_use1) = paste0(metadata_to_use1$sample,".cyc")
+rownames(metadata_to_use1)==colnames(df.aggre1)
+
+########
 
 cell_type="HSCs/MPPs"
 cell_type_filename = gsub("/","_",cell_type)
@@ -71,9 +92,22 @@ metadata_to_use <- metadata_to_use[samples_to_keep,]
 colnames(df.aggre) <- paste0(colnames(df.aggre),".hsc")
 rownames(metadata_to_use) <- paste0(rownames(metadata_to_use),".hsc")
 metadata_to_use$leiden_names <- cell_type
+# this step is a bug!!!!!!!! this is wrong.
 df.aggre <- cbind(df.aggre[rownames(df.aggre) %in% rownames(df.aggre1),],df.aggre1)
 metadata_to_use <- rbind(metadata_to_use,metadata_to_use1)
+df.aggre.cpm = cpm(df.aggre)
+
+HSC_lst_data = list(df.aggre,metadata_to_use)
+saveRDS(HSC_lst_data,"/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data_pb_leiden/cycling_HSC_data")
+
+median(as.numeric(df.aggre.cpm["TFR2",1:50]))
+median(as.numeric(df.aggre.cpm["TFR2",51:100]))
+
 ##### 
+
+HSC_lst_data = readRDS("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data_pb_leiden/cycling_HSC_data")
+df.aggre=HSC_lst_data[[1]]
+metadata_to_use=HSC_lst_data[[2]]
 
 geneExpr = DGEList( df.aggre )
 keep <- filterByExpr(geneExpr, group=metadata_to_use$environment)
@@ -104,7 +138,7 @@ res.df <- as.data.frame(topTable( fitmm, number=Inf,coef = "leiden_namesCycling 
 res.df$names <- rownames(res.df)
 
 # save:
-f.out <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_leiden_names/HSC_v_CyclingHSC.txt")
+f.out <- paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/DE_pb_leiden_names/HSC_v_CyclingHSC.t21.txt")
 fwrite(res.df,f.out,quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
 
 

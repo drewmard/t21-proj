@@ -63,6 +63,9 @@ for (sampletype in c("Liver","Femur")) {
     df.aggre <- df.aggre[,samples_to_keep]
     metadata_to_use <- metadata_to_use[samples_to_keep,]
     
+    # saveRDS(list(df.aggre,metadata_to_use),"/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data_pb_leiden/Liver.pb.HSCs_MPPs.txt")
+    
+    
     # need to remodel sorting probably:
     # [1] "19/28: Schwann cells"
     # Fixed effect model, using limma directly...
