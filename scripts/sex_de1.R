@@ -3,10 +3,6 @@ library(variancePartition) # for limma voom
 library(data.table)
 library(dplyr)
 
-# next: perform DE analysis with new data labels
-# note: need to read in full data!
-# but can check how this compares to just using this data
-
 sexdata = fread("/oak/stanford/groups/smontgom/amarder/tmp/ts21_sex_info.csv",data.table = F,stringsAsFactors = F)
 
 sampletype="Liver"
