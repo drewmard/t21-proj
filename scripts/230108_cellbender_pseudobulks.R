@@ -188,6 +188,98 @@ for (disease_status in c("Down Syndrome")) {
 
 ### Compare!
 
+#########
+# Below is for ts21 vs disomy
+
+sampletype="Liver"
+
+# disease_status="Healthy"
+print(paste0("Running analysis: ",disease_status,"..."))
+
+disease_status="Down Syndrome"
+f = paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/cellbender_sub/HSC/pseudobulks/",disease_status,'_',sampletype,".pb.txt")
+df.aggre1<-fread(f,data.table = F,stringsAsFactors = F,header = T)
+f = paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/cellbender_sub/HSC/pseudobulks/",disease_status,'_',sampletype,".meta.txt")
+meta1<-fread(f,data.table = F,stringsAsFactors = F,header = T)
+rownames(df.aggre1) = df.aggre1[,1]
+df.aggre1 = df.aggre1[,-1]
+rownames(meta1) = meta1[,1]
+meta1 = meta1[,-1]
+
+disease_status="Healthy"
+f = paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/cellbender_sub/HSC/pseudobulks/",disease_status,'_',sampletype,".pb.txt")
+df.aggre2<-fread(f,data.table = F,stringsAsFactors = F,header = T)
+f = paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/data/cellbender_sub/HSC/pseudobulks/",disease_status,'_',sampletype,".meta.txt")
+meta2<-fread(f,data.table = F,stringsAsFactors = F,header = T)
+if (nrow(meta2)==1) {
+  tmprow = df.aggre2[,1]
+  tmpcol = colnames(df.aggre2)[2]
+  df.aggre2 <- data.frame(sample=df.aggre2[,2])
+  colnames(df.aggre2) = tmpcol
+  rownames(df.aggre2) = tmprow
+} else {
+  rownames(df.aggre2) = df.aggre2[,1]
+  df.aggre2 = df.aggre2[,-1]
+}
+rownames(meta2) = meta2[,1]
+meta2 = meta2[,-1]
+
+# to account for same patients in femur and liver
+rownames(meta1) = paste0(rownames(meta1),".liver")
+rownames(meta2) = paste0(rownames(meta2),".femur")
+colnames(df.aggre1) = paste0(colnames(df.aggre1),".liver")
+colnames(df.aggre2) = paste0(colnames(df.aggre2),".femur")
+
+df.aggre = merge(df.aggre1,df.aggre2,by=0)
+rownames(df.aggre) = df.aggre[,1]
+df.aggre = df.aggre[,-1]
+meta = rbind(meta1,meta2)
+
+# align metadata and pseudobulks:
+metadata_to_use <- meta[rownames(meta) %in% colnames(df.aggre),]
+metadata_to_use$age = as.numeric(substring(metadata_to_use$age,1,2))
+df.aggre <- as.data.frame.matrix(df.aggre[,match(rownames(metadata_to_use),colnames(df.aggre))])
+
+# Specify parallel processing parameters
+# this is used implicitly by dream() to run in parallel
+param = SnowParam(8, "SOCK", progressbar=TRUE)
+
+# The variable to be tested must be a fixed effect
+# for (use_pcw in c(TRUE,FALSE)) {
+form <- ~ environment + sorting
+
+# A positive FC is increased expression in the DS compared to healthy
+metadata_to_use$environment <- factor(metadata_to_use$environment,levels=c("Healthy","Down Syndrome"))
+if ("sorting" %in% colnames(metadata_to_use)) {
+  metadata_to_use$sorting[!(metadata_to_use$sorting %in% c("CD235a-","CD45+"))] <- "Other"
+}
+
+# estimate weights using linear mixed model of dream
+# vobjDream = voomWithDreamWeights( df.aggre, form, metadata_to_use, BPPARAM=param )
+vobjDream = voomWithDreamWeights( df.aggre, form, metadata_to_use, BPPARAM=param ,span="auto")
+
+# Fit the model on each gene
+fitmm = dream( vobjDream, form, metadata_to_use )
+fitmm = eBayes(fitmm)
+
+# reorganize:
+res.df1 <- as.data.frame(topTable( fitmm, number=Inf,coef = "environmentDown Syndrome" ))
+# res.df1 <- as.data.frame(topTable( fitmm, number=Inf,coef = "age" ))
+res.df1$names <- rownames(res.df1)
+res.df1$analysis <- "Fetal Liver HSCs: Ts21 vs Disomy"
+
+dir.create(paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/pseudobulks/","sample","/DE/cellbender"),showWarnings = FALSE)
+# f.out = paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/pseudobulks/",subset_column,"/DE/",disease_status,'_',cell_type_filename,".de",age_suffix,".txt")
+cell_type_filename = gsub("/","_",cell_type)
+f.out = paste0("/oak/stanford/groups/smontgom/amarder/t21-proj/out/full/pseudobulks/","sample","/DE/cellbender/",sampletype,'_',cell_type_filename,".de.txt")
+fwrite(res.df1,f.out,quote = F,na = "NA",sep = '\t',row.names = F,col.names = T)
+
+
+### Compare!
+
+
+
+
 
 
 
