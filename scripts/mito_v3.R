@@ -8,10 +8,10 @@ f.out = "~/Downloads/mitotracker_results.txt"
 pdf.out = "~/Downloads/mitotracker_results.v3.pdf"
 y_label = "MitoTracker"
 
-# df = fread("~/Downloads/mitosox_exp_230719_lin.csv",data.table = F,stringsAsFactors = F)
-# f.out = "~/Downloads/mitosox_results.txt"
-# pdf.out = "~/Downloads/mitosox_results.v3.pdf"
-# y_label = "MitoSOX"
+df = fread("~/Downloads/mitosox_exp_230719_lin.csv",data.table = F,stringsAsFactors = F)
+f.out = "~/Downloads/mitosox_results.txt"
+pdf.out = "~/Downloads/mitosox_results.v3.pdf"
+y_label = "MitoSOX"
 
 df$values = df[,1]
 df$Sample = as.factor(df$Sample)
