@@ -36,8 +36,8 @@ The following data has been deposited on ArrayExpress:
 You will need to install packages that are listed in the header of scripts prior to running them.
 
 Can't find code relevant to the analysis that you are interested in? Please look here first:
+- **[GitHub repository for scRNA-seq analyses](https://github.com/drewmard/t21-proj)**
 - **[GitLab repository for spatial transcriptomics and other scRNA-seq analyses](https://gitlab.com/cvejic-group/downsyndrome/)**
-- **[GitHub repository for 10X multiome analyses](https://github.com/drewmard/t21_multiome)**
 
 Please reach me at andrew.marderstein@gmail.com if there are questions about the analysis.
 
@@ -104,4 +104,6 @@ Please reach me at andrew.marderstein@gmail.com if there are questions about the
 ### Somatic Enrichment Analysis
 
 - **291123_somatic_v3.R**: Performs somatic enrichment analysis on chromosome 21 and other relevant regions.
+
+
 
