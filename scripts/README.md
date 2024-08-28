@@ -6,6 +6,8 @@ This repository contains scripts necessary for running scRNA-seq analyses relate
 
 ## Table of Contents
 - [Introduction](#introduction)
+  - [Data Availability](#data-availability)
+  - [Other Information](#other-information)
 - [Scripts](#scripts)
   - [Data Conversion](#data-conversion)
   - [Quality Control (QC) and Clustering](#quality-control-qc-and-clustering)
@@ -14,11 +16,30 @@ This repository contains scripts necessary for running scRNA-seq analyses relate
   - [Integration and Mapping](#integration-and-mapping)
   - [CellPhoneDB Analysis](#cellphonedb-analysis)
   - [Mitochondria-Related Analysis](#mitochondria-related-analysis)
-  - [Somatic Enrichment and Chromosome 21 Analysis](#somatic-enrichment-and-chromosome-21-analysis)
+  - [Somatic Enrichment and Chromosome 21 Analysis](#somatic-enrichment-analysis)
 
 ## Introduction
 
-This repository provides the necessary scripts for conducting the scRNA-seq analyses described in our manuscript. The scripts cover a wide range of tasks, from data conversion and quality control to differential expression analysis and visualization.
+This repository provides the necessary scripts for conducting many scRNA-seq analyses described in our manuscript. The scripts cover a wide range of tasks, from data conversion and quality control to differential expression analysis and visualization.
+
+
+### Data Availability
+
+Input data for scripts are based on the datasets that have been deposited on ArrayExpress.
+
+The following data has been deposited on ArrayExpress: 
+- **scRNA-seq FASTQ raw data and CellRanger count matrices** (accession number E-MTAB-13067)
+- **10x Visium FASTQ raw data, SpaceRanger count matrices, run summary metrics, and spatiality outputs** (E-MTAB-13062)
+- **Multiome snRNA-seq and snATAC-seq FASTQ raw data, CellRanger ARC count matrices, and ATAC fragment files** (E-MTAB-13070). 
+
+### Other Information
+You will need to install packages that are listed in the header of scripts prior to running them.
+
+Can't find code relevant to the analysis that you are interested in? Please look here first:
+- **[GitLab repository for spatial transcriptomics and other scRNA-seq analyses](https://gitlab.com/cvejic-group/downsyndrome/)**
+- **[GitHub repository for 10X multiome analyses](https://github.com/drewmard/t21_multiome)**
+
+Please reach me at andrew.marderstein@gmail.com if there are questions about the analysis.
 
 ## Scripts
 
