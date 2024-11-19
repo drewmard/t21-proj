@@ -4,6 +4,8 @@ This repository contains scripts necessary for running scRNA-seq analyses relate
 
 **Marderstein, A.R. et al. (2024). Single-cell multi-omics map of human foetal blood in Down's Syndrome. _Nature_.**
 
+Contact: andrew.marderstein@gmail.com
+
 ## Table of Contents
 - [Introduction](#introduction)
   - [Data Availability](#data-availability)
